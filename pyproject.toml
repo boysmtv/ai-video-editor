@@ -1,0 +1,22 @@
+[project]
+name = "ai-video-editor"
+version = "0.1.0"
+description = "Automated short-form video editing pipeline for TikTok and Shopee."
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0.0",
+  "Pillow>=10.0.0",
+]
+
+[project.scripts]
+ai-video-editor = "ai_video_editor.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

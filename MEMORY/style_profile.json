@@ -1,0 +1,22 @@
+{
+  "editing_style": "natural_dynamic",
+  "color_tone": "warm_vibrant",
+  "cut_speed": "adaptive",
+  "caption_style": "minimal_bold",
+  "platform_weights": {
+    "tiktok": {
+      "visual": 0.24,
+      "audio": 0.14,
+      "semantic": 0.28,
+      "hook": 0.2,
+      "retention_penalty": 0.14
+    },
+    "shopee": {
+      "visual": 0.2,
+      "audio": 0.08,
+      "semantic": 0.4,
+      "hook": 0.12,
+      "retention_penalty": 0.1
+    }
+  }
+}

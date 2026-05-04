@@ -1,0 +1,25 @@
+{
+  "tiktok_hooks": [
+    "POV: satu momen kecil ini bikin hari lebih enak",
+    "day in my life, tapi bagian ini paling satisfying",
+    "ini hal kecil yang bikin aku ulang terus"
+  ],
+  "shopee_hooks": [
+    "awalnya iseng beli ini, ternyata kepake banget",
+    "gak nyangka ini useful banget buat daily routine",
+    "ternyata yang simpel begini malah paling sering dipake"
+  ],
+  "best_duration_seconds": {
+    "tiktok": 22,
+    "shopee": 30
+  },
+  "best_structure": {
+    "tiktok": ["hook", "highlight", "highlight", "peak", "loop"],
+    "shopee": ["problem", "lifestyle", "product", "demo", "benefit", "cta"]
+  },
+  "learned_patterns": {
+    "high_retention_openers": [],
+    "high_conversion_angles": [],
+    "niche_winners": {}
+  }
+}
