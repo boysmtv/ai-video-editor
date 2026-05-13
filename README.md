@@ -2,6 +2,8 @@
 
 Automated short-form video pipeline for TikTok and Shopee.
 
+The pipeline now includes an optional LangChain/LangGraph orchestration layer for plan building, hook strategy, and variant ranking.
+
 ## What it does
 
 - Loads `CONFIG/settings.json`
@@ -17,6 +19,7 @@ Automated short-form video pipeline for TikTok and Shopee.
 - Builds vertical 9:16 edits for TikTok and Shopee
 - Exports MP4 files to `OUTPUT/TIKTOK` and `OUTPUT/SHOPEE`
 - Logs each run to `MEMORY/history_log.json`
+- Uses LangGraph to orchestrate ranking, selection, hook planning, and optional LLM refinement
 
 ## Usage
 
@@ -42,20 +45,48 @@ python3 run_pipeline.py --project-root /Users/dedywijaya/Work/Google/ai/ai-video
 - Per-output analysis JSON goes to `OUTPUT/ANALYSIS`.
 - Per-run reports go to `OUTPUT/REPORTS`.
 
-## Smart features in v2
+## Smart features in v3
 
+- LangChain/LangGraph orchestration for planning workflow
 - Speech-to-text and subtitle generation
 - Semantic hook extraction from transcript and niche
 - Product similarity using image hashes plus color histogram
 - Beat and energy analysis for faster TikTok pacing
+- Shot-boundary detection for cleaner segment transitions
+- Speech-driven segment alignment with VAD-style activity gating
+- Post-render evaluator for opening strength, pacing, speech clarity, and repetition
+- A/B variant ranking per platform
+- Richer brand/style memory for pacing, crop center, CTA tone, and music bias
+- Human override control through `CONFIG/overrides.json`
+
+## LangChain mode
+
+- `use_langchain_orchestrator=true` enables the LangGraph workflow.
+- `langchain_llm_enabled=true` enables optional LLM refinement for hooks and strategy notes.
+- `langchain_model` can be set to a provider-qualified model string supported by LangChain.
+- Without an API key or model config, the LangGraph workflow still runs with deterministic local nodes.
 - Storyboard planner for `hook/highlight/peak/loop` and `problem/product/demo/benefit/cta`
 - Retention-risk detector for weak openings and repetitive sequences
 - Auto safe-zone crop using saliency plus skin-tone heuristics
 - Quality confidence score and multi-variant rendering
 - Learning loop that updates memory with discovered durations and hooks
 
+## Human override
+
+Edit `CONFIG/overrides.json` when you want to bias the next run without touching code.
+
+- `focus_mode`: force only `tiktok` or `shopee`
+- `focus_product_demo`: prioritize clips with stronger product/object focus
+- `prefer_spoken_segments`: bias the ranker toward speech-led moments
+- `preferred_hook`: force a specific hook
+- `preferred_niche`: force niche memory selection
+- `max_variants`: override how many variants per mode are rendered
+- `banned_phrases`: remove specific words from generated hooks
+- `preferred_music_tokens`: bias music file selection by filename tokens
+
 ## Notes
 
 - The pipeline is fully usable with real videos in the input folders.
 - Several "smart" features use heuristics so they stay runnable locally.
 - Whisper transcription is attempted automatically when audio is present and the local environment can load the selected model.
+- The current object/product intelligence is still local descriptor-based, not a heavyweight detection model.

@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Automated short-form video editing pipeline for TikTok and Shopee."
 requires-python = ">=3.11"
 dependencies = [
+  "langchain>=1.0.0",
+  "langchain-openai>=1.0.0",
+  "langgraph>=1.0.0",
   "numpy>=2.0.0",
   "Pillow>=10.0.0",
 ]

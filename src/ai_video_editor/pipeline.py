@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import re
 import subprocess
 import tempfile
@@ -32,6 +33,10 @@ class Settings:
     mode: str = "auto"
     generate_both_versions: bool = True
     variants_per_mode: int = 2
+    auto_select_best_variant: bool = True
+    use_langchain_orchestrator: bool = True
+    langchain_llm_enabled: bool = False
+    langchain_model: str | None = None
     sample_interval_seconds: float = 0.8
     min_segment_seconds: float = 1.5
     max_segment_seconds: float = 3.2
@@ -48,9 +53,20 @@ class Settings:
     transcription_enabled: bool = True
     whisper_model: str = "tiny"
     transcription_language: str = "id"
+    asr_vad_enabled: bool = True
+    asr_auto_language_fallback: bool = True
+    asr_initial_prompt: str = "Konten short-form bahasa Indonesia dengan gaya natural, lifestyle, dan affiliate soft-sell."
+    speech_driven_editing_enabled: bool = True
     beat_sync_enabled: bool = True
     learning_enabled: bool = True
     scene_understanding_enabled: bool = True
+    shot_boundary_detection_enabled: bool = True
+    shot_boundary_threshold: float = 0.32
+    evaluator_enabled: bool = True
+    evaluator_min_score_to_keep: float = 0.52
+    evaluator_prefer_spoken_opening: bool = True
+    human_override_enabled: bool = True
+    override_filename: str = "overrides.json"
     warm_grade_strength: float = 1.08
     contrast_boost: float = 1.05
     brightness_boost: float = 0.02
@@ -62,6 +78,9 @@ class Settings:
     max_history_runs: int = 100
     subtitle_font_size: int = 42
     hook_font_size: int = 56
+    spoken_cut_weight: float = 0.18
+    brand_consistency_weight: float = 0.14
+    ab_ranking_weight: float = 0.32
     tiktok_speed_cycle: list[float] = field(default_factory=lambda: [1.15, 0.95, 1.08, 0.92])
     shopee_speed_cycle: list[float] = field(default_factory=lambda: [1.0, 0.97, 1.03, 1.0])
     tiktok_structure: list[str] = field(
@@ -205,6 +224,22 @@ class AudioFeatures:
     energy_std: float
     speech_density: float
     has_voice: bool
+    vad_segments: list[tuple[float, float]]
+
+
+@dataclass(slots=True)
+class HumanOverride:
+    raw: dict[str, Any]
+    focus_mode: str | None
+    force_soft_sell: bool
+    focus_product_demo: bool
+    prefer_spoken_segments: bool
+    preferred_hook: str | None
+    preferred_niche: str | None
+    max_variants: int | None
+    banned_phrases: list[str]
+    preferred_music_tokens: list[str]
+    notes: list[str]
 
 
 @dataclass(slots=True)
@@ -233,6 +268,10 @@ class SegmentCandidate:
     demo_score: float
     transcript_score: float
     beat_alignment: float
+    shot_boundary_score: float
+    spoken_content_score: float
+    object_focus_score: float
+    scene_index: int
     retention_risk: float
     confidence: float
     safe_center_x: float
@@ -283,6 +322,8 @@ class RenderPlan:
     confidence_score: float
     quality_band: str
     strategy_notes: list[str]
+    override_notes: list[str]
+    orchestrator_metadata: dict[str, Any]
 
 
 class VideoEditingPipeline:
@@ -299,6 +340,7 @@ class VideoEditingPipeline:
         self.report_dir = self.output_dir / "REPORTS"
         self.subtitle_dir = self.output_dir / "SUBTITLES"
         self.analysis_dir = self.output_dir / "ANALYSIS"
+        self.override_path = self.project_root / "CONFIG" / "overrides.json"
         self._whisper_model_cache: Any | None = None
         self._whisper_load_failed = False
 
@@ -309,6 +351,9 @@ class VideoEditingPipeline:
             settings.mode = mode_override
         if force_both:
             settings.generate_both_versions = True
+        override = self._load_human_override(settings)
+        if override.focus_mode in {"tiktok", "shopee"}:
+            settings.mode = override.focus_mode
 
         memory = self._load_memory(settings)
         raw_videos = self._scan_video_inputs()
@@ -333,9 +378,11 @@ class VideoEditingPipeline:
 
             outputs: list[dict[str, Any]] = []
             for mode in modes:
-                plans = self._build_render_plans(mode, content_type, niche, analyses, memory, settings)
+                plans = self._build_render_plans(mode, content_type, niche, analyses, memory, settings, override)
                 for plan in plans:
                     outputs.append(self._render_plan(plan, settings, temp_root))
+
+        rankings = self._rank_output_variants(outputs, settings, override)
 
         learning_summary = self._learn_from_run(outputs, analyses, memory, settings)
         run_report = {
@@ -344,9 +391,11 @@ class VideoEditingPipeline:
             "niche": niche,
             "selected_modes": modes,
             "outputs": outputs,
+            "rankings": rankings,
             "clips_analyzed": len(analyses),
             "analysis_summaries": [analysis.summary for analysis in analyses],
             "learning_summary": learning_summary,
+            "human_override": self._json_ready(asdict(override)),
         }
         serializable_report = self._json_ready(run_report)
         self._append_history(serializable_report, settings)
@@ -389,6 +438,14 @@ class VideoEditingPipeline:
                 "color_tone": "warm_vibrant",
                 "cut_speed": "adaptive",
                 "caption_style": "minimal_bold",
+                "brand_profile": {
+                    "tone": "natural",
+                    "cta_tone": "soft",
+                    "crop_bias": "center_safe",
+                    "subtitle_case": "sentence",
+                    "pacing_bias": {"tiktok": "fast", "shopee": "balanced"},
+                    "preferred_music_tokens": {"tiktok": ["upbeat", "trend"], "shopee": ["soft", "warm"]},
+                },
                 "platform_weights": {
                     "tiktok": {
                         "visual": 0.24,
@@ -456,6 +513,36 @@ class VideoEditingPipeline:
         history.setdefault("runs", []).append(self._json_ready(report))
         history["runs"] = history["runs"][-settings.max_history_runs :]
         history_path.write_text(json.dumps(history, indent=2))
+
+    def _load_human_override(self, settings: Settings) -> HumanOverride:
+        if not settings.human_override_enabled or not self.override_path.exists():
+            return HumanOverride(
+                raw={},
+                focus_mode=None,
+                force_soft_sell=False,
+                focus_product_demo=False,
+                prefer_spoken_segments=False,
+                preferred_hook=None,
+                preferred_niche=None,
+                max_variants=None,
+                banned_phrases=[],
+                preferred_music_tokens=[],
+                notes=[],
+            )
+        payload = json.loads(self.override_path.read_text())
+        return HumanOverride(
+            raw=payload,
+            focus_mode=payload.get("focus_mode"),
+            force_soft_sell=bool(payload.get("force_soft_sell", False)),
+            focus_product_demo=bool(payload.get("focus_product_demo", False)),
+            prefer_spoken_segments=bool(payload.get("prefer_spoken_segments", False)),
+            preferred_hook=payload.get("preferred_hook"),
+            preferred_niche=payload.get("preferred_niche"),
+            max_variants=payload.get("max_variants"),
+            banned_phrases=list(payload.get("banned_phrases", [])),
+            preferred_music_tokens=list(payload.get("preferred_music_tokens", [])),
+            notes=list(payload.get("notes", [])),
+        )
 
     def _build_product_reference_features(self, temp_root: Path) -> list[dict[str, Any]]:
         references: list[dict[str, Any]] = []
@@ -553,8 +640,10 @@ class VideoEditingPipeline:
         scores: list[float] = []
         previous_luma: np.ndarray | None = None
         previous_hash: np.ndarray | None = None
+        previous_histogram: np.ndarray | None = None
         product_match_peak = 0.0
         tags_counter: dict[str, int] = {}
+        scene_index = 0
 
         for index, frame_path in enumerate(frame_paths):
             timestamp = round(index * settings.sample_interval_seconds, 3)
@@ -565,6 +654,9 @@ class VideoEditingPipeline:
                 motion = float(np.mean(np.abs(metrics["luma"] - previous_luma)) / 255.0)
             if previous_hash is not None:
                 uniqueness = float(np.mean(previous_hash != metrics["hash"]))
+            shot_boundary_score = self._shot_boundary_score(metrics["histogram"], previous_histogram, uniqueness, motion)
+            if settings.shot_boundary_detection_enabled and shot_boundary_score >= settings.shot_boundary_threshold:
+                scene_index += 1
 
             product_match, product_confidence = self._product_similarity(metrics, reference_features)
             product_match = max(product_match, file_product_score * 0.6, transcript_product_bias * 0.4)
@@ -573,6 +665,9 @@ class VideoEditingPipeline:
             transcript_chunk = self._transcript_window(transcript.segments, timestamp, timestamp + settings.max_segment_seconds)
             transcript_text = " ".join(segment.text for segment in transcript_chunk).strip()
             transcript_score = self._transcript_intensity(transcript_text)
+            spoken_content_score = self._spoken_content_score(
+                transcript_text, transcript_chunk, audio_features.vad_segments, timestamp, settings.max_segment_seconds
+            )
             semantic_tags = self._semantic_tags_for_window(transcript_text, metrics, motion, product_match)
             for tag in semantic_tags:
                 tags_counter[tag] = tags_counter.get(tag, 0) + 1
@@ -584,6 +679,7 @@ class VideoEditingPipeline:
             hand_score = metrics["hand_score"]
             action_score = self._action_score(metrics, motion, transcript_text)
             beat_alignment = self._beat_alignment(timestamp, audio_features.beat_times)
+            object_focus_score = self._object_focus_score(metrics, product_confidence, face_score, hand_score)
             visual_score = self._visual_score(metrics, motion, uniqueness)
             audio_score = self._audio_score(audio_features, timestamp, transcript_text, beat_alignment)
             semantic_score = (
@@ -615,6 +711,7 @@ class VideoEditingPipeline:
                 end = min(timestamp + settings.max_segment_seconds, metadata.duration)
                 start = max(0.0, min(timestamp, end - settings.min_segment_seconds))
                 start, end = self._align_segment_to_beats(start, end, audio_features.beat_times, settings)
+                start, end = self._align_segment_to_speech(start, end, transcript_chunk, audio_features.vad_segments, settings)
                 storyboard_role = self._initial_storyboard_role(
                     transcript_text, semantic_tags, product_match, emotion_score, demo_score
                 )
@@ -643,6 +740,10 @@ class VideoEditingPipeline:
                     demo_score=round(demo_score, 4),
                     transcript_score=round(transcript_score, 4),
                     beat_alignment=round(beat_alignment, 4),
+                    shot_boundary_score=round(shot_boundary_score, 4),
+                    spoken_content_score=round(spoken_content_score, 4),
+                    object_focus_score=round(object_focus_score, 4),
+                    scene_index=scene_index,
                     retention_risk=round(retention_risk, 4),
                     confidence=round(confidence, 4),
                     safe_center_x=round(metrics["safe_center_x"], 4),
@@ -662,6 +763,7 @@ class VideoEditingPipeline:
 
             previous_luma = metrics["luma"]
             previous_hash = metrics["hash"]
+            previous_histogram = metrics["histogram"]
 
         detected_product = (
             product_match_peak >= 0.74
@@ -757,35 +859,53 @@ class VideoEditingPipeline:
                 if WHISPER_IMPORT_ERROR:
                     source = f"whisper_import_error:{WHISPER_IMPORT_ERROR.__class__.__name__}"
                 return TranscriptResult([], "", source, None, 0.0, [])
-
-            result = model.transcribe(
-                str(audio_path),
-                language=settings.transcription_language,
-                fp16=False,
-                verbose=False,
-            )
-            segments = [
-                TranscriptSegment(
-                    start=float(segment["start"]),
-                    end=float(segment["end"]),
-                    text=segment["text"].strip(),
-                    confidence=float(segment.get("avg_logprob", -1.0)),
-                )
-                for segment in result.get("segments", [])
-                if segment.get("text", "").strip()
+            attempts: list[dict[str, Any]] = [
+                {
+                    "language": settings.transcription_language,
+                    "initial_prompt": settings.asr_initial_prompt,
+                }
             ]
-            full_text = " ".join(segment.text for segment in segments).strip()
-            confidences = [segment.confidence for segment in segments if segment.confidence > -10]
-            normalized_confidence = self._normalize_whisper_confidence(confidences)
-            keywords = self._extract_keywords(full_text)
-            return TranscriptResult(
-                segments=segments,
-                full_text=full_text,
-                source="whisper",
-                language=result.get("language"),
-                transcript_confidence=normalized_confidence,
-                keywords=keywords,
-            )
+            if settings.asr_auto_language_fallback:
+                attempts.append({"language": None, "initial_prompt": settings.asr_initial_prompt})
+
+            best_result: TranscriptResult | None = None
+            for attempt in attempts:
+                result = model.transcribe(
+                    str(audio_path),
+                    language=attempt["language"],
+                    fp16=False,
+                    verbose=False,
+                    initial_prompt=attempt["initial_prompt"],
+                )
+                segments = [
+                    TranscriptSegment(
+                        start=float(segment["start"]),
+                        end=float(segment["end"]),
+                        text=self._cleanup_transcript_text(segment["text"]),
+                        confidence=float(segment.get("avg_logprob", -1.0)),
+                    )
+                    for segment in result.get("segments", [])
+                    if segment.get("text", "").strip()
+                ]
+                segments = self._filter_segments_with_vad(audio_path, segments, settings)
+                full_text = " ".join(segment.text for segment in segments).strip()
+                confidences = [segment.confidence for segment in segments if segment.confidence > -10]
+                normalized_confidence = self._normalize_whisper_confidence(confidences)
+                candidate_result = TranscriptResult(
+                    segments=segments,
+                    full_text=full_text,
+                    source="whisper" if attempt["language"] else "whisper_auto",
+                    language=result.get("language"),
+                    transcript_confidence=normalized_confidence,
+                    keywords=self._extract_keywords(full_text),
+                )
+                if best_result is None or candidate_result.transcript_confidence > best_result.transcript_confidence:
+                    best_result = candidate_result
+                if candidate_result.transcript_confidence >= 0.35:
+                    break
+            if best_result is not None:
+                return best_result
+            return TranscriptResult([], "", "transcription_empty", None, 0.0, [])
         except Exception as exc:  # pragma: no cover - model/runtime dependent
             return TranscriptResult([], "", f"transcription_failed:{exc.__class__.__name__}", None, 0.0, [])
 
@@ -813,7 +933,7 @@ class VideoEditingPipeline:
         settings: Settings,
     ) -> AudioFeatures:
         if not metadata.has_audio:
-            return AudioFeatures([], [], 0.0, 0.0, 0.0, False)
+            return AudioFeatures([], [], 0.0, 0.0, 0.0, False, [])
 
         audio_path = work_dir / "analysis.wav"
         self._run_command(
@@ -836,11 +956,11 @@ class VideoEditingPipeline:
             ]
         )
         if not audio_path.exists():
-            return AudioFeatures([], [], 0.0, 0.0, 0.0, False)
+            return AudioFeatures([], [], 0.0, 0.0, 0.0, False, [])
 
         sample_rate, audio = self._read_wav(audio_path)
         if audio.size == 0:
-            return AudioFeatures([], [], 0.0, 0.0, 0.0, False)
+            return AudioFeatures([], [], 0.0, 0.0, 0.0, False, [])
 
         frame_size = 1024
         hop = 512
@@ -851,7 +971,7 @@ class VideoEditingPipeline:
                 continue
             energies.append(float(np.mean(frame * frame)))
         if not energies:
-            return AudioFeatures([], [], 0.0, 0.0, 0.0, bool(transcript.segments))
+            return AudioFeatures([], [], 0.0, 0.0, 0.0, bool(transcript.segments), [])
 
         energy_array = np.asarray(energies, dtype=np.float32)
         normalized = (energy_array - float(np.mean(energy_array))) / max(float(np.std(energy_array)), 1e-6)
@@ -873,6 +993,7 @@ class VideoEditingPipeline:
         speech_duration = sum(segment.end - segment.start for segment in transcript.segments)
         speech_density = speech_duration / max(metadata.duration, 1e-6)
         has_voice = bool(transcript.segments) and transcript.transcript_confidence > 0.15
+        vad_segments = self._voice_activity_segments(audio, sample_rate) if settings.asr_vad_enabled else []
         if not settings.beat_sync_enabled:
             beat_times = []
         return AudioFeatures(
@@ -882,6 +1003,7 @@ class VideoEditingPipeline:
             energy_std=round(float(np.std(energy_array)), 6),
             speech_density=round(speech_density, 4),
             has_voice=has_voice,
+            vad_segments=vad_segments,
         )
 
     def _read_wav(self, path: Path) -> tuple[int, np.ndarray]:
@@ -890,6 +1012,65 @@ class VideoEditingPipeline:
             frames = wav_file.readframes(wav_file.getnframes())
         audio = np.frombuffer(frames, dtype=np.int16).astype(np.float32) / 32768.0
         return sample_rate, audio
+
+    def _cleanup_transcript_text(self, text: str) -> str:
+        cleaned = re.sub(r"\s+", " ", text).strip()
+        cleaned = re.sub(r"\s+([,.!?])", r"\1", cleaned)
+        if not cleaned:
+            return ""
+        return cleaned[0].upper() + cleaned[1:]
+
+    def _voice_activity_segments(self, audio: np.ndarray, sample_rate: int) -> list[tuple[float, float]]:
+        if audio.size == 0:
+            return []
+        frame_size = 1600
+        hop = 800
+        energies: list[float] = []
+        for start in range(0, max(len(audio) - frame_size, 1), hop):
+            frame = audio[start : start + frame_size]
+            if frame.size == 0:
+                continue
+            energies.append(float(np.mean(frame * frame)))
+        if not energies:
+            return []
+        energy_array = np.asarray(energies, dtype=np.float32)
+        threshold = float(np.mean(energy_array) + 0.20 * np.std(energy_array))
+        active: list[tuple[float, float]] = []
+        current_start: float | None = None
+        for index, energy in enumerate(energy_array):
+            timestamp = index * hop / sample_rate
+            if energy >= threshold and current_start is None:
+                current_start = timestamp
+            elif energy < threshold and current_start is not None:
+                active.append((round(current_start, 3), round(timestamp, 3)))
+                current_start = None
+        if current_start is not None:
+            active.append((round(current_start, 3), round(len(audio) / sample_rate, 3)))
+        merged: list[tuple[float, float]] = []
+        for start, end in active:
+            if not merged or start - merged[-1][1] > 0.18:
+                merged.append((start, end))
+            else:
+                merged[-1] = (merged[-1][0], end)
+        return [segment for segment in merged if segment[1] - segment[0] >= 0.18]
+
+    def _filter_segments_with_vad(
+        self,
+        audio_path: Path,
+        segments: list[TranscriptSegment],
+        settings: Settings,
+    ) -> list[TranscriptSegment]:
+        if not settings.asr_vad_enabled or not segments:
+            return segments
+        sample_rate, audio = self._read_wav(audio_path)
+        vad_segments = self._voice_activity_segments(audio, sample_rate)
+        if not vad_segments:
+            return segments
+        filtered: list[TranscriptSegment] = []
+        for segment in segments:
+            if any(not (segment.end < start or segment.start > end) for start, end in vad_segments):
+                filtered.append(segment)
+        return filtered if filtered else segments
 
     def _frame_metrics(self, path: Path) -> dict[str, Any]:
         image = Image.open(path).convert("RGB")
@@ -1140,6 +1321,48 @@ class VideoEditingPipeline:
         speech_bonus = min(audio_features.speech_density, 0.55)
         return float(np.clip(beat_alignment * 0.32 + transcript_push * 0.34 + voice_bonus + speech_bonus * 0.16, 0.0, 1.0))
 
+    def _shot_boundary_score(
+        self,
+        histogram: np.ndarray,
+        previous_histogram: np.ndarray | None,
+        uniqueness: float,
+        motion: float,
+    ) -> float:
+        if previous_histogram is None:
+            return 0.0
+        hist_delta = float(np.linalg.norm(histogram - previous_histogram))
+        return float(np.clip(hist_delta * 0.6 + uniqueness * 0.25 + min(motion * 2.2, 1.0) * 0.15, 0.0, 1.0))
+
+    def _spoken_content_score(
+        self,
+        transcript_text: str,
+        transcript_chunk: list[TranscriptSegment],
+        vad_segments: list[tuple[float, float]],
+        start: float,
+        window: float,
+    ) -> float:
+        keyword_boost = self._keyword_score(
+            transcript_text,
+            ["karena", "jadi", "ternyata", "buat", "bikin", "hasil", "lebih", "cara", "pakai"],
+        )
+        transcript_presence = min(len(transcript_chunk) / 2.0, 1.0)
+        vad_overlap = 0.0
+        window_end = start + window
+        for vad_start, vad_end in vad_segments:
+            overlap = max(0.0, min(window_end, vad_end) - max(start, vad_start))
+            vad_overlap = max(vad_overlap, overlap / max(window, 1e-6))
+        return float(np.clip(keyword_boost * 0.45 + transcript_presence * 0.25 + vad_overlap * 0.30, 0.0, 1.0))
+
+    def _object_focus_score(
+        self,
+        metrics: dict[str, Any],
+        product_confidence: float,
+        face_score: float,
+        hand_score: float,
+    ) -> float:
+        center_bias = 1.0 - min(abs(metrics["safe_center_x"] - 0.5) + abs(metrics["safe_center_y"] - 0.48), 1.0)
+        return float(np.clip(product_confidence * 0.45 + center_bias * 0.25 + hand_score * 0.15 + face_score * 0.15, 0.0, 1.0))
+
     def _retention_risk(
         self,
         timestamp: float,
@@ -1185,6 +1408,33 @@ class VideoEditingPipeline:
             return start, end
         return aligned_start, aligned_end
 
+    def _align_segment_to_speech(
+        self,
+        start: float,
+        end: float,
+        transcript_chunk: list[TranscriptSegment],
+        vad_segments: list[tuple[float, float]],
+        settings: Settings,
+    ) -> tuple[float, float]:
+        if not settings.speech_driven_editing_enabled:
+            return start, end
+        if transcript_chunk:
+            aligned_start = min(start, min(segment.start for segment in transcript_chunk))
+            aligned_end = max(end, max(segment.end for segment in transcript_chunk))
+        else:
+            overlaps = [
+                (vad_start, vad_end)
+                for vad_start, vad_end in vad_segments
+                if not (end < vad_start or start > vad_end)
+            ]
+            if not overlaps:
+                return start, end
+            aligned_start = min(start, overlaps[0][0])
+            aligned_end = max(end, overlaps[-1][1])
+        if aligned_end - aligned_start > settings.max_segment_seconds + 0.8:
+            return start, end
+        return max(0.0, aligned_start), aligned_end
+
     def _nearest_beat(self, value: float, beat_times: list[float], tolerance: float) -> float:
         nearest = min(beat_times, key=lambda beat: abs(beat - value))
         return nearest if abs(nearest - value) <= tolerance else value
@@ -1224,6 +1474,8 @@ class VideoEditingPipeline:
                     + candidate.uniqueness * 0.13
                     + candidate.emotion_score * 0.12
                     + candidate.action_score * 0.10
+                    + candidate.spoken_content_score * 0.06
+                    + candidate.shot_boundary_score * 0.04
                     + candidate.beat_alignment * 0.07
                     - candidate.retention_risk * 0.18,
                     0.0,
@@ -1237,8 +1489,10 @@ class VideoEditingPipeline:
                 + candidate.product_match * 0.18
                 + candidate.benefit_score * 0.16
                 + candidate.demo_score * 0.14
+                + candidate.object_focus_score * 0.08
                 + candidate.face_score * 0.06
                 + candidate.transcript_score * 0.08
+                + candidate.spoken_content_score * 0.05
                 - candidate.retention_risk * 0.14,
                 0.0,
                 1.0,
@@ -1290,11 +1544,12 @@ class VideoEditingPipeline:
         analyses: list[ClipAnalysis],
         memory: MemoryBundle,
         settings: Settings,
+        override: HumanOverride,
     ) -> list[RenderPlan]:
         plans: list[RenderPlan] = []
-        variant_count = max(1, settings.variants_per_mode)
+        variant_count = max(1, override.max_variants or settings.variants_per_mode)
         for variant_index in range(variant_count):
-            plan = self._build_render_plan(mode, variant_index, content_type, niche, analyses, memory, settings)
+            plan = self._build_render_plan(mode, variant_index, content_type, niche, analyses, memory, settings, override)
             if plan.selected_segments:
                 plans.append(plan)
         return plans
@@ -1308,19 +1563,43 @@ class VideoEditingPipeline:
         analyses: list[ClipAnalysis],
         memory: MemoryBundle,
         settings: Settings,
+        override: HumanOverride,
     ) -> RenderPlan:
         target_duration = self._target_duration(mode, niche, memory, settings)
         all_candidates = [candidate for analysis in analyses for candidate in analysis.candidates]
-        ranked = self._rank_candidates_for_mode(all_candidates, mode, variant_index)
-        selected = self._select_segments(ranked, target_duration, mode)
-        hook = self._generate_hook(mode, variant_index, niche, analyses, memory, selected, settings)
+        if override.preferred_niche:
+            niche = override.preferred_niche
+        orchestrator_metadata: dict[str, Any] = {}
+        if settings.use_langchain_orchestrator:
+            orchestrated = self._langchain_plan_artifacts(
+                mode=mode,
+                variant_index=variant_index,
+                content_type=content_type,
+                niche=niche,
+                analyses=analyses,
+                memory=memory,
+                settings=settings,
+                override=override,
+                target_duration=target_duration,
+                candidates=all_candidates,
+            )
+            ranked = orchestrated["ranked_candidates"]
+            selected = orchestrated["selected_segments"]
+            hook = orchestrated["hook"]
+            strategy_notes = orchestrated["strategy_notes"]
+            orchestrator_metadata = orchestrated["orchestrator_metadata"]
+        else:
+            ranked = self._rank_candidates_for_mode(all_candidates, mode, variant_index, override)
+            selected = self._select_segments(ranked, target_duration, mode, override)
+            hook = self._generate_hook(mode, variant_index, niche, analyses, memory, selected, settings, override)
+            strategy_notes = self._strategy_notes(mode, variant_index, niche, selected)
         storyboard = self._build_storyboard(selected, mode, settings)
         subtitles = self._build_output_subtitles(selected, settings)
-        music_path = self._pick_music(mode)
+        music_path = self._pick_music(mode, override, memory)
         retention_risks = self._render_plan_risks(selected, mode)
         confidence_score = float(np.mean([segment.confidence for segment in selected])) if selected else 0.0
         quality_band = self._quality_band(confidence_score)
-        strategy_notes = self._strategy_notes(mode, variant_index, niche, selected)
+        override_notes = list(override.notes)
         overlay_text = hook if settings.enable_text_overlay else None
         return RenderPlan(
             mode=mode,
@@ -1339,6 +1618,8 @@ class VideoEditingPipeline:
             confidence_score=round(confidence_score, 4),
             quality_band=quality_band,
             strategy_notes=strategy_notes,
+            override_notes=override_notes,
+            orchestrator_metadata=orchestrator_metadata,
         )
 
     def _target_duration(
@@ -1353,8 +1634,52 @@ class VideoEditingPipeline:
         low, high = settings.tiktok_duration_seconds if mode == "tiktok" else settings.shopee_duration_seconds
         return float((low + high) / 2)
 
+    def _langchain_plan_artifacts(
+        self,
+        mode: str,
+        variant_index: int,
+        content_type: str,
+        niche: str,
+        analyses: list[ClipAnalysis],
+        memory: MemoryBundle,
+        settings: Settings,
+        override: HumanOverride,
+        target_duration: float,
+        candidates: list[SegmentCandidate],
+    ) -> dict[str, Any]:
+        try:
+            from .langchain_orchestrator import build_plan_artifacts
+
+            return build_plan_artifacts(
+                pipeline=self,
+                mode=mode,
+                variant_index=variant_index,
+                content_type=content_type,
+                niche=niche,
+                analyses=analyses,
+                memory=memory,
+                settings=settings,
+                override=override,
+                target_duration=target_duration,
+                candidates=candidates,
+            )
+        except Exception as exc:
+            ranked = self._rank_candidates_for_mode(candidates, mode, variant_index, override)
+            selected = self._select_segments(ranked, target_duration, mode, override)
+            hook = self._generate_hook(mode, variant_index, niche, analyses, memory, selected, settings, override)
+            return {
+                "ranked_candidates": ranked,
+                "selected_segments": selected,
+                "hook": hook,
+                "strategy_notes": self._strategy_notes(mode, variant_index, niche, selected),
+                "orchestrator_metadata": {
+                    "enabled": False,
+                    "fallback_reason": exc.__class__.__name__,
+                },
+            }
+
     def _rank_candidates_for_mode(
-        self, candidates: list[SegmentCandidate], mode: str, variant_index: int
+        self, candidates: list[SegmentCandidate], mode: str, variant_index: int, override: HumanOverride
     ) -> list[SegmentCandidate]:
         ranked = list(candidates)
         if mode == "tiktok":
@@ -1362,6 +1687,7 @@ class VideoEditingPipeline:
                 ranked.sort(
                     key=lambda candidate: (
                         candidate.mode_scores.get("tiktok", 0.0),
+                        candidate.spoken_content_score if override.prefer_spoken_segments else candidate.emotion_score,
                         candidate.emotion_score,
                         candidate.beat_alignment,
                     ),
@@ -1372,6 +1698,7 @@ class VideoEditingPipeline:
                     key=lambda candidate: (
                         candidate.uniqueness,
                         candidate.action_score,
+                        candidate.shot_boundary_score,
                         candidate.mode_scores.get("tiktok", 0.0),
                     ),
                     reverse=True,
@@ -1381,6 +1708,7 @@ class VideoEditingPipeline:
                 ranked.sort(
                     key=lambda candidate: (
                         candidate.mode_scores.get("shopee", 0.0),
+                        candidate.object_focus_score if override.focus_product_demo else candidate.product_match,
                         candidate.product_match,
                         candidate.demo_score,
                     ),
@@ -1390,6 +1718,7 @@ class VideoEditingPipeline:
                 ranked.sort(
                     key=lambda candidate: (
                         candidate.benefit_score,
+                        candidate.spoken_content_score if override.prefer_spoken_segments else candidate.object_focus_score,
                         candidate.face_score,
                         candidate.mode_scores.get("shopee", 0.0),
                     ),
@@ -1402,6 +1731,7 @@ class VideoEditingPipeline:
         candidates: list[SegmentCandidate],
         target_duration: float,
         mode: str,
+        override: HumanOverride,
     ) -> list[SegmentCandidate]:
         selected: list[SegmentCandidate] = []
         total_duration = 0.0
@@ -1438,6 +1768,8 @@ class VideoEditingPipeline:
                 for segment in selected
             ):
                 continue
+            if override.prefer_spoken_segments and candidate.spoken_content_score < 0.12 and candidate.transcript_text:
+                continue
             if mode == "shopee" and not selected and candidate.product_match < 0.62:
                 continue
             selected.append(candidate)
@@ -1463,7 +1795,10 @@ class VideoEditingPipeline:
         memory: MemoryBundle,
         selected: list[SegmentCandidate],
         settings: Settings,
+        override: HumanOverride,
     ) -> str:
+        if override.preferred_hook:
+            return override.preferred_hook
         transcript_candidates = [segment.transcript_text for segment in selected if segment.transcript_text]
         transcript_text = " ".join(transcript_candidates).strip()
         profile = settings.niche_profiles.get(niche, {})
@@ -1476,7 +1811,7 @@ class VideoEditingPipeline:
 
         generated = self._contextual_hook_from_text(mode, transcript_text, selected)
         learned_hooks = memory.best_performance.get("tiktok_hooks" if mode == "tiktok" else "shopee_hooks", [])
-        choices = [hook for hook in [generated, niche_hook, *learned_hooks] if hook]
+        choices = [self._sanitize_hook_text(hook, override) for hook in [generated, niche_hook, *learned_hooks] if hook]
         if not choices:
             return "POV: bagian kecil ini malah paling bikin betah nonton" if mode == "tiktok" else "awalnya iseng coba, ternyata kepake terus"
         return choices[variant_index % len(choices)]
@@ -1505,6 +1840,13 @@ class VideoEditingPipeline:
             snippet = self._first_phrase(lowered)
             return f"gak nyangka {snippet}"
         return "awalnya iseng beli ini, ternyata kepake banget"
+
+    def _sanitize_hook_text(self, hook: str, override: HumanOverride) -> str:
+        cleaned = hook
+        for phrase in override.banned_phrases:
+            cleaned = cleaned.replace(phrase, "").strip()
+        cleaned = re.sub(r"\s+", " ", cleaned).strip(" ,")
+        return cleaned or hook
 
     def _first_phrase(self, text: str) -> str:
         cleaned = re.sub(r"\s+", " ", text).strip(" .,!?:;")
@@ -1596,7 +1938,7 @@ class VideoEditingPipeline:
         cutoff = cleaned[:max_chars].rsplit(" ", maxsplit=1)[0].strip()
         return cutoff if cutoff else cleaned[:max_chars]
 
-    def _pick_music(self, mode: str) -> Path | None:
+    def _pick_music(self, mode: str, override: HumanOverride, memory: MemoryBundle) -> Path | None:
         if not self.music_dir.exists():
             return None
         music_files = sorted(
@@ -1604,6 +1946,16 @@ class VideoEditingPipeline:
         )
         if not music_files:
             return None
+        preferred_tokens = list(override.preferred_music_tokens)
+        preferred_tokens.extend(
+            memory.style_profile.get("brand_profile", {})
+            .get("preferred_music_tokens", {})
+            .get(mode, [])
+        )
+        for path in music_files:
+            lowered = path.name.lower()
+            if preferred_tokens and any(token in lowered for token in preferred_tokens):
+                return path
         if mode == "tiktok":
             for path in music_files:
                 lowered = path.name.lower()
@@ -1659,8 +2011,9 @@ class VideoEditingPipeline:
         )
 
         subtitle_path = self._write_subtitle_file(plan, output_path)
-        analysis_path = self._write_analysis_file(plan, output_path)
         self._finalize_video(base_concat, output_path, plan, settings, subtitle_path, temp_root)
+        evaluation = self._evaluate_render_output(output_path, plan, settings)
+        analysis_path = self._write_analysis_file(plan, output_path, evaluation)
         return {
             "mode": plan.mode,
             "variant": plan.variant_name,
@@ -1674,9 +2027,12 @@ class VideoEditingPipeline:
             "hook": plan.hook,
             "confidence_score": plan.confidence_score,
             "quality_band": plan.quality_band,
+            "evaluation": evaluation,
             "retention_risks": plan.retention_risks,
             "storyboard": [asdict(step) for step in plan.storyboard],
             "strategy_notes": plan.strategy_notes,
+            "override_notes": plan.override_notes,
+            "orchestrator_metadata": plan.orchestrator_metadata,
         }
 
     def _render_segment(
@@ -1889,7 +2245,7 @@ class VideoEditingPipeline:
         subtitle_path.write_text("\n".join(chunks))
         return subtitle_path
 
-    def _write_analysis_file(self, plan: RenderPlan, output_path: Path) -> Path:
+    def _write_analysis_file(self, plan: RenderPlan, output_path: Path, evaluation: dict[str, Any]) -> Path:
         analysis_path = self.analysis_dir / f"{output_path.stem}.json"
         payload = {
             "mode": plan.mode,
@@ -1898,13 +2254,97 @@ class VideoEditingPipeline:
             "hook": plan.hook,
             "confidence_score": plan.confidence_score,
             "quality_band": plan.quality_band,
+            "evaluation": evaluation,
             "retention_risks": plan.retention_risks,
             "strategy_notes": plan.strategy_notes,
+            "override_notes": plan.override_notes,
+            "orchestrator_metadata": plan.orchestrator_metadata,
             "storyboard": [asdict(step) for step in plan.storyboard],
             "segments": [asdict(segment) for segment in plan.selected_segments],
         }
         analysis_path.write_text(json.dumps(self._json_ready(payload), indent=2))
         return analysis_path
+
+    def _evaluate_render_output(
+        self, output_path: Path, plan: RenderPlan, settings: Settings
+    ) -> dict[str, Any]:
+        if not settings.evaluator_enabled:
+            return {"enabled": False}
+        avg_opening = 0.0
+        if plan.selected_segments:
+            opening_segments = plan.selected_segments[:2]
+            avg_opening = float(
+                np.mean(
+                    [
+                        segment.mode_scores.get(plan.mode, 0.0)
+                        + segment.spoken_content_score * 0.15
+                        + segment.shot_boundary_score * 0.10
+                        for segment in opening_segments
+                    ]
+                )
+            )
+        product_clarity = float(np.mean([segment.product_match for segment in plan.selected_segments])) if plan.selected_segments else 0.0
+        speech_clarity = float(np.mean([segment.spoken_content_score for segment in plan.selected_segments])) if plan.selected_segments else 0.0
+        pacing = float(np.mean([segment.beat_alignment + segment.action_score for segment in plan.selected_segments])) / 2 if plan.selected_segments else 0.0
+        repetition_penalty = float(np.mean([1.0 - segment.uniqueness for segment in plan.selected_segments])) if plan.selected_segments else 1.0
+        final_score = float(
+            np.clip(
+                avg_opening * 0.28
+                + product_clarity * 0.18
+                + speech_clarity * 0.18
+                + pacing * 0.18
+                + plan.confidence_score * 0.18
+                - repetition_penalty * 0.12,
+                0.0,
+                1.0,
+            )
+        )
+        keep = final_score >= settings.evaluator_min_score_to_keep
+        return {
+            "enabled": True,
+            "opening_strength": round(avg_opening, 4),
+            "product_clarity": round(product_clarity, 4),
+            "speech_clarity": round(speech_clarity, 4),
+            "pacing_score": round(pacing, 4),
+            "repetition_penalty": round(repetition_penalty, 4),
+            "final_score": round(final_score, 4),
+            "keep": keep,
+        }
+
+    def _rank_output_variants(
+        self, outputs: list[dict[str, Any]], settings: Settings, override: HumanOverride
+    ) -> dict[str, Any]:
+        rankings: dict[str, Any] = {}
+        grouped: dict[str, list[dict[str, Any]]] = {}
+        for output in outputs:
+            grouped.setdefault(output["mode"], []).append(output)
+        for mode, mode_outputs in grouped.items():
+            mode_outputs.sort(
+                key=lambda output: (
+                    output.get("evaluation", {}).get("final_score", 0.0) * settings.ab_ranking_weight
+                    + output.get("confidence_score", 0.0) * 0.34
+                    + (1.0 - min(len(output.get("retention_risks", [])) * 0.15, 0.6)) * 0.18
+                    + (0.14 if output.get("evaluation", {}).get("keep") else 0.0)
+                ),
+                reverse=True,
+            )
+            rankings[mode] = {
+                "primary_variant": mode_outputs[0]["variant"] if mode_outputs else None,
+                "variants": [
+                    {
+                        "variant": output["variant"],
+                        "score": round(
+                            output.get("evaluation", {}).get("final_score", 0.0) * settings.ab_ranking_weight
+                            + output.get("confidence_score", 0.0) * 0.34,
+                            4,
+                        ),
+                        "keep": output.get("evaluation", {}).get("keep"),
+                    }
+                    for output in mode_outputs
+                ],
+                "override_applied": bool(override.raw),
+            }
+        return rankings
 
     def _render_plan_risks(self, selected: list[SegmentCandidate], mode: str) -> list[str]:
         risks: list[str] = []
@@ -1977,13 +2417,18 @@ class VideoEditingPipeline:
             previous_duration = niche_entry["best_duration_seconds"].get(mode, segment_duration)
             niche_entry["best_duration_seconds"][mode] = round((previous_duration + segment_duration) / 2, 2)
             niche_entry["hooks"][mode] = output["hook"]
+            niche_entry.setdefault("preferred_opening", {})[mode] = output.get("storyboard", [{}])[0].get("role")
 
         platform_weights = memory.style_profile.setdefault("platform_weights", {})
+        brand_profile = memory.style_profile.setdefault("brand_profile", {})
         for mode in ["tiktok", "shopee"]:
             mode_outputs = [output for output in outputs if output["mode"] == mode]
             if not mode_outputs:
                 continue
             avg_conf = float(np.mean([output["confidence_score"] for output in mode_outputs]))
+            avg_eval = float(
+                np.mean([output.get("evaluation", {}).get("final_score", 0.0) for output in mode_outputs])
+            )
             weights = platform_weights.setdefault(
                 mode,
                 {"visual": 0.25, "audio": 0.15, "semantic": 0.25, "hook": 0.20, "retention_penalty": 0.15},
@@ -1993,6 +2438,25 @@ class VideoEditingPipeline:
                 weights["retention_penalty"] = round(min(weights["retention_penalty"] + 0.02, 0.25), 3)
             else:
                 weights["hook"] = round(min(weights["hook"] + 0.02, 0.30), 3)
+            if avg_eval >= 0.62:
+                brand_profile.setdefault("pacing_bias", {})[mode] = "speech-led" if any(
+                    output.get("evaluation", {}).get("speech_clarity", 0.0) >= 0.4 for output in mode_outputs
+                ) else brand_profile.get("pacing_bias", {}).get(mode, "balanced")
+
+        if outputs:
+            crop_bias = brand_profile.setdefault("crop_bias_stats", {"x": [], "y": []})
+            for output in outputs:
+                for segment in output["segments"]:
+                    crop_bias["x"].append(segment["safe_center_x"])
+                    crop_bias["y"].append(segment["safe_center_y"])
+            crop_bias["x"] = crop_bias["x"][-50:]
+            crop_bias["y"] = crop_bias["y"][-50:]
+            brand_profile["preferred_crop_center"] = {
+                "x": round(float(np.mean(crop_bias["x"])), 4),
+                "y": round(float(np.mean(crop_bias["y"])), 4),
+            }
+            brand_profile["cta_tone"] = "soft"
+            brand_profile["subtitle_case"] = "sentence"
 
         memory.best_performance["learned_patterns"] = learned_patterns
         style_path.write_text(json.dumps(self._json_ready(memory.style_profile), indent=2))

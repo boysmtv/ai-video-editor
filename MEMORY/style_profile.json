@@ -3,6 +3,20 @@
   "color_tone": "warm_vibrant",
   "cut_speed": "adaptive",
   "caption_style": "minimal_bold",
+  "brand_profile": {
+    "tone": "natural",
+    "cta_tone": "soft",
+    "crop_bias": "center_safe",
+    "subtitle_case": "sentence",
+    "pacing_bias": {
+      "tiktok": "fast",
+      "shopee": "balanced"
+    },
+    "preferred_music_tokens": {
+      "tiktok": ["trend", "upbeat"],
+      "shopee": ["soft", "warm"]
+    }
+  },
   "platform_weights": {
     "tiktok": {
       "visual": 0.24,
