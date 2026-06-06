@@ -1,0 +1,12 @@
+.gradle/
+.kotlin/
+build/
+**/build/
+.idea/
+*.iml
+local.properties
+.ai-agent/
+captures/
+*.log
+*.tmp
+*.orig
