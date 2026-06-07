@@ -12,6 +12,10 @@ class UndoRedoManager @Inject constructor() {
     
     private val undoStack = mutableListOf<EditorCommand>()
     private val redoStack = mutableListOf<EditorCommand>()
+    private val _undoHistory = MutableStateFlow<List<String>>(emptyList())
+    val undoHistory: StateFlow<List<String>> = _undoHistory.asStateFlow()
+    private val _redoHistory = MutableStateFlow<List<String>>(emptyList())
+    val redoHistory: StateFlow<List<String>> = _redoHistory.asStateFlow()
 
     private val _canUndo = MutableStateFlow(false)
     val canUndo: StateFlow<Boolean> = _canUndo.asStateFlow()
@@ -43,6 +47,26 @@ class UndoRedoManager @Inject constructor() {
         updateState()
     }
 
+    fun undo(count: Int) {
+        repeat(count.coerceAtLeast(1)) {
+            if (undoStack.isEmpty()) return
+            val command = undoStack.removeLast()
+            command.undo()
+            redoStack.add(command)
+        }
+        updateState()
+    }
+
+    fun redo(count: Int) {
+        repeat(count.coerceAtLeast(1)) {
+            if (redoStack.isEmpty()) return
+            val command = redoStack.removeLast()
+            command.execute()
+            undoStack.add(command)
+        }
+        updateState()
+    }
+
     fun clear() {
         undoStack.clear()
         redoStack.clear()
@@ -52,5 +76,7 @@ class UndoRedoManager @Inject constructor() {
     private fun updateState() {
         _canUndo.value = undoStack.isNotEmpty()
         _canRedo.value = redoStack.isNotEmpty()
+        _undoHistory.value = undoStack.asReversed().map { it.description() }
+        _redoHistory.value = redoStack.asReversed().map { it.description() }
     }
 }

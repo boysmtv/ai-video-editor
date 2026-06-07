@@ -25,12 +25,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 data class CanvasOption(
     val name: String,
@@ -51,8 +54,11 @@ private val canvasOptions = listOf(
 @Composable
 fun NewProjectScreen(
     onNavigateBack: () -> Unit,
-    onProjectCreated: (String) -> Unit
+    onProjectCreated: (String) -> Unit,
+    viewModel: NewProjectViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -85,9 +91,7 @@ fun NewProjectScreen(
             ) {
                 items(canvasOptions) { option ->
                     CanvasOptionCard(option = option) {
-                        val name = "Untitled Project"
-                        // TODO: Create project via use case
-                        onProjectCreated("temp_${System.currentTimeMillis()}")
+                        viewModel.create(option, onProjectCreated)
                     }
                 }
             }
@@ -95,9 +99,13 @@ fun NewProjectScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Or import media to get started",
+                text = state.errorMessage ?: if (state.isCreating) "Creating project..." else "Or import media to get started",
                 fontSize = 14.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = if (state.errorMessage == null) {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                } else {
+                    MaterialTheme.colorScheme.error
+                }
             )
         }
     }

@@ -11,6 +11,7 @@ import com.changecut.feature.auth.navigation.authNavGraph
 import com.changecut.feature.auth.navigation.AuthNavGraph
 import com.changecut.feature.editor.navigation.editorRoute
 import com.changecut.feature.editor.navigation.editorNavGraph
+import com.changecut.feature.editor.settings.EditorSettingsScreen
 import com.changecut.feature.export.navigation.exportRoute
 import com.changecut.feature.export.navigation.exportNavGraph
 import com.changecut.feature.home.navigation.homeNavGraph
@@ -20,7 +21,11 @@ import com.changecut.feature.home.newproject.NewProjectScreen
 const val newProjectRoute = "new_project"
 
 @Composable
-fun AppNavGraph(navController: NavHostController = rememberNavController()) {
+fun AppNavGraph(
+    navController: NavHostController = rememberNavController(),
+    isDarkTheme: Boolean,
+    onThemeChange: (Boolean) -> Unit
+) {
     NavHost(
         navController = navController,
         startDestination = AuthNavGraph.Splash.route
@@ -36,6 +41,14 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
                         popUpTo(homeRoute)
                     }
                 }
+            )
+        }
+
+        composable("settings") {
+            EditorSettingsScreen(
+                onNavigateBack = { navController.popBackStack() },
+                isDarkTheme = isDarkTheme,
+                onThemeChange = onThemeChange
             )
         }
 

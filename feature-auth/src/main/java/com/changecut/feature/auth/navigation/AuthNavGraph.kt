@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.changecut.feature.auth.forgot.ForgotPasswordScreen
 import com.changecut.feature.auth.splash.SplashScreen
 import com.changecut.feature.auth.login.LoginScreen
 import com.changecut.feature.auth.register.RegisterScreen
@@ -52,6 +53,9 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
     }
 
     composable(AuthNavGraph.ForgotPassword.route) {
-        // TODO: Forgot Password Screen
+        ForgotPasswordScreen(
+            onNavigateBack = { navController.popBackStack() },
+            onDone = { navController.popBackStack() }
+        )
     }
 }

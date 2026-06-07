@@ -62,7 +62,9 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun EditorSettingsScreen(
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    isDarkTheme: Boolean = false,
+    onThemeChange: (Boolean) -> Unit = {}
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -174,6 +176,29 @@ fun EditorSettingsScreen(
                         )
                     )
                 }
+            }
+
+            HorizontalDivider()
+
+            SectionHeader("Appearance")
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text("Dark Theme", fontWeight = FontWeight.Medium)
+                    Text(
+                        "Use a darker editor surface",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Switch(
+                    checked = isDarkTheme,
+                    onCheckedChange = onThemeChange
+                )
             }
 
             HorizontalDivider()

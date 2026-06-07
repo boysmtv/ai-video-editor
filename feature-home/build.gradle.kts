@@ -30,6 +30,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":core"))
     implementation(project(":common"))
 
     implementation(libs.androidx.core.ktx)
@@ -43,6 +44,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.animation)
+    implementation(libs.coil.compose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

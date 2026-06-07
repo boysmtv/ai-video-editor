@@ -38,6 +38,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -100,8 +102,12 @@ fun EditorScreen(
 ) {
     val state by viewModel.state.collectAsState()
     val subScreen by viewModel.currentSubScreen.collectAsState()
+    val undoHistory by viewModel.undoHistory.collectAsState()
+    val redoHistory by viewModel.redoHistory.collectAsState()
     val context = LocalContext.current
     var showExportDialog by remember { mutableStateOf(false) }
+    var showUndoMenu by remember { mutableStateOf(false) }
+    var showRedoMenu by remember { mutableStateOf(false) }
 
     LaunchedEffect(projectId) {
         viewModel.loadProject(projectId)
@@ -171,17 +177,63 @@ fun EditorScreen(
                         }
                     },
                     actions = {
-                        IconButton(
-                            onClick = { viewModel.undo() },
-                            enabled = state.canUndo
-                        ) {
-                            Icon(Icons.AutoMirrored.Filled.Undo, "Undo")
+                        Box {
+                            IconButton(
+                                onClick = { if (undoHistory.isNotEmpty()) showUndoMenu = true else viewModel.undo() },
+                                enabled = state.canUndo
+                            ) {
+                                Icon(Icons.AutoMirrored.Filled.Undo, "Undo")
+                            }
+                            DropdownMenu(
+                                expanded = showUndoMenu,
+                                onDismissRequest = { showUndoMenu = false }
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text("Undo last") },
+                                    onClick = {
+                                        showUndoMenu = false
+                                        viewModel.undo()
+                                    }
+                                )
+                                undoHistory.forEachIndexed { index, item ->
+                                    DropdownMenuItem(
+                                        text = { Text("Undo ${index + 1}: $item") },
+                                        onClick = {
+                                            showUndoMenu = false
+                                            viewModel.undo(index + 1)
+                                        }
+                                    )
+                                }
+                            }
                         }
-                        IconButton(
-                            onClick = { viewModel.redo() },
-                            enabled = state.canRedo
-                        ) {
-                            Icon(Icons.AutoMirrored.Filled.Redo, "Redo")
+                        Box {
+                            IconButton(
+                                onClick = { if (redoHistory.isNotEmpty()) showRedoMenu = true else viewModel.redo() },
+                                enabled = state.canRedo
+                            ) {
+                                Icon(Icons.AutoMirrored.Filled.Redo, "Redo")
+                            }
+                            DropdownMenu(
+                                expanded = showRedoMenu,
+                                onDismissRequest = { showRedoMenu = false }
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text("Redo last") },
+                                    onClick = {
+                                        showRedoMenu = false
+                                        viewModel.redo()
+                                    }
+                                )
+                                redoHistory.forEachIndexed { index, item ->
+                                    DropdownMenuItem(
+                                        text = { Text("Redo ${index + 1}: $item") },
+                                        onClick = {
+                                            showRedoMenu = false
+                                            viewModel.redo(index + 1)
+                                        }
+                                    )
+                                }
+                            }
                         }
                         Button(
                             onClick = { showExportDialog = true },

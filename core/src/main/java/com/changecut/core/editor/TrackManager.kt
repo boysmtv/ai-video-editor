@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlin.math.abs
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -888,13 +889,13 @@ class TrackManager @Inject constructor() {
             addAll(track.clips.filter { it.id != clipId }.flatMap { listOf(it.startOffsetUs, it.endOffsetUs) })
         }
         val snapThresholdUs = 120_000L
-        val bestStartGuide = guides.minByOrNull { kotlin.math.abs(it - candidateStartUs) }
-        val bestEndGuide = guides.minByOrNull { kotlin.math.abs(it - candidateEndUs) }
+        val bestStartGuide = guides.minByOrNull { abs(it - candidateStartUs) }
+        val bestEndGuide = guides.minByOrNull { abs(it - candidateEndUs) }
 
         val startDelta = bestStartGuide?.let { it - candidateStartUs }
         val endDelta = bestEndGuide?.let { it - candidateEndUs }
-        val startDistance = startDelta?.let(::kotlin.math.abs) ?: Long.MAX_VALUE
-        val endDistance = endDelta?.let(::kotlin.math.abs) ?: Long.MAX_VALUE
+        val startDistance = startDelta?.let(::abs) ?: Long.MAX_VALUE
+        val endDistance = endDelta?.let(::abs) ?: Long.MAX_VALUE
 
         return when {
             startDistance <= endDistance && startDistance <= snapThresholdUs -> candidateStartUs + (startDelta ?: 0L)

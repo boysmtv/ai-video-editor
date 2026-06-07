@@ -144,6 +144,7 @@ fun AiCaptionScreen(
                         onCopy = {
                             copyToClipboard(context, "caption", caption)
                         },
+                        onImportCaption = onImportCaption,
                         modifier = Modifier.fillMaxWidth()
                     )
                     1 -> HashtagsTab(
@@ -194,6 +195,7 @@ private fun CaptionTab(
     onCancelEdit: () -> Unit,
     onGenerate: () -> Unit,
     onCopy: () -> Unit,
+    onImportCaption: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {

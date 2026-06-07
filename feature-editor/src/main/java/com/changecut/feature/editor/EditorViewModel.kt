@@ -1,6 +1,8 @@
 package com.changecut.feature.editor
 
 import android.net.Uri
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.changecut.core.editor.ClipGroup
@@ -201,6 +203,9 @@ class EditorViewModel @Inject constructor(
             currentSubScreen = args[17] as String
         )
     }.stateIn(viewModelScope, kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5000), EditorUiState())
+
+    val undoHistory: StateFlow<List<String>> = undoRedoManager.undoHistory
+    val redoHistory: StateFlow<List<String>> = undoRedoManager.redoHistory
 
     fun loadProject(projectId: String) {
         viewModelScope.launch {
@@ -1388,6 +1393,7 @@ class EditorViewModel @Inject constructor(
             _error.value = "Failed to store imported media"
             return
         }
+        updateProjectThumbnailIfMissing(storedFile, mimeType)
 
         val clipDurationUs = (mediaInfo?.durationMs ?: 0L) * 1000L
         val baseClip = EditorClip(
@@ -1448,6 +1454,40 @@ class EditorViewModel @Inject constructor(
             }
         } catch (_: Exception) {
             null
+        }
+    }
+
+    private fun updateProjectThumbnailIfMissing(mediaFile: File, mimeType: String) {
+        val project = _project.value ?: return
+        if (!project.thumbnailPath.isNullOrBlank()) return
+        if (!mimeType.startsWith("video/")) return
+
+        val thumbnailFile = File(mediaProjectManager.getThumbnailDir(project.id), "project_cover.jpg")
+        val saved = runCatching {
+            val retriever = MediaMetadataRetriever()
+            try {
+                retriever.setDataSource(mediaFile.absolutePath)
+                val frame = retriever.getFrameAtTime(1_000_000L, MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+                    ?: retriever.frameAtTime
+                    ?: return@runCatching false
+                thumbnailFile.outputStream().use { output ->
+                    frame.compress(Bitmap.CompressFormat.JPEG, 82, output)
+                }
+                true
+            } finally {
+                retriever.release()
+            }
+        }.getOrDefault(false)
+
+        if (saved) {
+            val updatedProject = project.copy(
+                thumbnailPath = thumbnailFile.absolutePath,
+                updatedAt = System.currentTimeMillis()
+            )
+            _project.value = updatedProject
+            viewModelScope.launch {
+                projectRepository.saveProject(updatedProject)
+            }
         }
     }
 
