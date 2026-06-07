@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "updated_at": "2026-06-07T11:23:03.297535+00:00",
+  "node_count": 1802,
+  "edge_count": 5060,
+  "node_types": {
+    "ApiRoute": 1,
+    "Class": 135,
+    "Entity": 1,
+    "Enum": 17,
+    "Field": 599,
+    "File": 127,
+    "Flow": 1,
+    "Function": 35,
+    "Interface": 3,
+    "Method": 364,
+    "Module": 447,
+    "Object": 21,
+    "Package": 50,
+    "Project": 1
+  },
+  "edge_types": {
+    "DEFINED_IN": 1429,
+    "EXPOSES": 1,
+    "HANDLES": 3,
+    "IMPLEMENTS": 1,
+    "IMPORTS": 2141,
+    "PART_OF_FLOW": 2,
+    "READS": 3,
+    "USES": 1477,
+    "WRITES": 3
+  },
+  "top_flows": [
+    "login"
+  ],
+  "top_api_routes": [
+    "login"
+  ],
+  "metrics": {
+    "schema_version": 1,
+    "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+    "updated_at": "2026-06-07T11:23:03.215466+00:00",
+    "memory_completeness_score": 0.947,
+    "graph_coverage_score": 1.0,
+    "symbol_extraction_confidence": 1.0,
+    "api_contract_coverage": 1.0,
+    "flow_completeness_score": 0.333,
+    "test_mapping_score": 0.0,
+    "runtime_proof_score": 0.0,
+    "security_readiness_score": 0.6,
+    "hotspot_risk": "medium",
+    "blast_radius_risk": "high",
+    "release_readiness_score": 0.562,
+    "release_readiness": "blocked"
+  }
+}

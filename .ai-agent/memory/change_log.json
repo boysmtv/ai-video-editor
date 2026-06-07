@@ -1,0 +1,179 @@
+{
+  "changes": [
+    {
+      "run_id": "manual::2026-06-07-project-intel-scan",
+      "final_status": "completed",
+      "summary": "Ran project-scan, project-brain, and project-flow for changecut-app; refreshed project intelligence with current architecture, flow, and risk signals.",
+      "changed_artifacts": [
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/lessons.json",
+        ".ai-agent/memory/project_graph.json",
+        ".ai-agent/memory/project_graph_summary.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/flow_map.json",
+        ".ai-agent/memory/project_manifest.json"
+      ],
+      "features": [
+        "Project scan refreshed",
+        "Project brain refreshed",
+        "MainActivity -> AppNavGraph flow traced"
+      ],
+      "verification": [
+        "python main.py project-scan --dir D:\\Work\\Pribadi\\AndroidProject\\changecut-app --json",
+        "python main.py project-brain --dir D:\\Work\\Pribadi\\AndroidProject\\changecut-app --json",
+        "python main.py project-flow --dir D:\\Work\\Pribadi\\AndroidProject\\changecut-app app/src/main/java/com/changecut/app/MainActivity.kt --depth 8 --json",
+        "python main.py project-flow --dir D:\\Work\\Pribadi\\AndroidProject\\changecut-app app/src/main/java/com/changecut/app/navigation/AppNavGraph.kt --depth 10 --json"
+      ],
+      "recorded_at": "2026-06-07T00:00:00+07:00"
+    },
+    {
+      "run_id": "manual::2026-06-07-project-persistence",
+      "final_status": "completed",
+      "summary": "Connected local project lifecycle to Room-backed persistence: Home now observes saved projects, New Project now creates real Project records, and full debug APK build succeeds.",
+      "changed_artifacts": [
+        "feature-home/src/main/java/com/changecut/feature/home/HomeScreen.kt",
+        "feature-home/src/main/java/com/changecut/feature/home/HomeViewModel.kt",
+        "feature-home/src/main/java/com/changecut/feature/home/newproject/NewProjectScreen.kt",
+        "feature-home/src/main/java/com/changecut/feature/home/newproject/NewProjectViewModel.kt",
+        "core/src/main/java/com/changecut/core/editor/TrackManager.kt",
+        "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiCaptionScreen.kt",
+        ".ai-agent/memory/progress_checklist.md"
+      ],
+      "features": [
+        "Home recent projects backed by GetProjectsUseCase",
+        "New Project creates persisted Project records via CreateProjectUseCase",
+        "Fixed full assembleDebug compile blockers in TrackManager snap math and AI caption import callback"
+      ],
+      "verification": [
+        ".\\gradlew.bat :feature-home:compileDebugKotlin",
+        ".\\gradlew.bat assembleDebug"
+      ],
+      "recorded_at": "2026-06-07T00:00:00+07:00"
+    },
+    {
+      "run_id": "manual::2026-06-07-recent-project-actions",
+      "final_status": "completed",
+      "summary": "Added Recent Projects actions and confirmed editor project persistence wiring: Home project cards now support rename, duplicate, and delete; duplicate copies local project files; delete removes Room metadata and local project files.",
+      "changed_artifacts": [
+        "feature-home/build.gradle.kts",
+        "feature-home/src/main/java/com/changecut/feature/home/HomeScreen.kt",
+        "feature-home/src/main/java/com/changecut/feature/home/HomeViewModel.kt",
+        "domain/src/main/java/com/changecut/domain/usecase/project/GetProjectByIdUseCase.kt",
+        "domain/src/main/java/com/changecut/domain/usecase/project/SaveProjectUseCase.kt",
+        ".ai-agent/memory/progress_checklist.md",
+        ".ai-agent/memory/manual_smoke_checklist.md"
+      ],
+      "features": [
+        "Rename project from Recent Projects",
+        "Duplicate project metadata and local project directory",
+        "Delete project metadata and local project directory",
+        "Confirmed EditorViewModel already loads and autosaves timeline state by persisted project ID"
+      ],
+      "verification": [
+        ".\\gradlew.bat :feature-home:compileDebugKotlin",
+        ".\\gradlew.bat assembleDebug"
+      ],
+      "recorded_at": "2026-06-07T00:00:00+07:00"
+    },
+    {
+      "run_id": "manual::2026-06-07-project-thumbnails",
+      "final_status": "completed",
+      "summary": "Added Recent Projects thumbnail support: imported video can set a project cover image, Home displays local thumbnails when present, and falls back to project initials otherwise.",
+      "changed_artifacts": [
+        "feature-home/build.gradle.kts",
+        "feature-home/src/main/java/com/changecut/feature/home/HomeScreen.kt",
+        "feature-home/src/main/java/com/changecut/feature/home/HomeViewModel.kt",
+        "feature-editor/src/main/java/com/changecut/feature/editor/EditorViewModel.kt",
+        ".ai-agent/memory/progress_checklist.md"
+      ],
+      "features": [
+        "Generate project cover thumbnail from first imported video",
+        "Persist thumbnail path in Project metadata",
+        "Display project thumbnail in Recent Projects with fallback initial"
+      ],
+      "verification": [
+        ".\\gradlew.bat assembleDebug"
+      ],
+      "recorded_at": "2026-06-07T00:00:00+07:00"
+    },
+    {
+      "run_id": "manual::2026-06-07-auth-forgot-password",
+      "final_status": "completed",
+      "summary": "Implemented a minimal Forgot Password screen and wired it into auth navigation so the login flow no longer hits a TODO dead-end.",
+      "changed_artifacts": [
+        "feature-auth/src/main/java/com/changecut/feature/auth/forgot/ForgotPasswordScreen.kt",
+        "feature-auth/src/main/java/com/changecut/feature/auth/navigation/AuthNavGraph.kt",
+        "feature-auth/build.gradle.kts",
+        "gradle/libs.versions.toml"
+      ],
+      "features": [
+        "Forgot Password screen reachable from Login",
+        "Local-only reset acknowledgment flow for this build",
+        "Auth module dependency cleanup for icon and text input support"
+      ],
+      "verification": [
+        ".\\gradlew.bat assembleDebug"
+      ],
+      "recorded_at": "2026-06-07T00:00:00+07:00"
+    },
+    {
+      "run_id": "manual::2026-06-07-editor-polish-history-theme",
+      "final_status": "completed",
+      "summary": "Added undo/redo history dropdown menus in the editor top bar, wired a real app-level Settings route, and connected a runtime theme toggle through MainActivity/AppNavGraph/Settings.",
+      "changed_artifacts": [
+        "core/src/main/java/com/changecut/core/editor/UndoRedoManager.kt",
+        "feature-editor/src/main/java/com/changecut/feature/editor/EditorScreen.kt",
+        "feature-editor/src/main/java/com/changecut/feature/editor/EditorViewModel.kt",
+        "feature-editor/src/main/java/com/changecut/feature/editor/settings/EditorSettingsScreen.kt",
+        "app/src/main/java/com/changecut/app/MainActivity.kt",
+        "app/src/main/java/com/changecut/app/navigation/AppNavGraph.kt"
+      ],
+      "features": [
+        "Undo/redo dropdown history in editor top bar",
+        "App-level Settings route reachable from Home",
+        "Runtime dark theme toggle surfaced in Settings"
+      ],
+      "verification": [
+        "Pending final batch verification"
+      ],
+      "recorded_at": "2026-06-07T00:00:00+07:00"
+    },
+    {
+      "run_id": "bootstrap::changecut-app",
+      "final_status": "registered",
+      "summary": "Bootstrapped AI_AGENT_CORE memory from existing project registration (project_registration).",
+      "changed_artifacts": [
+        "app/src/main/java/com/changecut/app/ChangeCutApp.kt",
+        "app/src/main/java/com/changecut/app/di/AppModule.kt",
+        "app/src/main/java/com/changecut/app/MainActivity.kt",
+        "app/src/main/java/com/changecut/app/navigation/AppNavGraph.kt",
+        "app/src/main/java/com/changecut/app/ui/theme/Theme.kt",
+        "common/src/main/java/com/changecut/common/config/AppConfig.kt",
+        "common/src/main/java/com/changecut/common/Constant.kt",
+        "core/src/main/java/com/changecut/core/ai/AiBeatSync.kt",
+        "core/src/main/java/com/changecut/core/ai/AiBestMomentPicker.kt",
+        "core/src/main/java/com/changecut/core/ai/AiSceneDetection.kt",
+        "core/src/main/java/com/changecut/core/ai/AiSmartTrim.kt",
+        "core/src/main/java/com/changecut/core/ai/AiSubtitleEngine.kt",
+        "core/src/main/java/com/changecut/core/ai/AiTextToSpeech.kt",
+        "core/src/main/java/com/changecut/core/ai/AiVoiceIsolation.kt",
+        "core/src/main/java/com/changecut/core/cache/CacheCleaner.kt",
+        "core/src/main/java/com/changecut/core/database/AppDatabase.kt",
+        "core/src/main/java/com/changecut/core/database/dao/ProjectDao.kt",
+        "core/src/main/java/com/changecut/core/database/entity/ProjectEntity.kt",
+        "core/src/main/java/com/changecut/core/di/DatabaseModule.kt",
+        "core/src/main/java/com/changecut/core/editor/ClipGroup.kt",
+        "core/src/main/java/com/changecut/core/editor/EditorCommand.kt",
+        "core/src/main/java/com/changecut/core/editor/KeyframeSystem.kt",
+        "core/src/main/java/com/changecut/core/editor/MaskDef.kt",
+        "core/src/main/java/com/changecut/core/editor/StickerDef.kt"
+      ],
+      "features": [
+        "create",
+        "delete",
+        "login"
+      ],
+      "recorded_at": "2026-06-07T11:23:03.144276+00:00"
+    }
+  ]
+}

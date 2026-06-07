@@ -5,7 +5,9 @@ build/
 .idea/
 *.iml
 local.properties
-.ai-agent/
+.ai-agent/*
+!.ai-agent/memory/
+!.ai-agent/memory/**
 captures/
 *.log
 *.tmp

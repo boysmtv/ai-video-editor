@@ -1,0 +1,66 @@
+{
+  "updated_at": "2026-06-07T11:23:03.116558+00:00",
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "final_project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "dominant_language": "kotlin",
+  "dominant_platform": "",
+  "languages": [
+    {
+      "language": "kotlin",
+      "file_count": 127,
+      "modeling_guidance": "Prefer enum class, sealed hierarchies, data classes, and explicit domain types over raw command strings.",
+      "localization_guidance": "Separate CLI copy or UI strings from control flow so localization can evolve without rewriting logic.",
+      "configuration_guidance": "Use the platform's standard configuration and environment layering instead of ad-hoc constants.",
+      "documentation_topics": [
+        "Kotlin language guide",
+        "Kotlin enum and sealed class patterns",
+        "Kotlin testing and Gradle or Maven integration",
+        "Gradle project structure and task guidance"
+      ],
+      "next_checks": [
+        "Confirm new kotlin changes follow idiomatic modeling and naming conventions.",
+        "Review kotlin test layout and update the closest existing test surface first.",
+        "Check whether the platform has a first-class localization or resource mechanism before adding new user-facing copy.",
+        "Check whether the framework has a canonical way to model commands, routes, requests, or screens before inventing a custom pattern."
+      ]
+    }
+  ],
+  "platforms": [],
+  "framework_hints": [
+    "gradle"
+  ],
+  "documentation_topics": [
+    "Kotlin language guide",
+    "Kotlin enum and sealed class patterns",
+    "Kotlin testing and Gradle or Maven integration",
+    "Gradle project structure and task guidance"
+  ],
+  "next_checks": [
+    "Confirm new kotlin changes follow idiomatic modeling and naming conventions.",
+    "Review kotlin test layout and update the closest existing test surface first.",
+    "Check whether the platform has a first-class localization or resource mechanism before adding new user-facing copy.",
+    "Check whether the framework has a canonical way to model commands, routes, requests, or screens before inventing a custom pattern.",
+    "Model commands, routes, and events with typed abstractions native to the language/platform.",
+    "Externalize user-facing copy, status text, and errors behind a localization/resource strategy.",
+    "Keep configuration, secrets, and environment handling aligned with the platform's standard settings model.",
+    "Verify tests and docs cover the latest feature flow before promoting the next brief version.",
+    "Only promote a new brief version after the final output is runnable, tested, and safe to review or roll back.",
+    "Preserve the last known-good active version when a newer brief version still has unresolved gaps.",
+    "Do not create the next brief version until the current project version is fully implemented and has no open gaps.",
+    "If a brief still has gaps, close them in the same brief version instead of pushing them into a newer brief.",
+    "When the project supports Docker review, make the latest promoted version runnable in Docker before asking for review."
+  ],
+  "active_goals": [
+    "create",
+    "delete",
+    "login"
+  ],
+  "current_focus": {
+    "problem_statement": "",
+    "entrypoints": [],
+    "contracts": [
+      "login"
+    ],
+    "feature_count": 3
+  }
+}

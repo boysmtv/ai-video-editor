@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "updated_at": "2026-06-07T11:23:03.215466+00:00",
+  "memory_completeness_score": 0.947,
+  "graph_coverage_score": 1.0,
+  "symbol_extraction_confidence": 1.0,
+  "api_contract_coverage": 1.0,
+  "flow_completeness_score": 0.333,
+  "test_mapping_score": 0.0,
+  "runtime_proof_score": 0.0,
+  "security_readiness_score": 0.6,
+  "hotspot_risk": "medium",
+  "blast_radius_risk": "high",
+  "release_readiness_score": 0.562,
+  "release_readiness": "blocked"
+}

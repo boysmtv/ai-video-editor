@@ -1,0 +1,6161 @@
+{
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "file_count": 127,
+  "files": [
+    {
+      "path": "app/src/main/java/com/changecut/app/ChangeCutApp.kt",
+      "language": "kotlin",
+      "package": "com.changecut.app",
+      "classes": [
+        {
+          "name": "ChangeCutApp",
+          "kind": "class",
+          "line": 7
+        }
+      ],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "app/src/main/java/com/changecut/app/di/AppModule.kt",
+      "language": "kotlin",
+      "package": "com.changecut.app.di",
+      "classes": [
+        {
+          "name": "AppModule",
+          "kind": "object",
+          "line": 14
+        }
+      ],
+      "functions": [
+        {
+          "name": "provideAppConfig",
+          "line": 18
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "app/src/main/java/com/changecut/app/MainActivity.kt",
+      "language": "kotlin",
+      "package": "com.changecut.app",
+      "classes": [
+        {
+          "name": "MainActivity",
+          "kind": "class",
+          "line": 19
+        }
+      ],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "app/src/main/java/com/changecut/app/navigation/AppNavGraph.kt",
+      "language": "kotlin",
+      "package": "com.changecut.app.navigation",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AppNavGraph",
+          "line": 24
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "app/src/main/java/com/changecut/app/ui/theme/Theme.kt",
+      "language": "kotlin",
+      "package": "com.changecut.app.ui.theme",
+      "classes": [],
+      "functions": [
+        {
+          "name": "ChangeCutTheme",
+          "line": 54
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "common/src/main/java/com/changecut/common/config/AppConfig.kt",
+      "language": "kotlin",
+      "package": "com.changecut.common.config",
+      "classes": [
+        {
+          "name": "AppConfig",
+          "kind": "class",
+          "line": 4
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 5
+        },
+        {
+          "name": "versionName",
+          "line": 7
+        },
+        {
+          "name": "versionCode",
+          "line": 14
+        },
+        {
+          "name": "packageName",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/com/changecut/common/Constant.kt",
+      "language": "kotlin",
+      "package": "com.changecut.common",
+      "classes": [
+        {
+          "name": "Constant",
+          "kind": "object",
+          "line": 2
+        },
+        {
+          "name": "Preferences",
+          "kind": "object",
+          "line": 7
+        }
+      ],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiBeatSync.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "AiBeatSync",
+          "kind": "class",
+          "line": 11
+        },
+        {
+          "name": "BeatInfo",
+          "kind": "class",
+          "line": 12
+        }
+      ],
+      "functions": [
+        {
+          "name": "detectBeats",
+          "line": 18
+        }
+      ],
+      "data_members": [
+        {
+          "name": "timeUs",
+          "line": 14
+        },
+        {
+          "name": "intensity",
+          "line": 15
+        },
+        {
+          "name": "frequency",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiBestMomentPicker.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "ScoreBreakdown",
+          "kind": "class",
+          "line": 12
+        },
+        {
+          "name": "ScoredClip",
+          "kind": "class",
+          "line": 22
+        },
+        {
+          "name": "AiBestMomentPicker",
+          "kind": "class",
+          "line": 33
+        }
+      ],
+      "functions": [
+        {
+          "name": "analyzeClips",
+          "line": 42
+        },
+        {
+          "name": "pickBestMoments",
+          "line": 259
+        },
+        {
+          "name": "pickIntro",
+          "line": 284
+        }
+      ],
+      "data_members": [
+        {
+          "name": "stability",
+          "line": 14
+        },
+        {
+          "name": "brightness",
+          "line": 15
+        },
+        {
+          "name": "sharpness",
+          "line": 16
+        },
+        {
+          "name": "motion",
+          "line": 17
+        },
+        {
+          "name": "faceDetection",
+          "line": 18
+        },
+        {
+          "name": "total",
+          "line": 20
+        },
+        {
+          "name": "videoPath",
+          "line": 24
+        },
+        {
+          "name": "startTimeUs",
+          "line": 25
+        },
+        {
+          "name": "endTimeUs",
+          "line": 26
+        },
+        {
+          "name": "durationUs",
+          "line": 27
+        },
+        {
+          "name": "score",
+          "line": 28
+        },
+        {
+          "name": "thumbnail",
+          "line": 29
+        },
+        {
+          "name": "context",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiSceneDetection.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "SceneChangeResult",
+          "kind": "class",
+          "line": 13
+        },
+        {
+          "name": "SilenceSegment",
+          "kind": "class",
+          "line": 19
+        },
+        {
+          "name": "AiSceneDetection",
+          "kind": "class",
+          "line": 26
+        }
+      ],
+      "functions": [
+        {
+          "name": "detectSceneChanges",
+          "line": 36
+        },
+        {
+          "name": "detectSilence",
+          "line": 80
+        }
+      ],
+      "data_members": [
+        {
+          "name": "timeUs",
+          "line": 15
+        },
+        {
+          "name": "confidence",
+          "line": 16
+        },
+        {
+          "name": "thumbnail",
+          "line": 17
+        },
+        {
+          "name": "startTimeUs",
+          "line": 21
+        },
+        {
+          "name": "endTimeUs",
+          "line": 22
+        },
+        {
+          "name": "context",
+          "line": 27
+        },
+        {
+          "name": "previousHistogram",
+          "line": 49
+        },
+        {
+          "name": "silenceStart",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiSmartTrim.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "AiSmartTrim",
+          "kind": "class",
+          "line": 11
+        },
+        {
+          "name": "TrimSegment",
+          "kind": "class",
+          "line": 12
+        }
+      ],
+      "functions": [
+        {
+          "name": "detectSilence",
+          "line": 18
+        }
+      ],
+      "data_members": [
+        {
+          "name": "startUs",
+          "line": 14
+        },
+        {
+          "name": "endUs",
+          "line": 15
+        },
+        {
+          "name": "reason",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiSubtitleEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "SubtitleResult",
+          "kind": "class",
+          "line": 16
+        },
+        {
+          "name": "AiSubtitleEngine",
+          "kind": "class",
+          "line": 25
+        }
+      ],
+      "functions": [
+        {
+          "name": "generateSubtitles",
+          "line": 34
+        },
+        {
+          "name": "generateHooks",
+          "line": 203
+        },
+        {
+          "name": "cleanup",
+          "line": 264
+        }
+      ],
+      "data_members": [
+        {
+          "name": "startMs",
+          "line": 18
+        },
+        {
+          "name": "endMs",
+          "line": 19
+        },
+        {
+          "name": "text",
+          "line": 20
+        },
+        {
+          "name": "confidence",
+          "line": 21
+        },
+        {
+          "name": "context",
+          "line": 26
+        },
+        {
+          "name": "speechRecognizer",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiTextToSpeech.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "VoiceType",
+          "kind": "enum",
+          "line": 14
+        },
+        {
+          "name": "AiTextToSpeech",
+          "kind": "class",
+          "line": 24
+        }
+      ],
+      "functions": [
+        {
+          "name": "getAvailableVoices",
+          "line": 116
+        },
+        {
+          "name": "cleanup",
+          "line": 143
+        }
+      ],
+      "data_members": [
+        {
+          "name": "displayName",
+          "line": 15
+        },
+        {
+          "name": "locale",
+          "line": 15
+        },
+        {
+          "name": "context",
+          "line": 25
+        },
+        {
+          "name": "tts",
+          "line": 27
+        },
+        {
+          "name": "selectedVoice",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ai/AiVoiceIsolation.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ai",
+      "classes": [
+        {
+          "name": "AiVoiceIsolation",
+          "kind": "class",
+          "line": 7
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildNoiseGateFilter",
+          "line": 8
+        },
+        {
+          "name": "buildSpectralSubtractionFilter",
+          "line": 13
+        },
+        {
+          "name": "buildFullVoiceIsolation",
+          "line": 17
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/cache/CacheCleaner.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.cache",
+      "classes": [
+        {
+          "name": "CacheCleaner",
+          "kind": "class",
+          "line": 10
+        }
+      ],
+      "functions": [
+        {
+          "name": "getCacheSize",
+          "line": 17
+        },
+        {
+          "name": "getProjectCacheSize",
+          "line": 21
+        },
+        {
+          "name": "cleanCache",
+          "line": 26
+        },
+        {
+          "name": "cleanProjectCache",
+          "line": 36
+        },
+        {
+          "name": "cleanAllCache",
+          "line": 48
+        },
+        {
+          "name": "cleanMediaCache",
+          "line": 57
+        },
+        {
+          "name": "cleanVoiceOverCache",
+          "line": 70
+        },
+        {
+          "name": "cleanThumbnailCache",
+          "line": 83
+        },
+        {
+          "name": "formatSize",
+          "line": 96
+        },
+        {
+          "name": "getCacheBreakdown",
+          "line": 106
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/database/AppDatabase.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.database",
+      "classes": [],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/database/dao/ProjectDao.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.database.dao",
+      "classes": [
+        {
+          "name": "ProjectDao",
+          "kind": "interface",
+          "line": 13
+        }
+      ],
+      "functions": [
+        {
+          "name": "getAllProjects",
+          "line": 16
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/database/entity/ProjectEntity.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.database.entity",
+      "classes": [
+        {
+          "name": "ProjectEntity",
+          "kind": "class",
+          "line": 8
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 9
+        },
+        {
+          "name": "name",
+          "line": 10
+        },
+        {
+          "name": "canvasWidth",
+          "line": 11
+        },
+        {
+          "name": "canvasHeight",
+          "line": 12
+        },
+        {
+          "name": "durationMs",
+          "line": 13
+        },
+        {
+          "name": "thumbnailPath",
+          "line": 14
+        },
+        {
+          "name": "createdAt",
+          "line": 15
+        },
+        {
+          "name": "updatedAt",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/di/DatabaseModule.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.di",
+      "classes": [
+        {
+          "name": "DatabaseModule",
+          "kind": "object",
+          "line": 16
+        }
+      ],
+      "functions": [
+        {
+          "name": "provideAppDatabase",
+          "line": 20
+        },
+        {
+          "name": "provideProjectDao",
+          "line": 29
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/ClipGroup.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "ClipGroup",
+          "kind": "class",
+          "line": 2
+        },
+        {
+          "name": "TemplateProject",
+          "kind": "class",
+          "line": 9
+        },
+        {
+          "name": "ExportJob",
+          "kind": "class",
+          "line": 22
+        },
+        {
+          "name": "ExportStatus",
+          "kind": "enum",
+          "line": 32
+        },
+        {
+          "name": "SnapGuide",
+          "kind": "class",
+          "line": 36
+        },
+        {
+          "name": "SnapType",
+          "kind": "enum",
+          "line": 41
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 4
+        },
+        {
+          "name": "clipIds",
+          "line": 5
+        },
+        {
+          "name": "name",
+          "line": 6
+        },
+        {
+          "name": "isExpanded",
+          "line": 7
+        },
+        {
+          "name": "description",
+          "line": 13
+        },
+        {
+          "name": "category",
+          "line": 14
+        },
+        {
+          "name": "thumbnailPath",
+          "line": 15
+        },
+        {
+          "name": "canvasWidth",
+          "line": 16
+        },
+        {
+          "name": "canvasHeight",
+          "line": 17
+        },
+        {
+          "name": "tracks",
+          "line": 18
+        },
+        {
+          "name": "durationMs",
+          "line": 19
+        },
+        {
+          "name": "createdAt",
+          "line": 20
+        },
+        {
+          "name": "projectName",
+          "line": 25
+        },
+        {
+          "name": "outputPath",
+          "line": 26
+        },
+        {
+          "name": "presetName",
+          "line": 27
+        },
+        {
+          "name": "progress",
+          "line": 28
+        },
+        {
+          "name": "status",
+          "line": 29
+        },
+        {
+          "name": "position",
+          "line": 38
+        },
+        {
+          "name": "type",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/EditorCommand.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "EditorCommand",
+          "kind": "interface",
+          "line": 2
+        },
+        {
+          "name": "AddClipCommand",
+          "kind": "class",
+          "line": 8
+        },
+        {
+          "name": "RemoveClipCommand",
+          "kind": "class",
+          "line": 18
+        },
+        {
+          "name": "SplitClipCommand",
+          "kind": "class",
+          "line": 28
+        },
+        {
+          "name": "ReorderClipCommand",
+          "kind": "class",
+          "line": 45
+        },
+        {
+          "name": "ModifyClipCommand",
+          "kind": "class",
+          "line": 57
+        },
+        {
+          "name": "CompositeCommand",
+          "kind": "class",
+          "line": 68
+        },
+        {
+          "name": "SnapshotCommand",
+          "kind": "class",
+          "line": 77
+        }
+      ],
+      "functions": [
+        {
+          "name": "execute",
+          "line": 4
+        },
+        {
+          "name": "undo",
+          "line": 5
+        },
+        {
+          "name": "description",
+          "line": 6
+        }
+      ],
+      "data_members": [
+        {
+          "name": "trackManager",
+          "line": 10
+        },
+        {
+          "name": "trackIndex",
+          "line": 11
+        },
+        {
+          "name": "clip",
+          "line": 12
+        },
+        {
+          "name": "clipId",
+          "line": 32
+        },
+        {
+          "name": "splitTimeUs",
+          "line": 33
+        },
+        {
+          "name": "newClipId",
+          "line": 35
+        },
+        {
+          "name": "oldIndex",
+          "line": 50
+        },
+        {
+          "name": "newIndex",
+          "line": 51
+        },
+        {
+          "name": "oldClip",
+          "line": 61
+        },
+        {
+          "name": "newClip",
+          "line": 62
+        },
+        {
+          "name": "commands",
+          "line": 70
+        },
+        {
+          "name": "label",
+          "line": 71
+        },
+        {
+          "name": "action",
+          "line": 81
+        },
+        {
+          "name": "afterSnapshot",
+          "line": 84
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/KeyframeSystem.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "KeyframeProperty",
+          "kind": "enum",
+          "line": 4
+        },
+        {
+          "name": "KeyframePoint",
+          "kind": "class",
+          "line": 16
+        },
+        {
+          "name": "AnimatedValue",
+          "kind": "class",
+          "line": 23
+        },
+        {
+          "name": "KeyframeSystem",
+          "kind": "object",
+          "line": 27
+        }
+      ],
+      "functions": [
+        {
+          "name": "interpolate",
+          "line": 29
+        },
+        {
+          "name": "animatePosition",
+          "line": 48
+        },
+        {
+          "name": "animateScale",
+          "line": 59
+        }
+      ],
+      "data_members": [
+        {
+          "name": "timeUs",
+          "line": 17
+        },
+        {
+          "name": "value",
+          "line": 18
+        },
+        {
+          "name": "easing",
+          "line": 19
+        },
+        {
+          "name": "properties",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/MaskDef.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "MaskType",
+          "kind": "enum",
+          "line": 2
+        },
+        {
+          "name": "BlendMode",
+          "kind": "enum",
+          "line": 6
+        },
+        {
+          "name": "MaskDef",
+          "kind": "class",
+          "line": 24
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "displayName",
+          "line": 8
+        },
+        {
+          "name": "ffmpegName",
+          "line": 9
+        },
+        {
+          "name": "type",
+          "line": 26
+        },
+        {
+          "name": "centerX",
+          "line": 27
+        },
+        {
+          "name": "centerY",
+          "line": 28
+        },
+        {
+          "name": "width",
+          "line": 29
+        },
+        {
+          "name": "height",
+          "line": 30
+        },
+        {
+          "name": "rotation",
+          "line": 31
+        },
+        {
+          "name": "featherPx",
+          "line": 32
+        },
+        {
+          "name": "invert",
+          "line": 33
+        },
+        {
+          "name": "points",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/StickerDef.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "StickerDef",
+          "kind": "class",
+          "line": 2
+        },
+        {
+          "name": "StickerCategory",
+          "kind": "enum",
+          "line": 11
+        },
+        {
+          "name": "AnimationDef",
+          "kind": "class",
+          "line": 15
+        },
+        {
+          "name": "AnimationType",
+          "kind": "enum",
+          "line": 24
+        },
+        {
+          "name": "AnimationDirection",
+          "kind": "enum",
+          "line": 28
+        },
+        {
+          "name": "ColorGradeDef",
+          "kind": "class",
+          "line": 32
+        },
+        {
+          "name": "AudioEQDef",
+          "kind": "class",
+          "line": 45
+        },
+        {
+          "name": "StickerCatalog",
+          "kind": "object",
+          "line": 57
+        },
+        {
+          "name": "AnimationCatalog",
+          "kind": "object",
+          "line": 100
+        }
+      ],
+      "functions": [
+        {
+          "name": "getByCategory",
+          "line": 96
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 4
+        },
+        {
+          "name": "name",
+          "line": 5
+        },
+        {
+          "name": "category",
+          "line": 6
+        },
+        {
+          "name": "emoji",
+          "line": 7
+        },
+        {
+          "name": "assetPath",
+          "line": 8
+        },
+        {
+          "name": "isAnimated",
+          "line": 9
+        },
+        {
+          "name": "type",
+          "line": 19
+        },
+        {
+          "name": "direction",
+          "line": 20
+        },
+        {
+          "name": "durationMs",
+          "line": 21
+        },
+        {
+          "name": "easing",
+          "line": 22
+        },
+        {
+          "name": "hslHue",
+          "line": 34
+        },
+        {
+          "name": "hslSaturation",
+          "line": 35
+        },
+        {
+          "name": "hslLightness",
+          "line": 36
+        },
+        {
+          "name": "redCurve",
+          "line": 37
+        },
+        {
+          "name": "greenCurve",
+          "line": 38
+        },
+        {
+          "name": "blueCurve",
+          "line": 39
+        },
+        {
+          "name": "rgbCurve",
+          "line": 40
+        },
+        {
+          "name": "lutPath",
+          "line": 41
+        },
+        {
+          "name": "vignetteIntensity",
+          "line": 42
+        },
+        {
+          "name": "autoColor",
+          "line": 43
+        },
+        {
+          "name": "lowGain",
+          "line": 47
+        },
+        {
+          "name": "midGain",
+          "line": 48
+        },
+        {
+          "name": "highGain",
+          "line": 49
+        },
+        {
+          "name": "lowFreq",
+          "line": 50
+        },
+        {
+          "name": "midFreq",
+          "line": 51
+        },
+        {
+          "name": "highFreq",
+          "line": 52
+        },
+        {
+          "name": "compressorThreshold",
+          "line": 53
+        },
+        {
+          "name": "compressorRatio",
+          "line": 54
+        },
+        {
+          "name": "duckingAmount",
+          "line": 55
+        },
+        {
+          "name": "emojis",
+          "line": 59
+        },
+        {
+          "name": "shapes",
+          "line": 82
+        },
+        {
+          "name": "allStickers",
+          "line": 95
+        },
+        {
+          "name": "inAnimations",
+          "line": 102
+        },
+        {
+          "name": "outAnimations",
+          "line": 116
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/TrackManager.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "Track",
+          "kind": "class",
+          "line": 10
+        },
+        {
+          "name": "TrackType",
+          "kind": "enum",
+          "line": 20
+        },
+        {
+          "name": "EditorClip",
+          "kind": "class",
+          "line": 24
+        },
+        {
+          "name": "TextClipStyle",
+          "kind": "class",
+          "line": 62
+        },
+        {
+          "name": "TransitionDef",
+          "kind": "class",
+          "line": 77
+        },
+        {
+          "name": "Keyframe",
+          "kind": "class",
+          "line": 83
+        },
+        {
+          "name": "EasingType",
+          "kind": "enum",
+          "line": 91
+        },
+        {
+          "name": "EffectDef",
+          "kind": "class",
+          "line": 93
+        },
+        {
+          "name": "EffectCategory",
+          "kind": "enum",
+          "line": 100
+        },
+        {
+          "name": "FilterDef",
+          "kind": "class",
+          "line": 104
+        },
+        {
+          "name": "TransitionDefFull",
+          "kind": "class",
+          "line": 110
+        },
+        {
+          "name": "TimelineSnapshot",
+          "kind": "class",
+          "line": 116
+        },
+        {
+          "name": "TrackManager",
+          "kind": "class",
+          "line": 129
+        }
+      ],
+      "functions": [
+        {
+          "name": "seekTo",
+          "line": 160
+        },
+        {
+          "name": "setZoom",
+          "line": 164
+        },
+        {
+          "name": "setSnapEnabled",
+          "line": 168
+        },
+        {
+          "name": "addTrack",
+          "line": 172
+        },
+        {
+          "name": "toggleTrackVisibility",
+          "line": 177
+        },
+        {
+          "name": "toggleTrackMute",
+          "line": 185
+        },
+        {
+          "name": "toggleTrackLock",
+          "line": 193
+        },
+        {
+          "name": "soloTrack",
+          "line": 201
+        },
+        {
+          "name": "showAllTracks",
+          "line": 209
+        },
+        {
+          "name": "addClip",
+          "line": 215
+        },
+        {
+          "name": "removeClip",
+          "line": 227
+        },
+        {
+          "name": "updateClip",
+          "line": 250
+        },
+        {
+          "name": "moveClipInTime",
+          "line": 264
+        },
+        {
+          "name": "moveSelectedClipsInTime",
+          "line": 277
+        },
+        {
+          "name": "trimClipBounds",
+          "line": 323
+        },
+        {
+          "name": "moveClip",
+          "line": 345
+        },
+        {
+          "name": "splitClip",
+          "line": 358
+        },
+        {
+          "name": "mergeClips",
+          "line": 392
+        },
+        {
+          "name": "mergeSelectedClips",
+          "line": 433
+        },
+        {
+          "name": "selectClip",
+          "line": 463
+        },
+        {
+          "name": "selectTrack",
+          "line": 468
+        },
+        {
+          "name": "selectAllClipsOnTrack",
+          "line": 472
+        },
+        {
+          "name": "addKeyframe",
+          "line": 480
+        },
+        {
+          "name": "removeKeyframe",
+          "line": 491
+        },
+        {
+          "name": "setClipKeyframes",
+          "line": 502
+        },
+        {
+          "name": "applyEffect",
+          "line": 513
+        },
+        {
+          "name": "removeEffect",
+          "line": 523
+        },
+        {
+          "name": "applyColorFilter",
+          "line": 533
+        },
+        {
+          "name": "updateClipTransform",
+          "line": 543
+        },
+        {
+          "name": "applyTransition",
+          "line": 572
+        },
+        {
+          "name": "setFreezeDuration",
+          "line": 586
+        },
+        {
+          "name": "applyMask",
+          "line": 600
+        },
+        {
+          "name": "applyBlendMode",
+          "line": 610
+        },
+        {
+          "name": "applySticker",
+          "line": 620
+        },
+        {
+          "name": "applyAnimation",
+          "line": 630
+        },
+        {
+          "name": "applyColorGrade",
+          "line": 640
+        },
+        {
+          "name": "applyAudioEQ",
+          "line": 650
+        },
+        {
+          "name": "createGroup",
+          "line": 660
+        },
+        {
+          "name": "deleteGroup",
+          "line": 670
+        },
+        {
+          "name": "toggleGroupExpand",
+          "line": 674
+        },
+        {
+          "name": "addAdjustmentTrack",
+          "line": 680
+        },
+        {
+          "name": "toggleMultiSelect",
+          "line": 688
+        },
+        {
+          "name": "clearSelection",
+          "line": 699
+        },
+        {
+          "name": "snapshot",
+          "line": 704
+        },
+        {
+          "name": "restoreSnapshot",
+          "line": 715
+        },
+        {
+          "name": "setSelection",
+          "line": 734
+        },
+        {
+          "name": "replaceAllTracks",
+          "line": 739
+        },
+        {
+          "name": "replaceState",
+          "line": 756
+        },
+        {
+          "name": "replaceState",
+          "line": 760
+        },
+        {
+          "name": "deleteSelected",
+          "line": 784
+        },
+        {
+          "name": "rippleDeleteSelection",
+          "line": 806
+        },
+        {
+          "name": "toggleSnap",
+          "line": 850
+        },
+        {
+          "name": "clear",
+          "line": 854
+        },
+        {
+          "name": "getAllClips",
+          "line": 871
+        },
+        {
+          "name": "getClip",
+          "line": 873
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 12
+        },
+        {
+          "name": "type",
+          "line": 13
+        },
+        {
+          "name": "label",
+          "line": 14
+        },
+        {
+          "name": "clips",
+          "line": 15
+        },
+        {
+          "name": "isVisible",
+          "line": 16
+        },
+        {
+          "name": "isMuted",
+          "line": 17
+        },
+        {
+          "name": "isLocked",
+          "line": 18
+        },
+        {
+          "name": "sourceUri",
+          "line": 27
+        },
+        {
+          "name": "contentRole",
+          "line": 29
+        },
+        {
+          "name": "startOffsetUs",
+          "line": 30
+        },
+        {
+          "name": "endOffsetUs",
+          "line": 31
+        },
+        {
+          "name": "trimStartUs",
+          "line": 32
+        },
+        {
+          "name": "trimEndUs",
+          "line": 33
+        },
+        {
+          "name": "volume",
+          "line": 34
+        },
+        {
+          "name": "audioFadeInMs",
+          "line": 35
+        },
+        {
+          "name": "audioFadeOutMs",
+          "line": 36
+        },
+        {
+          "name": "speed",
+          "line": 37
+        },
+        {
+          "name": "rotation",
+          "line": 38
+        },
+        {
+          "name": "scaleX",
+          "line": 39
+        },
+        {
+          "name": "scaleY",
+          "line": 40
+        },
+        {
+          "name": "positionX",
+          "line": 41
+        },
+        {
+          "name": "positionY",
+          "line": 42
+        },
+        {
+          "name": "opacity",
+          "line": 43
+        },
+        {
+          "name": "textContent",
+          "line": 44
+        },
+        {
+          "name": "textStyle",
+          "line": 45
+        },
+        {
+          "name": "effectId",
+          "line": 46
+        },
+        {
+          "name": "transitionIn",
+          "line": 47
+        },
+        {
+          "name": "transitionOut",
+          "line": 48
+        },
+        {
+          "name": "keyframes",
+          "line": 49
+        },
+        {
+          "name": "colorFilter",
+          "line": 50
+        },
+        {
+          "name": "mask",
+          "line": 51
+        },
+        {
+          "name": "blendMode",
+          "line": 52
+        },
+        {
+          "name": "sticker",
+          "line": 53
+        },
+        {
+          "name": "animationIn",
+          "line": 54
+        },
+        {
+          "name": "animationOut",
+          "line": 55
+        },
+        {
+          "name": "colorGrade",
+          "line": 56
+        },
+        {
+          "name": "audioEQ",
+          "line": 57
+        },
+        {
+          "name": "freezeDurationMs",
+          "line": 58
+        },
+        {
+          "name": "durationUs",
+          "line": 60
+        },
+        {
+          "name": "fontName",
+          "line": 64
+        },
+        {
+          "name": "fontSize",
+          "line": 65
+        },
+        {
+          "name": "color",
+          "line": 66
+        },
+        {
+          "name": "backgroundColor",
+          "line": 67
+        },
+        {
+          "name": "alignment",
+          "line": 68
+        },
+        {
+          "name": "bold",
+          "line": 69
+        },
+        {
+          "name": "italic",
+          "line": 70
+        },
+        {
+          "name": "shadow",
+          "line": 71
+        },
+        {
+          "name": "outline",
+          "line": 72
+        },
+        {
+          "name": "outlineColor",
+          "line": 73
+        },
+        {
+          "name": "durationMs",
+          "line": 81
+        },
+        {
+          "name": "property",
+          "line": 86
+        },
+        {
+          "name": "timeUs",
+          "line": 87
+        },
+        {
+          "name": "value",
+          "line": 88
+        },
+        {
+          "name": "easing",
+          "line": 89
+        },
+        {
+          "name": "name",
+          "line": 96
+        },
+        {
+          "name": "category",
+          "line": 97
+        },
+        {
+          "name": "ffmpegFilter",
+          "line": 98
+        },
+        {
+          "name": "tracks",
+          "line": 118
+        },
+        {
+          "name": "groups",
+          "line": 119
+        },
+        {
+          "name": "currentTimeUs",
+          "line": 120
+        },
+        {
+          "name": "selectedClipId",
+          "line": 121
+        },
+        {
+          "name": "selectedClipIds",
+          "line": 122
+        },
+        {
+          "name": "selectedTrackIndex",
+          "line": 123
+        },
+        {
+          "name": "zoomLevel",
+          "line": 124
+        },
+        {
+          "name": "snapEnabled",
+          "line": 125
+        },
+        {
+          "name": "totalDurationUs",
+          "line": 144
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/editor/UndoRedoManager.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.editor",
+      "classes": [
+        {
+          "name": "UndoRedoManager",
+          "kind": "class",
+          "line": 10
+        }
+      ],
+      "functions": [
+        {
+          "name": "execute",
+          "line": 25
+        },
+        {
+          "name": "undo",
+          "line": 33
+        },
+        {
+          "name": "redo",
+          "line": 41
+        },
+        {
+          "name": "undo",
+          "line": 49
+        },
+        {
+          "name": "redo",
+          "line": 59
+        },
+        {
+          "name": "clear",
+          "line": 69
+        }
+      ],
+      "data_members": [
+        {
+          "name": "maxHistory",
+          "line": 11
+        },
+        {
+          "name": "undoHistory",
+          "line": 16
+        },
+        {
+          "name": "redoHistory",
+          "line": 18
+        },
+        {
+          "name": "canUndo",
+          "line": 21
+        },
+        {
+          "name": "canRedo",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/error/AppError.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.error",
+      "classes": [
+        {
+          "name": "Network",
+          "kind": "class",
+          "line": 7
+        },
+        {
+          "name": "Database",
+          "kind": "class",
+          "line": 8
+        },
+        {
+          "name": "Validation",
+          "kind": "class",
+          "line": 9
+        },
+        {
+          "name": "Unknown",
+          "kind": "class",
+          "line": 10
+        },
+        {
+          "name": "FileError",
+          "kind": "class",
+          "line": 11
+        },
+        {
+          "name": "ExportError",
+          "kind": "class",
+          "line": 12
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "message",
+          "line": 4
+        },
+        {
+          "name": "throwable",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/export/ExportPresets.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.export",
+      "classes": [
+        {
+          "name": "ExportPreset",
+          "kind": "class",
+          "line": 6
+        },
+        {
+          "name": "ExportCommandBuilder",
+          "kind": "object",
+          "line": 82
+        }
+      ],
+      "functions": [
+        {
+          "name": "isPortrait",
+          "line": 15
+        },
+        {
+          "name": "isLandscape",
+          "line": 17
+        },
+        {
+          "name": "isSquare",
+          "line": 19
+        },
+        {
+          "name": "fromName",
+          "line": 78
+        },
+        {
+          "name": "buildExportCommand",
+          "line": 84
+        },
+        {
+          "name": "buildTrimCommand",
+          "line": 159
+        }
+      ],
+      "data_members": [
+        {
+          "name": "name",
+          "line": 7
+        },
+        {
+          "name": "width",
+          "line": 8
+        },
+        {
+          "name": "height",
+          "line": 9
+        },
+        {
+          "name": "bitrate",
+          "line": 10
+        },
+        {
+          "name": "fps",
+          "line": 11
+        },
+        {
+          "name": "format",
+          "line": 12
+        },
+        {
+          "name": "resolution",
+          "line": 14
+        },
+        {
+          "name": "aspectRatio",
+          "line": 22
+        },
+        {
+          "name": "DEFAULT",
+          "line": 75
+        },
+        {
+          "name": "allPresets",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/export/ExportQueueManager.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.export",
+      "classes": [
+        {
+          "name": "ExportQueueManager",
+          "kind": "class",
+          "line": 17
+        }
+      ],
+      "functions": [
+        {
+          "name": "enqueueExport",
+          "line": 22
+        },
+        {
+          "name": "cancelAll",
+          "line": 53
+        }
+      ],
+      "data_members": [
+        {
+          "name": "jobs",
+          "line": 20
+        },
+        {
+          "name": "currentJob",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/export/HardwareExporter.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.export",
+      "classes": [
+        {
+          "name": "HardwareExporter",
+          "kind": "class",
+          "line": 21
+        }
+      ],
+      "functions": [
+        {
+          "name": "export",
+          "line": 24
+        }
+      ],
+      "data_members": [
+        {
+          "name": "renderer",
+          "line": 22
+        },
+        {
+          "name": "muxer",
+          "line": 33
+        },
+        {
+          "name": "encoder",
+          "line": 34
+        },
+        {
+          "name": "inputSurface",
+          "line": 35
+        },
+        {
+          "name": "eglDisplay",
+          "line": 36
+        },
+        {
+          "name": "eglContext",
+          "line": 37
+        },
+        {
+          "name": "eglSurface",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/AnimationEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "AnimationEngine",
+          "kind": "class",
+          "line": 11
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildInAnimation",
+          "line": 12
+        },
+        {
+          "name": "buildOutAnimation",
+          "line": 27
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/AudioEQEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "AudioEQEngine",
+          "kind": "class",
+          "line": 8
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildEQFilter",
+          "line": 9
+        },
+        {
+          "name": "buildCompressorFilter",
+          "line": 23
+        },
+        {
+          "name": "buildDuckingFilter",
+          "line": 28
+        },
+        {
+          "name": "buildFullAudioProcess",
+          "line": 40
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/AudioExtractEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "AudioExtractEngine",
+          "kind": "class",
+          "line": 12
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 13
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/ChromaKeyEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "ChromaKeyEngine",
+          "kind": "class",
+          "line": 9
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 10
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/ColorGradingEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "ColorGradingEngine",
+          "kind": "class",
+          "line": 8
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildHSLFilter",
+          "line": 9
+        },
+        {
+          "name": "buildCurvesFilter",
+          "line": 17
+        },
+        {
+          "name": "buildVignetteFilter",
+          "line": 30
+        },
+        {
+          "name": "buildLUTFilter",
+          "line": 38
+        },
+        {
+          "name": "buildFullColorGrade",
+          "line": 42
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/CurveSpeedEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "CurveSpeedEngine",
+          "kind": "class",
+          "line": 7
+        },
+        {
+          "name": "SpeedPoint",
+          "kind": "class",
+          "line": 8
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildCurveSpeedFilter",
+          "line": 13
+        },
+        {
+          "name": "buildReverseFilter",
+          "line": 29
+        },
+        {
+          "name": "buildFreezeFrameFilter",
+          "line": 31
+        }
+      ],
+      "data_members": [
+        {
+          "name": "timeUs",
+          "line": 10
+        },
+        {
+          "name": "speed",
+          "line": 11
+        },
+        {
+          "name": "startUs",
+          "line": 40
+        },
+        {
+          "name": "endUs",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/FfmpegExecutor.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "FfmpegExecutor",
+          "kind": "class",
+          "line": 14
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildCommand",
+          "line": 101
+        },
+        {
+          "name": "getMediaInfo",
+          "line": 105
+        },
+        {
+          "name": "hasAudioStream",
+          "line": 142
+        }
+      ],
+      "data_members": [
+        {
+          "name": "line",
+          "line": 44
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/FilterEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "FilterEngine",
+          "kind": "class",
+          "line": 10
+        }
+      ],
+      "functions": [
+        {
+          "name": "getAllFilters",
+          "line": 45
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 11
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 12
+        },
+        {
+          "name": "filters",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/MaskEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "MaskEngine",
+          "kind": "class",
+          "line": 10
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildMaskFilter",
+          "line": 11
+        },
+        {
+          "name": "buildBlendFilter",
+          "line": 33
+        },
+        {
+          "name": "buildBlendFilterWithMask",
+          "line": 38
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/SpeedRampEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "SpeedRampPoint",
+          "kind": "class",
+          "line": 9
+        },
+        {
+          "name": "SpeedRampEngine",
+          "kind": "class",
+          "line": 16
+        }
+      ],
+      "functions": [
+        {
+          "name": "getSpeedRampPoints",
+          "line": 90
+        }
+      ],
+      "data_members": [
+        {
+          "name": "timeUs",
+          "line": 11
+        },
+        {
+          "name": "speed",
+          "line": 12
+        },
+        {
+          "name": "context",
+          "line": 17
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 18
+        },
+        {
+          "name": "cacheDir",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/StickerEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "StickerEngine",
+          "kind": "class",
+          "line": 8
+        },
+        {
+          "name": "OverlayDef",
+          "kind": "class",
+          "line": 60
+        },
+        {
+          "name": "OverlayType",
+          "kind": "enum",
+          "line": 71
+        }
+      ],
+      "functions": [
+        {
+          "name": "buildOverlayFilter",
+          "line": 9
+        },
+        {
+          "name": "buildEmojiFilter",
+          "line": 40
+        },
+        {
+          "name": "buildMultiOverlay",
+          "line": 53
+        },
+        {
+          "name": "toFilterString",
+          "line": 72
+        }
+      ],
+      "data_members": [
+        {
+          "name": "type",
+          "line": 62
+        },
+        {
+          "name": "imagePath",
+          "line": 63
+        },
+        {
+          "name": "emoji",
+          "line": 64
+        },
+        {
+          "name": "x",
+          "line": 65
+        },
+        {
+          "name": "y",
+          "line": 66
+        },
+        {
+          "name": "scale",
+          "line": 67
+        },
+        {
+          "name": "rotation",
+          "line": 68
+        },
+        {
+          "name": "opacity",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/TextRenderEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "TextRenderEngine",
+          "kind": "class",
+          "line": 11
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 12
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/TransitionEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "TransitionEngine",
+          "kind": "class",
+          "line": 11
+        }
+      ],
+      "functions": [
+        {
+          "name": "getAllTransitions",
+          "line": 63
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 12
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 13
+        },
+        {
+          "name": "cacheDir",
+          "line": 15
+        },
+        {
+          "name": "transitions",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ffmpeg/VideoEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ffmpeg",
+      "classes": [
+        {
+          "name": "VideoEngine",
+          "kind": "class",
+          "line": 22
+        },
+        {
+          "name": "MediaInfo",
+          "kind": "class",
+          "line": 1133
+        },
+        {
+          "name": "VideoException",
+          "kind": "class",
+          "line": 1140
+        }
+      ],
+      "functions": [
+        {
+          "name": "getMediaInfo",
+          "line": 280
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 23
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 24
+        },
+        {
+          "name": "colorGradingEngine",
+          "line": 25
+        },
+        {
+          "name": "animationEngine",
+          "line": 26
+        },
+        {
+          "name": "stickerEngine",
+          "line": 27
+        },
+        {
+          "name": "audioEQEngine",
+          "line": 28
+        },
+        {
+          "name": "maskEngine",
+          "line": 29
+        },
+        {
+          "name": "cacheDir",
+          "line": 31
+        },
+        {
+          "name": "durationMs",
+          "line": 1135
+        },
+        {
+          "name": "width",
+          "line": 1136
+        },
+        {
+          "name": "height",
+          "line": 1137
+        },
+        {
+          "name": "rotation",
+          "line": 1138
+        },
+        {
+          "name": "positionX",
+          "line": 1144
+        },
+        {
+          "name": "positionY",
+          "line": 1145
+        },
+        {
+          "name": "scaleX",
+          "line": 1146
+        },
+        {
+          "name": "scaleY",
+          "line": 1147
+        },
+        {
+          "name": "opacity",
+          "line": 1149
+        },
+        {
+          "name": "path",
+          "line": 1153
+        },
+        {
+          "name": "durationUs",
+          "line": 1154
+        },
+        {
+          "name": "transitionOut",
+          "line": 1155
+        },
+        {
+          "name": "effectFilterMap",
+          "line": 1158
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/EffectPipeline.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu",
+      "classes": [
+        {
+          "name": "EffectPipeline",
+          "kind": "class",
+          "line": 11
+        }
+      ],
+      "functions": [
+        {
+          "name": "begin",
+          "line": 15
+        },
+        {
+          "name": "processFrame",
+          "line": 25
+        },
+        {
+          "name": "release",
+          "line": 62
+        }
+      ],
+      "data_members": [
+        {
+          "name": "maxWidth",
+          "line": 12
+        },
+        {
+          "name": "maxHeight",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/AnimationShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "AnimationShader",
+          "kind": "object",
+          "line": 7
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 9
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/BeautyShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "BeautyShader",
+          "kind": "object",
+          "line": 4
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 6
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/BlendShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "BlendShader",
+          "kind": "object",
+          "line": 5
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 7
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/ChromaKeyShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "ChromaKeyShader",
+          "kind": "object",
+          "line": 4
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 6
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/ColorGradeShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "ColorGradeShader",
+          "kind": "object",
+          "line": 5
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 7
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/GlitchShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "GlitchShader",
+          "kind": "object",
+          "line": 4
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 6
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/MaskShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "MaskShader",
+          "kind": "object",
+          "line": 6
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 8
+        }
+      ],
+      "data_members": [
+        {
+          "name": "maskLogic",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/StabilizeShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "StabilizeShader",
+          "kind": "object",
+          "line": 4
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 6
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/effects/TransitionShader.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu.effects",
+      "classes": [
+        {
+          "name": "TransitionShader",
+          "kind": "object",
+          "line": 5
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 7
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/FrameScheduler.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu",
+      "classes": [
+        {
+          "name": "FrameScheduler",
+          "kind": "class",
+          "line": 19
+        }
+      ],
+      "functions": [
+        {
+          "name": "play",
+          "line": 33
+        },
+        {
+          "name": "pause",
+          "line": 57
+        },
+        {
+          "name": "seekTo",
+          "line": 63
+        },
+        {
+          "name": "setDuration",
+          "line": 68
+        },
+        {
+          "name": "setSpeed",
+          "line": 72
+        },
+        {
+          "name": "isPlaying",
+          "line": 76
+        },
+        {
+          "name": "releaseAll",
+          "line": 78
+        }
+      ],
+      "data_members": [
+        {
+          "name": "currentRenderTimeUs",
+          "line": 23
+        },
+        {
+          "name": "playbackJob",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/GlFrameBuffer.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu",
+      "classes": [
+        {
+          "name": "GlFrameBuffer",
+          "kind": "class",
+          "line": 4
+        }
+      ],
+      "functions": [
+        {
+          "name": "bind",
+          "line": 33
+        },
+        {
+          "name": "unbind",
+          "line": 35
+        },
+        {
+          "name": "delete",
+          "line": 36
+        }
+      ],
+      "data_members": [
+        {
+          "name": "width",
+          "line": 5
+        },
+        {
+          "name": "height",
+          "line": 5
+        },
+        {
+          "name": "fboId",
+          "line": 6
+        },
+        {
+          "name": "textureId",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/GlShaderProgram.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu",
+      "classes": [
+        {
+          "name": "GlShaderProgram",
+          "kind": "class",
+          "line": 7
+        }
+      ],
+      "functions": [
+        {
+          "name": "use",
+          "line": 34
+        },
+        {
+          "name": "getAttrib",
+          "line": 36
+        },
+        {
+          "name": "getUniform",
+          "line": 42
+        },
+        {
+          "name": "setInt",
+          "line": 48
+        },
+        {
+          "name": "setFloat",
+          "line": 50
+        },
+        {
+          "name": "setVec2",
+          "line": 51
+        },
+        {
+          "name": "setVec3",
+          "line": 52
+        },
+        {
+          "name": "setVec4",
+          "line": 53
+        },
+        {
+          "name": "setMat4",
+          "line": 54
+        },
+        {
+          "name": "setFloatArray",
+          "line": 55
+        },
+        {
+          "name": "delete",
+          "line": 56
+        },
+        {
+          "name": "createFullscreenQuad",
+          "line": 85
+        }
+      ],
+      "data_members": [
+        {
+          "name": "programId",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/GlVideoRenderer.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu",
+      "classes": [
+        {
+          "name": "GlVideoRenderer",
+          "kind": "class",
+          "line": 15
+        }
+      ],
+      "functions": [
+        {
+          "name": "updateTimeline",
+          "line": 40
+        },
+        {
+          "name": "releaseAll",
+          "line": 260
+        }
+      ],
+      "data_members": [
+        {
+          "name": "oesShader",
+          "line": 20
+        },
+        {
+          "name": "tracks",
+          "line": 21
+        },
+        {
+          "name": "currentTimeUs",
+          "line": 22
+        },
+        {
+          "name": "isPlaying",
+          "line": 23
+        },
+        {
+          "name": "activeLayers",
+          "line": 26
+        },
+        {
+          "name": "clip",
+          "line": 35
+        },
+        {
+          "name": "decoder",
+          "line": 36
+        },
+        {
+          "name": "relativeTimeUs",
+          "line": 37
+        },
+        {
+          "name": "opacity",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/gpu/VideoFrameDecoder.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.gpu",
+      "classes": [
+        {
+          "name": "VideoFrameDecoder",
+          "kind": "class",
+          "line": 20
+        }
+      ],
+      "functions": [
+        {
+          "name": "prepare",
+          "line": 45
+        },
+        {
+          "name": "release",
+          "line": 76
+        },
+        {
+          "name": "seekTo",
+          "line": 90
+        },
+        {
+          "name": "renderFrame",
+          "line": 96
+        }
+      ],
+      "data_members": [
+        {
+          "name": "videoPath",
+          "line": 22
+        },
+        {
+          "name": "extractor",
+          "line": 24
+        },
+        {
+          "name": "codec",
+          "line": 25
+        },
+        {
+          "name": "inputSurface",
+          "line": 26
+        },
+        {
+          "name": "eglDisplay",
+          "line": 27
+        },
+        {
+          "name": "eglContext",
+          "line": 28
+        },
+        {
+          "name": "eglSurface",
+          "line": 29
+        },
+        {
+          "name": "surfaceTexture",
+          "line": 30
+        },
+        {
+          "name": "frameAvailableLatch",
+          "line": 31
+        },
+        {
+          "name": "textureId",
+          "line": 33
+        },
+        {
+          "name": "width",
+          "line": 35
+        },
+        {
+          "name": "height",
+          "line": 37
+        },
+        {
+          "name": "durationUs",
+          "line": 39
+        },
+        {
+          "name": "isEos",
+          "line": 41
+        },
+        {
+          "name": "timeoutUs",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/media/MediaProjectManager.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.media",
+      "classes": [
+        {
+          "name": "MediaProjectManager",
+          "kind": "class",
+          "line": 10
+        }
+      ],
+      "functions": [
+        {
+          "name": "getProjectDir",
+          "line": 13
+        },
+        {
+          "name": "getMediaDir",
+          "line": 18
+        },
+        {
+          "name": "getExportDir",
+          "line": 24
+        },
+        {
+          "name": "getTimelineStateFile",
+          "line": 30
+        },
+        {
+          "name": "getThumbnailDir",
+          "line": 34
+        },
+        {
+          "name": "clearProject",
+          "line": 40
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/media/MediaUtils.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.media",
+      "classes": [
+        {
+          "name": "MediaUtils",
+          "kind": "class",
+          "line": 12
+        },
+        {
+          "name": "MediaFile",
+          "kind": "class",
+          "line": 15
+        }
+      ],
+      "functions": [
+        {
+          "name": "queryMediaFromUri",
+          "line": 22
+        },
+        {
+          "name": "queryVideoFromUri",
+          "line": 40
+        },
+        {
+          "name": "copyToCache",
+          "line": 42
+        },
+        {
+          "name": "buildImportedFileName",
+          "line": 56
+        },
+        {
+          "name": "isVideoSupported",
+          "line": 69
+        },
+        {
+          "name": "isAudioSupported",
+          "line": 73
+        },
+        {
+          "name": "isImageSupported",
+          "line": 77
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 13
+        },
+        {
+          "name": "uri",
+          "line": 16
+        },
+        {
+          "name": "name",
+          "line": 17
+        },
+        {
+          "name": "size",
+          "line": 18
+        },
+        {
+          "name": "mimeType",
+          "line": 19
+        },
+        {
+          "name": "durationMs",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/media/ProjectTimelineStore.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.media",
+      "classes": [
+        {
+          "name": "ProjectTimelineStore",
+          "kind": "class",
+          "line": 27
+        },
+        {
+          "name": "TimelineState",
+          "kind": "class",
+          "line": 58
+        }
+      ],
+      "functions": [
+        {
+          "name": "save",
+          "line": 30
+        },
+        {
+          "name": "save",
+          "line": 33
+        },
+        {
+          "name": "load",
+          "line": 44
+        }
+      ],
+      "data_members": [
+        {
+          "name": "mediaProjectManager",
+          "line": 28
+        },
+        {
+          "name": "tracks",
+          "line": 60
+        },
+        {
+          "name": "groups",
+          "line": 61
+        },
+        {
+          "name": "zoomLevel",
+          "line": 62
+        },
+        {
+          "name": "snapEnabled",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ml/FaceMeshDetector.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ml",
+      "classes": [
+        {
+          "name": "FaceMeshDetector",
+          "kind": "class",
+          "line": 14
+        },
+        {
+          "name": "FaceLandmarks",
+          "kind": "class",
+          "line": 17
+        }
+      ],
+      "functions": [
+        {
+          "name": "detect",
+          "line": 25
+        },
+        {
+          "name": "drawMesh",
+          "line": 49
+        }
+      ],
+      "data_members": [
+        {
+          "name": "tensorFlowEngine",
+          "line": 15
+        },
+        {
+          "name": "landmarks",
+          "line": 18
+        },
+        {
+          "name": "boundingBox",
+          "line": 19
+        },
+        {
+          "name": "leftEye",
+          "line": 20
+        },
+        {
+          "name": "rightEye",
+          "line": 21
+        },
+        {
+          "name": "nose",
+          "line": 22
+        },
+        {
+          "name": "mouth",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ml/ObjectTracker.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ml",
+      "classes": [
+        {
+          "name": "ObjectTracker",
+          "kind": "object",
+          "line": 10
+        },
+        {
+          "name": "TrackedPoint",
+          "kind": "class",
+          "line": 11
+        },
+        {
+          "name": "TrackedObject",
+          "kind": "object",
+          "line": 16
+        },
+        {
+          "name": "ShiTomasiFeatureDetector",
+          "kind": "class",
+          "line": 151
+        }
+      ],
+      "functions": [
+        {
+          "name": "track",
+          "line": 32
+        },
+        {
+          "name": "reset",
+          "line": 86
+        },
+        {
+          "name": "detect",
+          "line": 153
+        }
+      ],
+      "data_members": [
+        {
+          "name": "position",
+          "line": 12
+        },
+        {
+          "name": "confidence",
+          "line": 13
+        },
+        {
+          "name": "featureId",
+          "line": 14
+        },
+        {
+          "name": "id",
+          "line": 18
+        },
+        {
+          "name": "boundingBox",
+          "line": 19
+        },
+        {
+          "name": "points",
+          "line": 20
+        },
+        {
+          "name": "velocityX",
+          "line": 21
+        },
+        {
+          "name": "velocityY",
+          "line": 22
+        },
+        {
+          "name": "previousFrame",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ml/PortraitSegmentation.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ml",
+      "classes": [
+        {
+          "name": "PortraitSegmentation",
+          "kind": "trait",
+          "line": 14
+        }
+      ],
+      "functions": [
+        {
+          "name": "segment",
+          "line": 17
+        },
+        {
+          "name": "removeBackground",
+          "line": 44
+        }
+      ],
+      "data_members": [
+        {
+          "name": "tensorFlowEngine",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ml/SpeechTranscriptEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ml",
+      "classes": [
+        {
+          "name": "SpeechTranscriptEngine",
+          "kind": "class",
+          "line": 20
+        },
+        {
+          "name": "TranscriptWord",
+          "kind": "class",
+          "line": 23
+        },
+        {
+          "name": "TranscriptSegment",
+          "kind": "class",
+          "line": 29
+        }
+      ],
+      "functions": [
+        {
+          "name": "transcribe",
+          "line": 44
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 21
+        },
+        {
+          "name": "word",
+          "line": 24
+        },
+        {
+          "name": "startMs",
+          "line": 25
+        },
+        {
+          "name": "endMs",
+          "line": 26
+        },
+        {
+          "name": "confidence",
+          "line": 27
+        },
+        {
+          "name": "text",
+          "line": 31
+        },
+        {
+          "name": "words",
+          "line": 34
+        },
+        {
+          "name": "segments",
+          "line": 38
+        },
+        {
+          "name": "progress",
+          "line": 41
+        },
+        {
+          "name": "extractor",
+          "line": 124
+        },
+        {
+          "name": "codec",
+          "line": 125
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/ml/TensorFlowEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.ml",
+      "classes": [
+        {
+          "name": "TensorFlowEngine",
+          "kind": "class",
+          "line": 13
+        },
+        {
+          "name": "Segmentation",
+          "kind": "class",
+          "line": 21
+        },
+        {
+          "name": "FaceMesh",
+          "kind": "class",
+          "line": 26
+        },
+        {
+          "name": "ObjectDetections",
+          "kind": "object",
+          "line": 31
+        },
+        {
+          "name": "Embedding",
+          "kind": "class",
+          "line": 37
+        }
+      ],
+      "functions": [
+        {
+          "name": "isAvailable",
+          "line": 42
+        },
+        {
+          "name": "initialize",
+          "line": 44
+        },
+        {
+          "name": "runPortraitSegmentation",
+          "line": 82
+        },
+        {
+          "name": "detectFaceLandmarks",
+          "line": 97
+        },
+        {
+          "name": "release",
+          "line": 134
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 14
+        },
+        {
+          "name": "interpreter",
+          "line": 17
+        },
+        {
+          "name": "gpuDelegate",
+          "line": 18
+        },
+        {
+          "name": "mask",
+          "line": 22
+        },
+        {
+          "name": "width",
+          "line": 23
+        },
+        {
+          "name": "height",
+          "line": 24
+        },
+        {
+          "name": "landmarks",
+          "line": 28
+        },
+        {
+          "name": "confidence",
+          "line": 29
+        },
+        {
+          "name": "boxes",
+          "line": 33
+        },
+        {
+          "name": "scores",
+          "line": 34
+        },
+        {
+          "name": "classes",
+          "line": 35
+        },
+        {
+          "name": "vector",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "core/src/main/java/com/changecut/core/template/TemplateEngine.kt",
+      "language": "kotlin",
+      "package": "com.changecut.core.template",
+      "classes": [
+        {
+          "name": "TemplateEngine",
+          "kind": "class",
+          "line": 30
+        }
+      ],
+      "functions": [
+        {
+          "name": "saveTemplate",
+          "line": 34
+        },
+        {
+          "name": "loadTemplate",
+          "line": 44
+        },
+        {
+          "name": "listTemplates",
+          "line": 54
+        },
+        {
+          "name": "deleteTemplate",
+          "line": 62
+        }
+      ],
+      "data_members": [
+        {
+          "name": "context",
+          "line": 31
+        },
+        {
+          "name": "templatesDir",
+          "line": 33
+        },
+        {
+          "name": "builtInTemplates",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "path": "data/src/main/java/com/changecut/data/di/RepositoryModule.kt",
+      "language": "kotlin",
+      "package": "com.changecut.data.di",
+      "classes": [],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "data/src/main/java/com/changecut/data/repository/ProjectRepositoryImpl.kt",
+      "language": "kotlin",
+      "package": "com.changecut.data.repository",
+      "classes": [
+        {
+          "name": "ProjectRepositoryImpl",
+          "kind": "class",
+          "line": 10
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "projectDao",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/model/MediaTrack.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.model",
+      "classes": [
+        {
+          "name": "MediaTrack",
+          "kind": "class",
+          "line": 6
+        },
+        {
+          "name": "TrackType",
+          "kind": "enum",
+          "line": 19
+        },
+        {
+          "name": "Clip",
+          "kind": "class",
+          "line": 30
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 7
+        },
+        {
+          "name": "projectId",
+          "line": 8
+        },
+        {
+          "name": "name",
+          "line": 9
+        },
+        {
+          "name": "type",
+          "line": 10
+        },
+        {
+          "name": "clips",
+          "line": 11
+        },
+        {
+          "name": "order",
+          "line": 12
+        },
+        {
+          "name": "isVisible",
+          "line": 13
+        },
+        {
+          "name": "isMuted",
+          "line": 14
+        },
+        {
+          "name": "isLocked",
+          "line": 15
+        },
+        {
+          "name": "sourcePath",
+          "line": 32
+        },
+        {
+          "name": "startMs",
+          "line": 33
+        },
+        {
+          "name": "endMs",
+          "line": 34
+        },
+        {
+          "name": "durationMs",
+          "line": 35
+        },
+        {
+          "name": "speed",
+          "line": 36
+        },
+        {
+          "name": "volume",
+          "line": 37
+        },
+        {
+          "name": "trimStartMs",
+          "line": 38
+        },
+        {
+          "name": "trimEndMs",
+          "line": 39
+        },
+        {
+          "name": "positionX",
+          "line": 40
+        },
+        {
+          "name": "positionY",
+          "line": 41
+        },
+        {
+          "name": "scaleX",
+          "line": 42
+        },
+        {
+          "name": "scaleY",
+          "line": 43
+        },
+        {
+          "name": "rotation",
+          "line": 44
+        },
+        {
+          "name": "opacity",
+          "line": 45
+        },
+        {
+          "name": "isReversed",
+          "line": 46
+        },
+        {
+          "name": "isFrozen",
+          "line": 47
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/model/Project.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.model",
+      "classes": [
+        {
+          "name": "Project",
+          "kind": "class",
+          "line": 6
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 7
+        },
+        {
+          "name": "name",
+          "line": 8
+        },
+        {
+          "name": "canvasWidth",
+          "line": 9
+        },
+        {
+          "name": "canvasHeight",
+          "line": 10
+        },
+        {
+          "name": "durationMs",
+          "line": 11
+        },
+        {
+          "name": "thumbnailPath",
+          "line": 12
+        },
+        {
+          "name": "createdAt",
+          "line": 13
+        },
+        {
+          "name": "updatedAt",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/model/User.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.model",
+      "classes": [
+        {
+          "name": "User",
+          "kind": "class",
+          "line": 6
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 7
+        },
+        {
+          "name": "name",
+          "line": 8
+        },
+        {
+          "name": "email",
+          "line": 9
+        },
+        {
+          "name": "photo",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/repository/ProjectRepository.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.repository",
+      "classes": [
+        {
+          "name": "ProjectRepository",
+          "kind": "interface",
+          "line": 5
+        }
+      ],
+      "functions": [
+        {
+          "name": "getProjects",
+          "line": 7
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/usecase/project/CreateProjectUseCase.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.usecase.project",
+      "classes": [
+        {
+          "name": "CreateProjectUseCase",
+          "kind": "class",
+          "line": 6
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "repository",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/usecase/project/DeleteProjectUseCase.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.usecase.project",
+      "classes": [
+        {
+          "name": "DeleteProjectUseCase",
+          "kind": "class",
+          "line": 5
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "repository",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/usecase/project/GetProjectByIdUseCase.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.usecase.project",
+      "classes": [
+        {
+          "name": "GetProjectByIdUseCase",
+          "kind": "class",
+          "line": 6
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "repository",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/usecase/project/GetProjectsUseCase.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.usecase.project",
+      "classes": [
+        {
+          "name": "GetProjectsUseCase",
+          "kind": "class",
+          "line": 7
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "repository",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "domain/src/main/java/com/changecut/domain/usecase/project/SaveProjectUseCase.kt",
+      "language": "kotlin",
+      "package": "com.changecut.domain.usecase.project",
+      "classes": [
+        {
+          "name": "SaveProjectUseCase",
+          "kind": "class",
+          "line": 6
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "repository",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "path": "feature-auth/src/main/java/com/changecut/feature/auth/forgot/ForgotPasswordScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.auth.forgot",
+      "classes": [],
+      "functions": [
+        {
+          "name": "ForgotPasswordScreen",
+          "line": 33
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.auth.login",
+      "classes": [],
+      "functions": [
+        {
+          "name": "LoginScreen",
+          "line": 30
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-auth/src/main/java/com/changecut/feature/auth/navigation/AuthNavGraph.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.auth.navigation",
+      "classes": [
+        {
+          "name": "AuthNavGraph",
+          "kind": "enum",
+          "line": 11
+        }
+      ],
+      "functions": [],
+      "data_members": [
+        {
+          "name": "route",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "feature-auth/src/main/java/com/changecut/feature/auth/register/RegisterScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.auth.register",
+      "classes": [],
+      "functions": [
+        {
+          "name": "RegisterScreen",
+          "line": 30
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-auth/src/main/java/com/changecut/feature/auth/splash/SplashScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.auth.splash",
+      "classes": [],
+      "functions": [
+        {
+          "name": "SplashScreen",
+          "line": 29
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiAutoEditScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.ai",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AiAutoEditScreen",
+          "line": 79
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiAutoEditViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.ai",
+      "classes": [
+        {
+          "name": "EditStyle",
+          "kind": "enum",
+          "line": 23
+        },
+        {
+          "name": "AnalysisStep",
+          "kind": "enum",
+          "line": 27
+        },
+        {
+          "name": "AutoEditResult",
+          "kind": "class",
+          "line": 31
+        },
+        {
+          "name": "AiAutoEditUiState",
+          "kind": "class",
+          "line": 39
+        },
+        {
+          "name": "AiAutoEditViewModel",
+          "kind": "class",
+          "line": 54
+        }
+      ],
+      "functions": [
+        {
+          "name": "setClips",
+          "line": 64
+        },
+        {
+          "name": "setTargetDuration",
+          "line": 68
+        },
+        {
+          "name": "setStyle",
+          "line": 72
+        },
+        {
+          "name": "analyzeClips",
+          "line": 76
+        },
+        {
+          "name": "generateAutoEdit",
+          "line": 127
+        },
+        {
+          "name": "applyAutoEdit",
+          "line": 218
+        },
+        {
+          "name": "generateIntro",
+          "line": 250
+        },
+        {
+          "name": "generateHighlightReel",
+          "line": 274
+        },
+        {
+          "name": "clearError",
+          "line": 307
+        },
+        {
+          "name": "reset",
+          "line": 311
+        }
+      ],
+      "data_members": [
+        {
+          "name": "clips",
+          "line": 33
+        },
+        {
+          "name": "totalDurationMs",
+          "line": 34
+        },
+        {
+          "name": "transitions",
+          "line": 35
+        },
+        {
+          "name": "musicPath",
+          "line": 36
+        },
+        {
+          "name": "style",
+          "line": 37
+        },
+        {
+          "name": "selectedClipPaths",
+          "line": 41
+        },
+        {
+          "name": "analyzedClips",
+          "line": 42
+        },
+        {
+          "name": "sceneChanges",
+          "line": 43
+        },
+        {
+          "name": "analysisProgress",
+          "line": 44
+        },
+        {
+          "name": "analysisStep",
+          "line": 45
+        },
+        {
+          "name": "autoEditResult",
+          "line": 46
+        },
+        {
+          "name": "targetDurationMs",
+          "line": 47
+        },
+        {
+          "name": "selectedStyle",
+          "line": 48
+        },
+        {
+          "name": "isApplying",
+          "line": 49
+        },
+        {
+          "name": "error",
+          "line": 50
+        },
+        {
+          "name": "sceneDetection",
+          "line": 55
+        },
+        {
+          "name": "bestMomentPicker",
+          "line": 56
+        },
+        {
+          "name": "trackManager",
+          "line": 57
+        },
+        {
+          "name": "undoRedoManager",
+          "line": 58
+        },
+        {
+          "name": "frameScheduler",
+          "line": 59
+        },
+        {
+          "name": "state",
+          "line": 63
+        },
+        {
+          "name": "firstNewClipId",
+          "line": 283
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiCaptionScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.ai",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AiCaptionScreen",
+          "line": 58
+        },
+        {
+          "name": "generateCaption",
+          "line": 478
+        },
+        {
+          "name": "generateHashtags",
+          "line": 483
+        },
+        {
+          "name": "generateHooks",
+          "line": 511
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiVoiceOverScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.ai",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AiVoiceOverScreen",
+          "line": 64
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/audio/AudioTrackScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.audio",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AudioTrackScreen",
+          "line": 63
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/audio/AudioTrackViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.audio",
+      "classes": [
+        {
+          "name": "AudioTrackInfo",
+          "kind": "class",
+          "line": 26
+        },
+        {
+          "name": "AudioTrackUiState",
+          "kind": "class",
+          "line": 38
+        },
+        {
+          "name": "AudioTrackViewModel",
+          "kind": "class",
+          "line": 47
+        }
+      ],
+      "functions": [
+        {
+          "name": "importAudio",
+          "line": 69
+        },
+        {
+          "name": "recordVoiceOver",
+          "line": 113
+        },
+        {
+          "name": "stopRecording",
+          "line": 140
+        },
+        {
+          "name": "setVolume",
+          "line": 178
+        },
+        {
+          "name": "setFadeIn",
+          "line": 188
+        },
+        {
+          "name": "setFadeOut",
+          "line": 197
+        },
+        {
+          "name": "removeTrack",
+          "line": 206
+        },
+        {
+          "name": "clearError",
+          "line": 220
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 28
+        },
+        {
+          "name": "name",
+          "line": 29
+        },
+        {
+          "name": "uri",
+          "line": 30
+        },
+        {
+          "name": "durationMs",
+          "line": 31
+        },
+        {
+          "name": "volume",
+          "line": 32
+        },
+        {
+          "name": "fadeInMs",
+          "line": 33
+        },
+        {
+          "name": "fadeOutMs",
+          "line": 34
+        },
+        {
+          "name": "startOffsetUs",
+          "line": 35
+        },
+        {
+          "name": "isRecording",
+          "line": 36
+        },
+        {
+          "name": "audioTracks",
+          "line": 40
+        },
+        {
+          "name": "recordingAmplitude",
+          "line": 42
+        },
+        {
+          "name": "error",
+          "line": 43
+        },
+        {
+          "name": "context",
+          "line": 48
+        },
+        {
+          "name": "trackManager",
+          "line": 49
+        },
+        {
+          "name": "mediaUtils",
+          "line": 50
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 51
+        },
+        {
+          "name": "undoRedoManager",
+          "line": 52
+        },
+        {
+          "name": "state",
+          "line": 56
+        },
+        {
+          "name": "mediaRecorder",
+          "line": 57
+        },
+        {
+          "name": "pendingRecordingPath",
+          "line": 58
+        },
+        {
+          "name": "pendingRecordingName",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/EditorScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor",
+      "classes": [],
+      "functions": [
+        {
+          "name": "EditorScreen",
+          "line": 98
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/EditorViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor",
+      "classes": [
+        {
+          "name": "EditorUiState",
+          "kind": "class",
+          "line": 46
+        },
+        {
+          "name": "EditorViewModel",
+          "kind": "class",
+          "line": 69
+        }
+      ],
+      "functions": [
+        {
+          "name": "loadProject",
+          "line": 209
+        },
+        {
+          "name": "addMedia",
+          "line": 235
+        },
+        {
+          "name": "addMediaBatch",
+          "line": 241
+        },
+        {
+          "name": "addAudioFile",
+          "line": 254
+        },
+        {
+          "name": "addTextClip",
+          "line": 300
+        },
+        {
+          "name": "addSubtitleClips",
+          "line": 341
+        },
+        {
+          "name": "getSubtitleItems",
+          "line": 376
+        },
+        {
+          "name": "generateSubtitleItemsFromSelection",
+          "line": 392
+        },
+        {
+          "name": "setCurrentTime",
+          "line": 427
+        },
+        {
+          "name": "togglePlay",
+          "line": 433
+        },
+        {
+          "name": "selectClip",
+          "line": 445
+        },
+        {
+          "name": "selectTrack",
+          "line": 450
+        },
+        {
+          "name": "toggleClipMultiSelect",
+          "line": 454
+        },
+        {
+          "name": "trimClip",
+          "line": 459
+        },
+        {
+          "name": "moveClipToTime",
+          "line": 473
+        },
+        {
+          "name": "nudgeSelectedClip",
+          "line": 487
+        },
+        {
+          "name": "splitClip",
+          "line": 502
+        },
+        {
+          "name": "mergeSelection",
+          "line": 513
+        },
+        {
+          "name": "reorderClip",
+          "line": 540
+        },
+        {
+          "name": "removeClip",
+          "line": 553
+        },
+        {
+          "name": "deleteSelectedClip",
+          "line": 569
+        },
+        {
+          "name": "rippleDeleteSelectedClip",
+          "line": 583
+        },
+        {
+          "name": "duplicateSelection",
+          "line": 591
+        },
+        {
+          "name": "copySelectedClipStyle",
+          "line": 649
+        },
+        {
+          "name": "pasteStyleToSelection",
+          "line": 684
+        },
+        {
+          "name": "undo",
+          "line": 739
+        },
+        {
+          "name": "redo",
+          "line": 743
+        },
+        {
+          "name": "addTrack",
+          "line": 747
+        },
+        {
+          "name": "toggleTrackVisibility",
+          "line": 756
+        },
+        {
+          "name": "toggleTrackMute",
+          "line": 764
+        },
+        {
+          "name": "toggleTrackLock",
+          "line": 772
+        },
+        {
+          "name": "soloTrack",
+          "line": 780
+        },
+        {
+          "name": "showAllTracks",
+          "line": 788
+        },
+        {
+          "name": "applyChromaKeyToSelected",
+          "line": 796
+        },
+        {
+          "name": "clearChromaKeyFromSelected",
+          "line": 813
+        },
+        {
+          "name": "applyMaskAndBlendToSelected",
+          "line": 825
+        },
+        {
+          "name": "applyStickerToSelected",
+          "line": 835
+        },
+        {
+          "name": "applyAnimationToSelected",
+          "line": 844
+        },
+        {
+          "name": "applyColorGradeToSelected",
+          "line": 856
+        },
+        {
+          "name": "applyAudioEqToSelected",
+          "line": 865
+        },
+        {
+          "name": "deleteGroup",
+          "line": 874
+        },
+        {
+          "name": "toggleGroupExpand",
+          "line": 882
+        },
+        {
+          "name": "navigateTo",
+          "line": 890
+        },
+        {
+          "name": "navigateToTextOverlay",
+          "line": 894
+        },
+        {
+          "name": "navigateToAudio",
+          "line": 896
+        },
+        {
+          "name": "navigateToEffects",
+          "line": 897
+        },
+        {
+          "name": "navigateToTransition",
+          "line": 898
+        },
+        {
+          "name": "navigateToTransform",
+          "line": 899
+        },
+        {
+          "name": "navigateToKeyframe",
+          "line": 900
+        },
+        {
+          "name": "navigateToChromaKey",
+          "line": 901
+        },
+        {
+          "name": "navigateToSpeedRamp",
+          "line": 902
+        },
+        {
+          "name": "navigateToAiAutoEdit",
+          "line": 903
+        },
+        {
+          "name": "navigateToAiCaption",
+          "line": 904
+        },
+        {
+          "name": "navigateToAiVoiceOver",
+          "line": 905
+        },
+        {
+          "name": "navigateToSubtitle",
+          "line": 906
+        },
+        {
+          "name": "navigateToMask",
+          "line": 907
+        },
+        {
+          "name": "navigateToSticker",
+          "line": 908
+        },
+        {
+          "name": "navigateToAnimation",
+          "line": 909
+        },
+        {
+          "name": "navigateToColorGrading",
+          "line": 910
+        },
+        {
+          "name": "navigateToAudioEQ",
+          "line": 911
+        },
+        {
+          "name": "navigateToAdjustment",
+          "line": 912
+        },
+        {
+          "name": "navigateToTemplates",
+          "line": 913
+        },
+        {
+          "name": "navigateToSettings",
+          "line": 914
+        },
+        {
+          "name": "navigateToEditor",
+          "line": 915
+        },
+        {
+          "name": "createGroupFromSelection",
+          "line": 919
+        },
+        {
+          "name": "selectGroup",
+          "line": 937
+        },
+        {
+          "name": "addAdjustmentTrack",
+          "line": 948
+        },
+        {
+          "name": "clearClipSelection",
+          "line": 956
+        },
+        {
+          "name": "toggleSnap",
+          "line": 960
+        },
+        {
+          "name": "selectAllOnCurrentTrack",
+          "line": 968
+        },
+        {
+          "name": "selectAllOnTrack",
+          "line": 972
+        },
+        {
+          "name": "updateSelectedClipTransform",
+          "line": 976
+        },
+        {
+          "name": "applySelectedClipTransition",
+          "line": 1000
+        },
+        {
+          "name": "setSelectedClipFreeze",
+          "line": 1030
+        },
+        {
+          "name": "addStickerClip",
+          "line": 1039
+        },
+        {
+          "name": "getClipKeyframes",
+          "line": 1075
+        },
+        {
+          "name": "saveClipKeyframes",
+          "line": 1090
+        },
+        {
+          "name": "getClipSpeedRamp",
+          "line": 1107
+        },
+        {
+          "name": "saveClipSpeedRamp",
+          "line": 1123
+        },
+        {
+          "name": "setZoom",
+          "line": 1172
+        },
+        {
+          "name": "applyTemplate",
+          "line": 1176
+        },
+        {
+          "name": "saveCurrentTimelineAsTemplate",
+          "line": 1192
+        },
+        {
+          "name": "exportVideo",
+          "line": 1209
+        },
+        {
+          "name": "clearError",
+          "line": 1266
+        },
+        {
+          "name": "clearExportOutput",
+          "line": 1270
+        }
+      ],
+      "data_members": [
+        {
+          "name": "project",
+          "line": 48
+        },
+        {
+          "name": "tracks",
+          "line": 49
+        },
+        {
+          "name": "groups",
+          "line": 50
+        },
+        {
+          "name": "currentTimeMs",
+          "line": 51
+        },
+        {
+          "name": "isPlaying",
+          "line": 52
+        },
+        {
+          "name": "durationMs",
+          "line": 53
+        },
+        {
+          "name": "selectedClipId",
+          "line": 54
+        },
+        {
+          "name": "selectedClipIds",
+          "line": 55
+        },
+        {
+          "name": "selectedTrackIndex",
+          "line": 56
+        },
+        {
+          "name": "snapEnabled",
+          "line": 57
+        },
+        {
+          "name": "zoomLevel",
+          "line": 58
+        },
+        {
+          "name": "canUndo",
+          "line": 59
+        },
+        {
+          "name": "canRedo",
+          "line": 60
+        },
+        {
+          "name": "isExporting",
+          "line": 61
+        },
+        {
+          "name": "exportProgress",
+          "line": 62
+        },
+        {
+          "name": "exportOutputPath",
+          "line": 63
+        },
+        {
+          "name": "error",
+          "line": 64
+        },
+        {
+          "name": "currentSubScreen",
+          "line": 65
+        },
+        {
+          "name": "projectRepository",
+          "line": 70
+        },
+        {
+          "name": "videoEngine",
+          "line": 71
+        },
+        {
+          "name": "mediaUtils",
+          "line": 72
+        },
+        {
+          "name": "mediaProjectManager",
+          "line": 73
+        },
+        {
+          "name": "projectTimelineStore",
+          "line": 74
+        },
+        {
+          "name": "trackManager",
+          "line": 75
+        },
+        {
+          "name": "undoRedoManager",
+          "line": 76
+        },
+        {
+          "name": "templateEngine",
+          "line": 77
+        },
+        {
+          "name": "glRenderer",
+          "line": 78
+        },
+        {
+          "name": "frameScheduler",
+          "line": 79
+        },
+        {
+          "name": "hardwareExporter",
+          "line": 80
+        },
+        {
+          "name": "portraitSegmentation",
+          "line": 81
+        },
+        {
+          "name": "speechTranscriptEngine",
+          "line": 82
+        },
+        {
+          "name": "isRestoringState",
+          "line": 84
+        },
+        {
+          "name": "sourceTrackType",
+          "line": 92
+        },
+        {
+          "name": "contentRole",
+          "line": 93
+        },
+        {
+          "name": "volume",
+          "line": 94
+        },
+        {
+          "name": "audioFadeInMs",
+          "line": 95
+        },
+        {
+          "name": "audioFadeOutMs",
+          "line": 96
+        },
+        {
+          "name": "speed",
+          "line": 97
+        },
+        {
+          "name": "rotation",
+          "line": 98
+        },
+        {
+          "name": "scaleX",
+          "line": 99
+        },
+        {
+          "name": "scaleY",
+          "line": 100
+        },
+        {
+          "name": "positionX",
+          "line": 101
+        },
+        {
+          "name": "positionY",
+          "line": 102
+        },
+        {
+          "name": "opacity",
+          "line": 103
+        },
+        {
+          "name": "textStyle",
+          "line": 104
+        },
+        {
+          "name": "effectId",
+          "line": 105
+        },
+        {
+          "name": "transitionIn",
+          "line": 106
+        },
+        {
+          "name": "transitionOut",
+          "line": 107
+        },
+        {
+          "name": "colorFilter",
+          "line": 108
+        },
+        {
+          "name": "mask",
+          "line": 109
+        },
+        {
+          "name": "blendMode",
+          "line": 110
+        },
+        {
+          "name": "sticker",
+          "line": 111
+        },
+        {
+          "name": "animationIn",
+          "line": 112
+        },
+        {
+          "name": "animationOut",
+          "line": 113
+        },
+        {
+          "name": "colorGrade",
+          "line": 114
+        },
+        {
+          "name": "audioEQ",
+          "line": 115
+        },
+        {
+          "name": "freezeDurationMs",
+          "line": 116
+        },
+        {
+          "name": "styleClipboard",
+          "line": 118
+        },
+        {
+          "name": "state",
+          "line": 164
+        },
+        {
+          "name": "undoHistory",
+          "line": 207
+        },
+        {
+          "name": "redoHistory",
+          "line": 208
+        },
+        {
+          "name": "primaryNewId",
+          "line": 609
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/EffectCatalog.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.effects",
+      "classes": [
+        {
+          "name": "EffectCatalog",
+          "kind": "object",
+          "line": 5
+        }
+      ],
+      "functions": [
+        {
+          "name": "getAllEffects",
+          "line": 42
+        },
+        {
+          "name": "getEffectsByCategory",
+          "line": 44
+        }
+      ],
+      "data_members": [
+        {
+          "name": "visualEffects",
+          "line": 7
+        },
+        {
+          "name": "colorEffects",
+          "line": 25
+        },
+        {
+          "name": "allEffectsList",
+          "line": 37
+        },
+        {
+          "name": "effectsByCategory",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/EffectScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.effects",
+      "classes": [],
+      "functions": [
+        {
+          "name": "EffectScreen",
+          "line": 48
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/EffectViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.effects",
+      "classes": [
+        {
+          "name": "EffectUiState",
+          "kind": "class",
+          "line": 18
+        },
+        {
+          "name": "EffectViewModel",
+          "kind": "class",
+          "line": 29
+        }
+      ],
+      "functions": [
+        {
+          "name": "setCurrentClip",
+          "line": 44
+        },
+        {
+          "name": "selectCategory",
+          "line": 55
+        },
+        {
+          "name": "applyEffect",
+          "line": 64
+        },
+        {
+          "name": "removeEffect",
+          "line": 75
+        },
+        {
+          "name": "applyFilter",
+          "line": 86
+        },
+        {
+          "name": "removeFilter",
+          "line": 97
+        }
+      ],
+      "data_members": [
+        {
+          "name": "currentClipId",
+          "line": 20
+        },
+        {
+          "name": "appliedEffectId",
+          "line": 21
+        },
+        {
+          "name": "appliedFilterId",
+          "line": 22
+        },
+        {
+          "name": "selectedCategory",
+          "line": 23
+        },
+        {
+          "name": "allEffects",
+          "line": 24
+        },
+        {
+          "name": "categoryEffects",
+          "line": 25
+        },
+        {
+          "name": "trackManager",
+          "line": 30
+        },
+        {
+          "name": "undoRedoManager",
+          "line": 31
+        },
+        {
+          "name": "state",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/TransitionPickerScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.effects",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TransitionPickerScreen",
+          "line": 60
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/keyframe/KeyframeEditorScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.keyframe",
+      "classes": [],
+      "functions": [
+        {
+          "name": "KeyframeEditorScreen",
+          "line": 65
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/keyframe/KeyframeViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.keyframe",
+      "classes": [
+        {
+          "name": "KeyframeItem",
+          "kind": "class",
+          "line": 15
+        },
+        {
+          "name": "KeyframeUiState",
+          "kind": "class",
+          "line": 23
+        },
+        {
+          "name": "KeyframeViewModel",
+          "kind": "class",
+          "line": 35
+        }
+      ],
+      "functions": [
+        {
+          "name": "initialize",
+          "line": 39
+        },
+        {
+          "name": "selectProperty",
+          "line": 52
+        },
+        {
+          "name": "setCurrentTime",
+          "line": 63
+        },
+        {
+          "name": "addKeyframe",
+          "line": 68
+        },
+        {
+          "name": "removeKeyframe",
+          "line": 89
+        },
+        {
+          "name": "updateKeyframeValue",
+          "line": 101
+        },
+        {
+          "name": "updateKeyframeEasing",
+          "line": 114
+        },
+        {
+          "name": "selectKeyframe",
+          "line": 127
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 17
+        },
+        {
+          "name": "property",
+          "line": 18
+        },
+        {
+          "name": "timeUs",
+          "line": 19
+        },
+        {
+          "name": "value",
+          "line": 20
+        },
+        {
+          "name": "easing",
+          "line": 21
+        },
+        {
+          "name": "clipId",
+          "line": 25
+        },
+        {
+          "name": "allKeyframes",
+          "line": 26
+        },
+        {
+          "name": "keyframes",
+          "line": 27
+        },
+        {
+          "name": "selectedProperty",
+          "line": 28
+        },
+        {
+          "name": "selectedKeyframeId",
+          "line": 29
+        },
+        {
+          "name": "currentTimeUs",
+          "line": 30
+        },
+        {
+          "name": "interpolatedValue",
+          "line": 31
+        },
+        {
+          "name": "state",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/navigation/EditorNavGraph.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.navigation",
+      "classes": [],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/preview/GpuPreviewView.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.preview",
+      "classes": [],
+      "functions": [
+        {
+          "name": "GpuPreviewView",
+          "line": 15
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/preview/PreviewView.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.preview",
+      "classes": [],
+      "functions": [
+        {
+          "name": "PreviewView",
+          "line": 23
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/AdjustmentLayerScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AdjustmentLayerScreen",
+          "line": 38
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/AnimationPickerScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AnimationPickerScreen",
+          "line": 48
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/AudioEQScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "AudioEQScreen",
+          "line": 41
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/ChromaKeyScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [
+        {
+          "name": "ChromaKeyColor",
+          "kind": "class",
+          "line": 60
+        }
+      ],
+      "functions": [
+        {
+          "name": "ChromaKeyScreen",
+          "line": 78
+        }
+      ],
+      "data_members": [
+        {
+          "name": "label",
+          "line": 62
+        },
+        {
+          "name": "hex",
+          "line": 63
+        },
+        {
+          "name": "color",
+          "line": 64
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/ColorGradingScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "ColorGradingScreen",
+          "line": 45
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/MaskEditorScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "MaskEditorScreen",
+          "line": 62
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/SpeedRampScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [
+        {
+          "name": "SpeedControlPoint",
+          "kind": "class",
+          "line": 55
+        }
+      ],
+      "functions": [
+        {
+          "name": "SpeedRampScreen",
+          "line": 64
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 57
+        },
+        {
+          "name": "timeFraction",
+          "line": 58
+        },
+        {
+          "name": "speed",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/StickerPickerScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "StickerPickerScreen",
+          "line": 49
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/TransformScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.pro",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TransformScreen",
+          "line": 30
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/settings/EditorSettingsScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.settings",
+      "classes": [],
+      "functions": [
+        {
+          "name": "EditorSettingsScreen",
+          "line": 64
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/subtitle/SubtitleScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.subtitle",
+      "classes": [],
+      "functions": [
+        {
+          "name": "SubtitleScreen",
+          "line": 59
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/subtitle/SubtitleViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.subtitle",
+      "classes": [
+        {
+          "name": "SubtitleItem",
+          "kind": "class",
+          "line": 17
+        },
+        {
+          "name": "SubtitleUiState",
+          "kind": "class",
+          "line": 26
+        },
+        {
+          "name": "SubtitleViewModel",
+          "kind": "class",
+          "line": 35
+        }
+      ],
+      "functions": [
+        {
+          "name": "setCurrentTime",
+          "line": 42
+        },
+        {
+          "name": "addSubtitle",
+          "line": 46
+        },
+        {
+          "name": "addSubtitleAtCurrentTime",
+          "line": 59
+        },
+        {
+          "name": "updateSubtitle",
+          "line": 64
+        },
+        {
+          "name": "updateSubtitleTime",
+          "line": 72
+        },
+        {
+          "name": "removeSubtitle",
+          "line": 84
+        },
+        {
+          "name": "setSubtitles",
+          "line": 90
+        },
+        {
+          "name": "parseSRT",
+          "line": 96
+        },
+        {
+          "name": "exportSRT",
+          "line": 130
+        },
+        {
+          "name": "autoGenerateFromAudio",
+          "line": 144
+        },
+        {
+          "name": "clearError",
+          "line": 163
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 19
+        },
+        {
+          "name": "startUs",
+          "line": 20
+        },
+        {
+          "name": "endUs",
+          "line": 21
+        },
+        {
+          "name": "text",
+          "line": 22
+        },
+        {
+          "name": "durationUs",
+          "line": 24
+        },
+        {
+          "name": "subtitles",
+          "line": 28
+        },
+        {
+          "name": "currentTimeUs",
+          "line": 29
+        },
+        {
+          "name": "isAutoGenerating",
+          "line": 30
+        },
+        {
+          "name": "error",
+          "line": 31
+        },
+        {
+          "name": "context",
+          "line": 36
+        },
+        {
+          "name": "ffmpegExecutor",
+          "line": 37
+        },
+        {
+          "name": "state",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/template/TemplateBrowserScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.template",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TemplateBrowserScreen",
+          "line": 51
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/text/TextOverlayScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.text",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TextOverlayScreen",
+          "line": 66
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/text/TextOverlayViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.text",
+      "classes": [
+        {
+          "name": "TextOverlayUiState",
+          "kind": "class",
+          "line": 19
+        },
+        {
+          "name": "TextOverlayViewModel",
+          "kind": "class",
+          "line": 38
+        }
+      ],
+      "functions": [
+        {
+          "name": "setTextContent",
+          "line": 56
+        },
+        {
+          "name": "setFontFamily",
+          "line": 61
+        },
+        {
+          "name": "setFontSize",
+          "line": 66
+        },
+        {
+          "name": "setColor",
+          "line": 71
+        },
+        {
+          "name": "setAlignment",
+          "line": 76
+        },
+        {
+          "name": "toggleBold",
+          "line": 81
+        },
+        {
+          "name": "toggleItalic",
+          "line": 86
+        },
+        {
+          "name": "toggleShadow",
+          "line": 91
+        },
+        {
+          "name": "toggleOutline",
+          "line": 96
+        },
+        {
+          "name": "setBackgroundColor",
+          "line": 101
+        },
+        {
+          "name": "setOutlineColor",
+          "line": 106
+        },
+        {
+          "name": "setAnimationIn",
+          "line": 111
+        },
+        {
+          "name": "setAnimationOut",
+          "line": 116
+        },
+        {
+          "name": "bindEditor",
+          "line": 121
+        },
+        {
+          "name": "applyTextStyle",
+          "line": 133
+        },
+        {
+          "name": "saveToTrack",
+          "line": 151
+        },
+        {
+          "name": "reset",
+          "line": 208
+        },
+        {
+          "name": "loadFromStyle",
+          "line": 213
+        }
+      ],
+      "data_members": [
+        {
+          "name": "textContent",
+          "line": 21
+        },
+        {
+          "name": "fontFamily",
+          "line": 22
+        },
+        {
+          "name": "fontSize",
+          "line": 23
+        },
+        {
+          "name": "color",
+          "line": 24
+        },
+        {
+          "name": "alignment",
+          "line": 25
+        },
+        {
+          "name": "bold",
+          "line": 26
+        },
+        {
+          "name": "italic",
+          "line": 27
+        },
+        {
+          "name": "shadow",
+          "line": 28
+        },
+        {
+          "name": "outline",
+          "line": 29
+        },
+        {
+          "name": "backgroundColor",
+          "line": 30
+        },
+        {
+          "name": "outlineColor",
+          "line": 31
+        },
+        {
+          "name": "animationIn",
+          "line": 32
+        },
+        {
+          "name": "animationOut",
+          "line": 33
+        },
+        {
+          "name": "previewText",
+          "line": 34
+        },
+        {
+          "name": "trackManager",
+          "line": 39
+        },
+        {
+          "name": "undoRedoManager",
+          "line": 40
+        },
+        {
+          "name": "state",
+          "line": 44
+        },
+        {
+          "name": "boundClipId",
+          "line": 45
+        },
+        {
+          "name": "lastSyncedSignature",
+          "line": 46
+        },
+        {
+          "name": "isDirty",
+          "line": 47
+        }
+      ]
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/timeline/TimelineLayerPanel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.timeline",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TimelineLayerPanel",
+          "line": 48
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/timeline/TimelineView.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.timeline",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TimelineView",
+          "line": 69
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/timeline/TimelineZoomControl.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.timeline",
+      "classes": [],
+      "functions": [
+        {
+          "name": "TimelineZoomControl",
+          "line": 27
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-editor/src/main/java/com/changecut/feature/editor/toolbar/EditToolbar.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.editor.toolbar",
+      "classes": [],
+      "functions": [
+        {
+          "name": "EditToolbar",
+          "line": 42
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-export/src/main/java/com/changecut/feature/export/export/ExportScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.export.export",
+      "classes": [],
+      "functions": [
+        {
+          "name": "ExportScreen",
+          "line": 40
+        }
+      ],
+      "data_members": []
+    },
+    {
+      "path": "feature-export/src/main/java/com/changecut/feature/export/navigation/ExportNavGraph.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.export.navigation",
+      "classes": [],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "feature-home/src/main/java/com/changecut/feature/home/HomeScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.home",
+      "classes": [
+        {
+          "name": "ProjectItem",
+          "kind": "class",
+          "line": 55
+        }
+      ],
+      "functions": [
+        {
+          "name": "HomeScreen",
+          "line": 66
+        }
+      ],
+      "data_members": [
+        {
+          "name": "id",
+          "line": 57
+        },
+        {
+          "name": "name",
+          "line": 58
+        },
+        {
+          "name": "duration",
+          "line": 59
+        },
+        {
+          "name": "lastEdited",
+          "line": 60
+        },
+        {
+          "name": "thumbnailPath",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "feature-home/src/main/java/com/changecut/feature/home/HomeViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.home",
+      "classes": [
+        {
+          "name": "HomeUiState",
+          "kind": "class",
+          "line": 22
+        },
+        {
+          "name": "HomeViewModel",
+          "kind": "class",
+          "line": 29
+        }
+      ],
+      "functions": [
+        {
+          "name": "renameProject",
+          "line": 44
+        },
+        {
+          "name": "duplicateProject",
+          "line": 56
+        },
+        {
+          "name": "deleteProject",
+          "line": 81
+        }
+      ],
+      "data_members": [
+        {
+          "name": "projects",
+          "line": 24
+        },
+        {
+          "name": "errorMessage",
+          "line": 25
+        },
+        {
+          "name": "getProjectById",
+          "line": 31
+        },
+        {
+          "name": "saveProject",
+          "line": 32
+        },
+        {
+          "name": "deleteProject",
+          "line": 33
+        },
+        {
+          "name": "mediaProjectManager",
+          "line": 34
+        },
+        {
+          "name": "state",
+          "line": 37
+        }
+      ]
+    },
+    {
+      "path": "feature-home/src/main/java/com/changecut/feature/home/navigation/HomeNavGraph.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.home.navigation",
+      "classes": [],
+      "functions": [],
+      "data_members": []
+    },
+    {
+      "path": "feature-home/src/main/java/com/changecut/feature/home/newproject/NewProjectScreen.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.home.newproject",
+      "classes": [
+        {
+          "name": "CanvasOption",
+          "kind": "class",
+          "line": 37
+        }
+      ],
+      "functions": [
+        {
+          "name": "NewProjectScreen",
+          "line": 55
+        }
+      ],
+      "data_members": [
+        {
+          "name": "name",
+          "line": 39
+        },
+        {
+          "name": "width",
+          "line": 40
+        },
+        {
+          "name": "height",
+          "line": 41
+        },
+        {
+          "name": "ratio",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "path": "feature-home/src/main/java/com/changecut/feature/home/newproject/NewProjectViewModel.kt",
+      "language": "kotlin",
+      "package": "com.changecut.feature.home.newproject",
+      "classes": [
+        {
+          "name": "NewProjectUiState",
+          "kind": "class",
+          "line": 13
+        },
+        {
+          "name": "NewProjectViewModel",
+          "kind": "class",
+          "line": 20
+        }
+      ],
+      "functions": [
+        {
+          "name": "create",
+          "line": 26
+        }
+      ],
+      "data_members": [
+        {
+          "name": "isCreating",
+          "line": 15
+        },
+        {
+          "name": "errorMessage",
+          "line": 16
+        },
+        {
+          "name": "createProject",
+          "line": 21
+        },
+        {
+          "name": "state",
+          "line": 25
+        }
+      ]
+    }
+  ],
+  "updated_at": "2026-06-07T11:23:02.998247+00:00"
+}

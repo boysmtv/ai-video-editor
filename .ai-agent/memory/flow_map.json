@@ -1,0 +1,25 @@
+{
+  "flows": [
+    {
+      "name": "login",
+      "entrypoints": [
+        "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt",
+        "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt"
+      ],
+      "domain_functions": [
+        "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt:LoginScreen"
+      ],
+      "tests": [],
+      "docs": [
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/res/drawable/ic_launcher_background.xml",
+        "app/src/main/res/drawable/ic_launcher_foreground.xml",
+        "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+        "app/src/main/res/values/strings.xml",
+        "app/src/main/res/values/themes.xml"
+      ],
+      "notes": []
+    }
+  ],
+  "updated_at": "2026-06-07T11:23:03.107557+00:00"
+}

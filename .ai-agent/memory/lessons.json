@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "lessons": [
+    {
+      "pattern": "navigation_flow_has_graph_coverage_but_no_runtime_proof",
+      "solution": "Treat AppNavGraph and the main create/delete paths as release-critical until at least one navigation or integration smoke proves they run end to end.",
+      "count": 1
+    }
+  ],
+  "scope": "project",
+  "updated_at": "2026-06-07T00:00:00+07:00"
+}

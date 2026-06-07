@@ -1,0 +1,821 @@
+{
+  "project_name": "changecut-app",
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "final_project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "problem_file": "",
+  "problem_statement": "",
+  "stack": [],
+  "stack_id": "",
+  "template_id": "",
+  "platform": "",
+  "domain": "",
+  "project_type": "",
+  "build_commands": [],
+  "run_commands": [],
+  "features": [
+    "create",
+    "delete",
+    "login"
+  ],
+  "packages": [
+    "com.changecut.app",
+    "com.changecut.app.di",
+    "com.changecut.app.navigation",
+    "com.changecut.app.ui.theme",
+    "com.changecut.common",
+    "com.changecut.common.config",
+    "com.changecut.core.ai",
+    "com.changecut.core.cache",
+    "com.changecut.core.database",
+    "com.changecut.core.database.dao",
+    "com.changecut.core.database.entity",
+    "com.changecut.core.di",
+    "com.changecut.core.editor",
+    "com.changecut.core.error",
+    "com.changecut.core.export",
+    "com.changecut.core.ffmpeg",
+    "com.changecut.core.gpu",
+    "com.changecut.core.gpu.effects",
+    "com.changecut.core.media",
+    "com.changecut.core.ml",
+    "com.changecut.core.template",
+    "com.changecut.data.di",
+    "com.changecut.data.repository",
+    "com.changecut.domain.model",
+    "com.changecut.domain.repository",
+    "com.changecut.domain.usecase.project",
+    "com.changecut.feature.auth.forgot",
+    "com.changecut.feature.auth.login",
+    "com.changecut.feature.auth.navigation",
+    "com.changecut.feature.auth.register",
+    "com.changecut.feature.auth.splash",
+    "com.changecut.feature.editor",
+    "com.changecut.feature.editor.ai",
+    "com.changecut.feature.editor.audio",
+    "com.changecut.feature.editor.effects",
+    "com.changecut.feature.editor.keyframe",
+    "com.changecut.feature.editor.navigation",
+    "com.changecut.feature.editor.preview",
+    "com.changecut.feature.editor.pro",
+    "com.changecut.feature.editor.settings",
+    "com.changecut.feature.editor.subtitle",
+    "com.changecut.feature.editor.template",
+    "com.changecut.feature.editor.text",
+    "com.changecut.feature.editor.timeline",
+    "com.changecut.feature.editor.toolbar",
+    "com.changecut.feature.export.export",
+    "com.changecut.feature.export.navigation",
+    "com.changecut.feature.home",
+    "com.changecut.feature.home.navigation",
+    "com.changecut.feature.home.newproject"
+  ],
+  "languages": [
+    "kotlin"
+  ],
+  "entrypoints": [],
+  "final_status": "registered",
+  "mode": "factory_managed",
+  "updated_at": "2026-06-07T11:23:03.116558+00:00",
+  "source_fingerprint": {
+    "updated_at": "2026-06-07T11:23:03.144276+00:00",
+    "file_count": 146,
+    "digest": "4e33ea3fc79d0707ead1466fa91dbd520f6e4de4c49e99f6555a01822042f23f",
+    "files": [
+      {
+        "path": "README.md",
+        "hash": "e4828706a4ca4e7c30b39bfe4d253ee14f6ff5155261f75267126816463da0ea",
+        "size_bytes": 2343
+      },
+      {
+        "path": "app/src/main/AndroidManifest.xml",
+        "hash": "87e56f4e4ff642b6a9c70569884fd29e1c104bce4a40d8edd98060bedd7ccc88",
+        "size_bytes": 1249
+      },
+      {
+        "path": "app/src/main/java/com/changecut/app/ChangeCutApp.kt",
+        "hash": "4a8b7836cb25da730274fc48ab3406b80deac450f52c77c55fdef53881d47a0b",
+        "size_bytes": 152
+      },
+      {
+        "path": "app/src/main/java/com/changecut/app/MainActivity.kt",
+        "hash": "ff25e73d5a098dc7047e61832778f37aa9108238b248c18c1aaeeb024987c671",
+        "size_bytes": 1242
+      },
+      {
+        "path": "app/src/main/java/com/changecut/app/di/AppModule.kt",
+        "hash": "33b9bafcadaf8ea35aa0b3767ffaf388dd876b9c2af36f7430875ab4a9b068c0",
+        "size_bytes": 529
+      },
+      {
+        "path": "app/src/main/java/com/changecut/app/navigation/AppNavGraph.kt",
+        "hash": "bb00bcc18bdf6a656046a7ccb4b6ec24e3ca2cc7536f1b26673f66d8b01a069b",
+        "size_bytes": 2026
+      },
+      {
+        "path": "app/src/main/java/com/changecut/app/ui/theme/Theme.kt",
+        "hash": "1fcb34538de991c776c4114c60db1df6786afb2345a4feb3fde27b6148042f40",
+        "size_bytes": 2726
+      },
+      {
+        "path": "app/src/main/res/drawable/ic_launcher_background.xml",
+        "hash": "3d4889692a0eff9bfa49dec7459cb8cf500e6c091be59c6a15b86dfdef996030",
+        "size_bytes": 330
+      },
+      {
+        "path": "app/src/main/res/drawable/ic_launcher_foreground.xml",
+        "hash": "70797db76429f34eade796acebc87ca210d2866c4253dd50956a76e75cc3b958",
+        "size_bytes": 502
+      },
+      {
+        "path": "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+        "hash": "1c832bf194d8eecd439a92bcced0df144c9f566b934b3d7865e983d8ee8dbdeb",
+        "size_bytes": 273
+      },
+      {
+        "path": "app/src/main/res/values/strings.xml",
+        "hash": "deb3456f4783d442e4b42f292ae697306696a71d404bb2436cb0e27098da969b",
+        "size_bytes": 111
+      },
+      {
+        "path": "app/src/main/res/values/themes.xml",
+        "hash": "b8fea3be4a5dc014da1b51d55c316773a7247fdfd5740730415142a7f13fec86",
+        "size_bytes": 322
+      },
+      {
+        "path": "app/src/main/res/xml/backup_rules.xml",
+        "hash": "92d1a27d40a51ef8248fe9bcc7ec2ea3b2ee61f474012f5a0ed0ba68285ec0fc",
+        "size_bytes": 84
+      },
+      {
+        "path": "brief.md",
+        "hash": "a0221f0fbf5e6312b826c1fe15355baf74036957afb0bec86b49b599b87a57de",
+        "size_bytes": 24303
+      },
+      {
+        "path": "brief_full.md",
+        "hash": "d3ff5576beb2d1ef3d97663e42d50538adf47d3c1d8d4859cd31e14949aea1b7",
+        "size_bytes": 5152
+      },
+      {
+        "path": "common/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "common/src/main/java/com/changecut/common/Constant.kt",
+        "hash": "ad7bbaedea2f246b53a7946459bc1850c43784b58294498cdf0df391951430b4",
+        "size_bytes": 510
+      },
+      {
+        "path": "common/src/main/java/com/changecut/common/config/AppConfig.kt",
+        "hash": "11c0f26049a9503eabaeeb38b5559237168ce42cd579fbf926112b5fba7c67e4",
+        "size_bytes": 578
+      },
+      {
+        "path": "core/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiBeatSync.kt",
+        "hash": "c6be3a46d7e7deb53af8c4eb5486bcc1bcda10c45915e0997ffeabae2d50fc48",
+        "size_bytes": 2228
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiBestMomentPicker.kt",
+        "hash": "d19a496b8ac47d5eef1633bd4bfbe64da45b8d01d2d561c7c3a9afc6fb6a1862",
+        "size_bytes": 10039
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiSceneDetection.kt",
+        "hash": "9ddc33b45733088789484a2217dfa7155bf17c878fa45ef82f3ab822e22280ad",
+        "size_bytes": 6218
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiSmartTrim.kt",
+        "hash": "a338c0f039a106cfa1b85ce18846f50aae2d2dca631615a11327dd3dff10f64b",
+        "size_bytes": 2627
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiSubtitleEngine.kt",
+        "hash": "6533fbae5fa10c850e4553e4f954f997be2d00190792cbf56774174bbd95bcc1",
+        "size_bytes": 10464
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiTextToSpeech.kt",
+        "hash": "8f8c6cbb57011ceccab1a5d0ba6b0240eb9699b405b0b0a53e205d733f4257ca",
+        "size_bytes": 5238
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ai/AiVoiceIsolation.kt",
+        "hash": "16ecf365d4a6a019f220c5adc32b9d78ccadde282c472ae0c7ea126a595a0a60",
+        "size_bytes": 710
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/cache/CacheCleaner.kt",
+        "hash": "186dfde76e6e740cd8f4f72b8194a09e5d12ce3a476f75df0107aeff3be7e10f",
+        "size_bytes": 4517
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/database/AppDatabase.kt",
+        "hash": "933c6e5d15d15fbe5a1f00754dde9e5a7165b123a5367211db5c2f3f4582d8de",
+        "size_bytes": 392
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/database/dao/ProjectDao.kt",
+        "hash": "25bdf66bb818e77a23031c1a6fd824cb04275bb5fbd075809e3752792131993d",
+        "size_bytes": 906
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/database/entity/ProjectEntity.kt",
+        "hash": "5b780370e969c947f05e5dd702830b4d306e241abe83f688fe497bc94f2ec648",
+        "size_bytes": 730
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/di/DatabaseModule.kt",
+        "hash": "8a49861af1cd4ec051b7b59e11c160d9c0b782bc7164ebf49a2ba34626a5ab14",
+        "size_bytes": 844
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/ClipGroup.kt",
+        "hash": "9f69083d195e03bd04998b5a41636d17a327dd152d3b663e4b3ffab5c3930fda",
+        "size_bytes": 1052
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/EditorCommand.kt",
+        "hash": "cd92074ad5bf14208df4e16db55cb34ddfdca60c60ad94edd74544cc0394d588",
+        "size_bytes": 3174
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/KeyframeSystem.kt",
+        "hash": "7d2e059d887f3c05cd61865a5bf4c3fc8bd7c084747c9c90e0b1b9e3612ad6f0",
+        "size_bytes": 2502
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/MaskDef.kt",
+        "hash": "af24e61cc4d67e17cefc65dfabe7035f21d1da680a2b525477b5ada1a4efc15f",
+        "size_bytes": 967
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/StickerDef.kt",
+        "hash": "e84c552c2058ff203cedd945d547094e42d84b8878bdfddcff26cd63adc66d50",
+        "size_bytes": 5993
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/TrackManager.kt",
+        "hash": "05846bd9626fda98c0607fbff3e4c2f3b94169cdd1a867bb4c7a1557dce7c0d6",
+        "size_bytes": 34355
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/editor/UndoRedoManager.kt",
+        "hash": "75a68775e2784dde1902ff3d1ec2d20be97c2e8b011787170dfb75b9340979db",
+        "size_bytes": 2475
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/error/AppError.kt",
+        "hash": "bd03a8f30d31eec2ebd890f17949ea48be69e573839fe2e31848229784628cb3",
+        "size_bytes": 711
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/export/ExportPresets.kt",
+        "hash": "1f76018b785dd5c7fbc85bd3e15f59ae9110c699976ab9f397d56ef0fdaff71c",
+        "size_bytes": 5616
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/export/ExportQueueManager.kt",
+        "hash": "b0e020000e71220fe1389594ffcd792abafe6b29bd083983f92381ea672a5d29",
+        "size_bytes": 2235
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/export/HardwareExporter.kt",
+        "hash": "b9c4e44cdd848f5a2e04b436af17a0ff91b9a8e5355788b704f1a551d6ee7dd6",
+        "size_bytes": 8370
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/AnimationEngine.kt",
+        "hash": "c6a226e10993aa4767574bddf93ebfc5f97b5a2c10b791e4d2677a4bc48909da",
+        "size_bytes": 4962
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/AudioEQEngine.kt",
+        "hash": "391e8d61f13a694ba666e878a36991811142944f81730ce00a509bd83be29d84",
+        "size_bytes": 2028
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/AudioExtractEngine.kt",
+        "hash": "02e3f05c10fc8274dac60e22c1559ca8c1698e0705cd5d4ddbec5c71bd06de19",
+        "size_bytes": 3281
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/ChromaKeyEngine.kt",
+        "hash": "4bf7f6960d7c27e29b790060461e744f67d7905821fd7c403c7a95f49fc2e032",
+        "size_bytes": 1977
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/ColorGradingEngine.kt",
+        "hash": "1e6bad0a50bc4f2472459ae9cb2777b7759c43392ca7264cea2e6aa790c7e407",
+        "size_bytes": 2390
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/CurveSpeedEngine.kt",
+        "hash": "ecc53fcdd66c51e89253e59b6b89b29d08f941498117e0afb5ba10a007b66d97",
+        "size_bytes": 2419
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/FfmpegExecutor.kt",
+        "hash": "92f01ad1c1a9e7660d12375bdb716497225274d2e19d10da47862679492b3b8d",
+        "size_bytes": 5815
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/FilterEngine.kt",
+        "hash": "23af668cb8e167332ac8ebf9a5fb804db7fe7fa6d5eb90fa53636e72b7da2ad8",
+        "size_bytes": 3067
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/MaskEngine.kt",
+        "hash": "f835d1f8835688169a9a46ef56910dc8bb8a47b38e4a48314dfaa3c144a1d734",
+        "size_bytes": 3979
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/SpeedRampEngine.kt",
+        "hash": "4c72fa48ffedb4e7b21c090a610ab0a8f46e845a63e9f54a40b512abb051caaf",
+        "size_bytes": 3881
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/StickerEngine.kt",
+        "hash": "399e4ad9e120645d5c988317b38cc80d3e5fc2806ace8ffce455a02433e9d6c0",
+        "size_bytes": 2664
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/TextRenderEngine.kt",
+        "hash": "a0bb81713b658772f6ad87b63714704e19bf510bfb3cf7a624a9c18af9358759",
+        "size_bytes": 4179
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/TransitionEngine.kt",
+        "hash": "3331575ce8ba0abc8a5d6273c7ba628b4eaa370df3c05fa678311ff8bcdef246",
+        "size_bytes": 7842
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ffmpeg/VideoEngine.kt",
+        "hash": "361fd3ee8b68319a32dad82ecf63b3b35a98acc3378080dfc41cd4e0d2e9294e",
+        "size_bytes": 48006
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/EffectPipeline.kt",
+        "hash": "1272acfc7738c5397b15294425eaf11cdde5b7a57dbe2fb7a6497be884ab57ae",
+        "size_bytes": 2414
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/FrameScheduler.kt",
+        "hash": "2dde01c9b037d79f4d4ad395b1811a1a1ea5638cb6ba04bf79e5a5e227c3a502",
+        "size_bytes": 2478
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/GlFrameBuffer.kt",
+        "hash": "03489e16af0fe1e8209d562c30d327d6101a6765eca72e10eb22907b1c9d6451",
+        "size_bytes": 1751
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/GlShaderProgram.kt",
+        "hash": "06941d85aba1474b453d5ae4968ed69f4b673886139b64b7daeca422c7fe2b62",
+        "size_bytes": 4022
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/GlVideoRenderer.kt",
+        "hash": "01e7797f7b5f96dbc9a30a2e5bc9151f77ce923e60e30cb83498902f51abdc9f",
+        "size_bytes": 17236
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/VideoFrameDecoder.kt",
+        "hash": "f01e66295711a2f506f43b070143bf931552cb46b73977d1b2e80715ed74071b",
+        "size_bytes": 6717
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/AnimationShader.kt",
+        "hash": "a7c9fd1707e71d4501cc83672942129252a761bcac9baae79b4d83e8ee0b77f7",
+        "size_bytes": 4244
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/BeautyShader.kt",
+        "hash": "bd98f13dcd6c6e7bd5564ee74d34e11e2ab79057e7975801d3e2f7baf8308760",
+        "size_bytes": 3130
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/BlendShader.kt",
+        "hash": "ac9938e4930ceb94b9b7710b03a300f2e2ecbb1e34f29344a12dba242ccb422c",
+        "size_bytes": 2009
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/ChromaKeyShader.kt",
+        "hash": "8bd2769b9c22bb1cb2e2e0098dd9afb299a980ea38ee7ef9feea6d0afe5e779e",
+        "size_bytes": 1119
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/ColorGradeShader.kt",
+        "hash": "1a5308b88ce71302200e24802de6a12635f3dd214870ba3ab1bcde99c91113fa",
+        "size_bytes": 1906
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/GlitchShader.kt",
+        "hash": "171cad7532c9897b517a80b2dfac04fee2f46bc7a4b1217788329f36c77bd9e7",
+        "size_bytes": 2387
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/MaskShader.kt",
+        "hash": "733cf08427b2d70e34dcb2d00fa9aac6d3a0134ff15d5bf0faa5ac7aa320837c",
+        "size_bytes": 2992
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/StabilizeShader.kt",
+        "hash": "b27b767af2e88bef264a6b490e0d9479e9c3b487af9191da543181ff938e1ef3",
+        "size_bytes": 1290
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/gpu/effects/TransitionShader.kt",
+        "hash": "3442466f8d97f4e50e612698e03570cbd7750212a76f6da19c7b9449d90e3155",
+        "size_bytes": 6736
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/media/MediaProjectManager.kt",
+        "hash": "3f3665deab112037d8cf699e949327423ae9d2c0f40924f55d33b9cf92b50269",
+        "size_bytes": 1177
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/media/MediaUtils.kt",
+        "hash": "982fd91fbe2fe0b1f56c703c63109ec6b97931e10a63ab7b91be8d332c97449d",
+        "size_bytes": 3596
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/media/ProjectTimelineStore.kt",
+        "hash": "ecbacf43cd915eeebb4f098e7b6eb5343f7e08e4b88a2e26f069864c94882db7",
+        "size_bytes": 16213
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ml/FaceMeshDetector.kt",
+        "hash": "a6239c616f2dab5192fe4c1d6ff5ddeb861a32510439d611e1e01168c20c8a44",
+        "size_bytes": 4163
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ml/ObjectTracker.kt",
+        "hash": "2c086339003598805c55f913d393fab50e680cbb63ece7da49d782216ebbff5f",
+        "size_bytes": 8241
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ml/PortraitSegmentation.kt",
+        "hash": "7ebdea3ed845c0f09b0574943019108d9fd26baacf4d1aade2145f22e4361166",
+        "size_bytes": 2661
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ml/SpeechTranscriptEngine.kt",
+        "hash": "42198672a750e2b50dbafd962c4d0b4015fc4845ad740d23a167b491b66d3b5c",
+        "size_bytes": 6734
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/ml/TensorFlowEngine.kt",
+        "hash": "7c516ac4d108f48358f637d36b2db51b3e7f3da58265d5ae159c664a10903525",
+        "size_bytes": 5766
+      },
+      {
+        "path": "core/src/main/java/com/changecut/core/template/TemplateEngine.kt",
+        "hash": "fc8bdf60bbef985a1a5206bc001e99662e5245640caa29387643713a7dda660a",
+        "size_bytes": 17494
+      },
+      {
+        "path": "data/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "data/src/main/java/com/changecut/data/di/RepositoryModule.kt",
+        "hash": "c1f4c5cb4c9fe940d4e5095e5e057090d7831ba17a4acdbc9f8265233e090858",
+        "size_bytes": 493
+      },
+      {
+        "path": "data/src/main/java/com/changecut/data/repository/ProjectRepositoryImpl.kt",
+        "hash": "af54fcc705bfd2321fd144d6f499889b1a3e2f03c51ed82d0c36ff5342525bb8",
+        "size_bytes": 1582
+      },
+      {
+        "path": "domain/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/model/MediaTrack.kt",
+        "hash": "34886677b0c6a9c838e37611ae507a3876c6cffcfa46f725bef5851a83ceeb13",
+        "size_bytes": 1039
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/model/Project.kt",
+        "hash": "0214b59b49564537eb957afae6371e0a902e0aedf1b1841a15b227124ca05ec6",
+        "size_bytes": 401
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/model/User.kt",
+        "hash": "a491fa02e709e37dc77302d14b5312acc84c65f16ae95f4d41c8a918f31b3eb8",
+        "size_bytes": 207
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/repository/ProjectRepository.kt",
+        "hash": "8f806398db360d61f16fb248de3ec940c5843698570a1b53812b727f49d728b2",
+        "size_bytes": 336
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/usecase/project/CreateProjectUseCase.kt",
+        "hash": "41493f6d5dab644d17aa82fb2fca0c98cc18dd8b4d5bed1102aeb29ce963661a",
+        "size_bytes": 652
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/usecase/project/DeleteProjectUseCase.kt",
+        "hash": "c73fc6c2f718e3f34e8a94709108fa958948a42e8ef20170da99a45126842337",
+        "size_bytes": 334
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/usecase/project/GetProjectByIdUseCase.kt",
+        "hash": "4e51c13d74a745a92f6f36956cb1cce26bc0847e80fadd90c17f160e7350b400",
+        "size_bytes": 395
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/usecase/project/GetProjectsUseCase.kt",
+        "hash": "44c486d201ba37df75c8cb4c28f67e751c13471c326ad1192f1ee27205e71681",
+        "size_bytes": 402
+      },
+      {
+        "path": "domain/src/main/java/com/changecut/domain/usecase/project/SaveProjectUseCase.kt",
+        "hash": "a2b1c12acbe02e12539dc52cd1554114247cbf7f12be17652645952557059571",
+        "size_bytes": 369
+      },
+      {
+        "path": "feature-auth/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "feature-auth/src/main/java/com/changecut/feature/auth/forgot/ForgotPasswordScreen.kt",
+        "hash": "8b073e618637c27e368ed990161c7f347ea15ee7311386d95ac25343b074fca4",
+        "size_bytes": 3854
+      },
+      {
+        "path": "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt",
+        "hash": "f77a63177aaf1ebeec2dbc344db8a4f965cdb2fc35f869ca51c6921e9f235a71",
+        "size_bytes": 3534
+      },
+      {
+        "path": "feature-auth/src/main/java/com/changecut/feature/auth/navigation/AuthNavGraph.kt",
+        "hash": "799e07390c52f86981fd752f2ab9893c86185d29eaf0be0e42473139980f9359",
+        "size_bytes": 1959
+      },
+      {
+        "path": "feature-auth/src/main/java/com/changecut/feature/auth/register/RegisterScreen.kt",
+        "hash": "c52905e379ea0625fe3afb5673027c46b01ae378c38ce5d086e2c5f8d650c012",
+        "size_bytes": 3599
+      },
+      {
+        "path": "feature-auth/src/main/java/com/changecut/feature/auth/splash/SplashScreen.kt",
+        "hash": "cde1bc8bda7b28c06fb364bcd34a112e53ed169c24d117ebf830fabb918e9966",
+        "size_bytes": 2550
+      },
+      {
+        "path": "feature-editor/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/EditorScreen.kt",
+        "hash": "b0b42b849d93a291a5bbf3fd57da57abf927f48c2a0c413091291b2dcf9d2009",
+        "size_bytes": 45170
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/EditorViewModel.kt",
+        "hash": "c26ce20ffd0cfea859a887648ab0c7cc661e9f05c0e54cf808528a185f99cc04",
+        "size_bytes": 62256
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiAutoEditScreen.kt",
+        "hash": "0fb41a56fc19fe43da2d9cf55ab21daef48694c4532d75dd47e1e7e1d822131d",
+        "size_bytes": 22242
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiAutoEditViewModel.kt",
+        "hash": "7c8ac92f9db70d6854faad78f9e7d718bc02eca47216660ae2cec5d391613009",
+        "size_bytes": 13588
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiCaptionScreen.kt",
+        "hash": "dd0f1d38562b20b0c6f26c77ceb14247e94c9b4accff6a36c3be3c060b29acb8",
+        "size_bytes": 20624
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/ai/AiVoiceOverScreen.kt",
+        "hash": "584adeed0956fcc405de487a6601c087e63358bf9b463845353ddb4ac3e81d7c",
+        "size_bytes": 14077
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/audio/AudioTrackScreen.kt",
+        "hash": "3839041fb0b3a8793280b9b9d3e3070fd604adf41bb3fe7a70ca08c52c69877b",
+        "size_bytes": 14553
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/audio/AudioTrackViewModel.kt",
+        "hash": "23751ef5d32cfe7c734bac13c9fabab24aad706d2076dc177e9453b93d38d7ce",
+        "size_bytes": 12301
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/EffectCatalog.kt",
+        "hash": "a4fbae9f480d4a997b971ee89d3ede709c07152e6391439667ab1c1f30355ad9",
+        "size_bytes": 2983
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/EffectScreen.kt",
+        "hash": "7c1f94b72e4af6824206df9cf838baf80c7e848c9979fbccf457f1f18516dd37",
+        "size_bytes": 8941
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/EffectViewModel.kt",
+        "hash": "a90a73340e2f44d8263f40be87050babeb7b47e35cd4b733a3c536e41054907f",
+        "size_bytes": 3969
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/effects/TransitionPickerScreen.kt",
+        "hash": "597d8b0090b764845a71ccefa444a85a94c89e75083c8c1be75c9772b125f4ab",
+        "size_bytes": 9260
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/keyframe/KeyframeEditorScreen.kt",
+        "hash": "b4abd4bd7dfd444f1285345b1948dfd0663b4964c62ce9cb5a3dbdbf6bf28ecd",
+        "size_bytes": 17877
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/keyframe/KeyframeViewModel.kt",
+        "hash": "1c51ae6a7b54c2eff620a722145c1c6c0d0654f3764a195a83e4c64fea387243",
+        "size_bytes": 5113
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/navigation/EditorNavGraph.kt",
+        "hash": "6f6807168cd3997317bb300bf1761e51120325ef87c3e9f7e983a96216249b83",
+        "size_bytes": 809
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/preview/GpuPreviewView.kt",
+        "hash": "f2b7b27b4ac9269782a0b7e05d0da7c3159e55b9e385e425b6f68de73873e4d4",
+        "size_bytes": 1676
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/preview/PreviewView.kt",
+        "hash": "52fc8b93c739afea3fb0293061a69597bf4c54bd8c0480bb7509ece0d6321e5a",
+        "size_bytes": 2996
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/AdjustmentLayerScreen.kt",
+        "hash": "16740006494cdcfa4b676b61eabd76a034fcd3af99210b0c4afcc5370af4954b",
+        "size_bytes": 7562
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/AnimationPickerScreen.kt",
+        "hash": "26a756533e9d4c3a4c9c9bcf821aab3c4e0d2c56fb74495ccf32c74ecb139e82",
+        "size_bytes": 5893
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/AudioEQScreen.kt",
+        "hash": "72f9d615026b77d3e86f45dc9eccd46429a1098c0f532df8735ef731465ff98a",
+        "size_bytes": 5168
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/ChromaKeyScreen.kt",
+        "hash": "e7af8c01580c1440aabf1346e42814d23bf8b44584d9eb87f54a710e8154cfbd",
+        "size_bytes": 15084
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/ColorGradingScreen.kt",
+        "hash": "d9c3351328f6ce09ee2ef0d44db3d65cc1415b10f5a747190c8477d36a45111b",
+        "size_bytes": 5554
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/MaskEditorScreen.kt",
+        "hash": "64bcb17c79e5f2363b515d6aaf9fc8c03c44473765710be523b8777380aa7280",
+        "size_bytes": 15031
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/SpeedRampScreen.kt",
+        "hash": "f752165d1f195d3ce41a137ed0b077246c0e651323731ccf39da805930a35698",
+        "size_bytes": 16233
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/StickerPickerScreen.kt",
+        "hash": "2af897d014e3c9c652a809462227ea5917c7f647952a46f902f7f557a7bbe63b",
+        "size_bytes": 6021
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/pro/TransformScreen.kt",
+        "hash": "09804759ba9308b39b7911c926c0bffea8e34427ec2315e544863316b940f737",
+        "size_bytes": 5722
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/settings/EditorSettingsScreen.kt",
+        "hash": "3892e12c269bae516d0af45be83dac4061986d279ddedda50c126a265de5ae43",
+        "size_bytes": 16327
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/subtitle/SubtitleScreen.kt",
+        "hash": "1952fd46b31e5626ebd220fb8b4959c19f06ce9d55c5282a8cf5adf2814860fe",
+        "size_bytes": 15459
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/subtitle/SubtitleViewModel.kt",
+        "hash": "7a50e0440ed75de9610383447371835e4218c59e050a15bd0015e33e730c45f7",
+        "size_bytes": 6230
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/template/TemplateBrowserScreen.kt",
+        "hash": "28c12c9ac44a590d1acb1ded678c2c9ebf3793fc306902f0aa5b0b94dede0b43",
+        "size_bytes": 7842
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/text/TextOverlayScreen.kt",
+        "hash": "bcec52b33c031eefded81eafa81844f06da52a98ec4f0ddde9326547c288966a",
+        "size_bytes": 10678
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/text/TextOverlayViewModel.kt",
+        "hash": "d11ff424ca05ad363438fefd48cfeed0652bb89dad4ac91454e880bb7d403ba4",
+        "size_bytes": 10075
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/timeline/TimelineLayerPanel.kt",
+        "hash": "3ddcb56b44e7bfc267239c181288d83d55545ea2a32cbec8025ac79a33eeceed",
+        "size_bytes": 7522
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/timeline/TimelineView.kt",
+        "hash": "365d27fbcf6196218d815cb12ed71c72221f17b1ab1999c415e90293af60d7a8",
+        "size_bytes": 14968
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/timeline/TimelineZoomControl.kt",
+        "hash": "b9962806ce0305834704f5afa9d0f5a3328db7b24ae2de2583e59bd316499127",
+        "size_bytes": 2503
+      },
+      {
+        "path": "feature-editor/src/main/java/com/changecut/feature/editor/toolbar/EditToolbar.kt",
+        "hash": "b7e4d9f2514ecf3a34a80a82ad33b9081a3efc820cfad4fe8e502a227f0f7a94",
+        "size_bytes": 8154
+      },
+      {
+        "path": "feature-export/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "feature-export/src/main/java/com/changecut/feature/export/export/ExportScreen.kt",
+        "hash": "ca2db90a0c0fe3eef1ee0cded8490795de87f212f24b2927a3250e1b71293526",
+        "size_bytes": 4627
+      },
+      {
+        "path": "feature-export/src/main/java/com/changecut/feature/export/navigation/ExportNavGraph.kt",
+        "hash": "affc43345fc91bff793b9d06898a367b8a77c6e1c4ae7ad5e1b7553d7a5f8c0b",
+        "size_bytes": 847
+      },
+      {
+        "path": "feature-home/src/main/AndroidManifest.xml",
+        "hash": "daa0fb1f32ba7ea85a07ef6302ab3d58c3407d7fd2aa03ec132cb9e38e8d9849",
+        "size_bytes": 52
+      },
+      {
+        "path": "feature-home/src/main/java/com/changecut/feature/home/HomeScreen.kt",
+        "hash": "b4baa67ad9ecc82c9909ff3d2754afd70efcc0f6aa18018fbce93f70d5aa5e65",
+        "size_bytes": 11305
+      },
+      {
+        "path": "feature-home/src/main/java/com/changecut/feature/home/HomeViewModel.kt",
+        "hash": "91c926413233d0242063d3021dba424e989604ac245321122560a2b1b38f4fd1",
+        "size_bytes": 3837
+      },
+      {
+        "path": "feature-home/src/main/java/com/changecut/feature/home/navigation/HomeNavGraph.kt",
+        "hash": "e45d252246852072db245d15f38dad62bc95a44d7e91954e1d4ea3eda7ac5e35",
+        "size_bytes": 700
+      },
+      {
+        "path": "feature-home/src/main/java/com/changecut/feature/home/newproject/NewProjectScreen.kt",
+        "hash": "981cb94b809faef5612735578cf6b734c9442f13d0ccea8140bc5cabfa3bbc3d",
+        "size_bytes": 4953
+      },
+      {
+        "path": "feature-home/src/main/java/com/changecut/feature/home/newproject/NewProjectViewModel.kt",
+        "hash": "142930180daac40e3408cec7793d02ba155c6e8b6b1176144a543cf72394911f",
+        "size_bytes": 1768
+      },
+      {
+        "path": "gradle/libs.versions.toml",
+        "hash": "fa97406b566009c3057181fa3419933d27270635b5e608706f8660627ea8aca8",
+        "size_bytes": 4876
+      }
+    ]
+  },
+  "registration": {
+    "source": "project_registration",
+    "actor": "",
+    "recorded_at": "2026-06-07T11:23:03.144276+00:00"
+  }
+}

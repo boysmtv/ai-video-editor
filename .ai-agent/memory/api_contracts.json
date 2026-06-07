@@ -1,0 +1,10 @@
+{
+  "contracts": [
+    {
+      "type": "command",
+      "name": "login",
+      "summary": "CLI command `login`"
+    }
+  ],
+  "updated_at": "2026-06-07T11:23:03.003246+00:00"
+}

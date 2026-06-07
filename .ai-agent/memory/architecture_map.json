@@ -1,0 +1,17 @@
+{
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "final_project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "stack_id": "",
+  "entrypoints": [],
+  "services": [
+    "domain/src/main/java/com/changecut/domain/repository/ProjectRepository.kt"
+  ],
+  "tests": [],
+  "docs": [
+    "README.md",
+    "brief.md",
+    "brief_full.md"
+  ],
+  "updated_at": "2026-06-07T11:23:03.001246+00:00",
+  "source_file_count": 127
+}

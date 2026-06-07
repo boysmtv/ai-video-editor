@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "project_root": "D:\\Work\\Pribadi\\AndroidProject\\changecut-app",
+  "updated_at": "2026-06-07T11:23:03.215466+00:00",
+  "status": "blocked",
+  "rows": [
+    {
+      "requirement": "create",
+      "acceptance_criteria": [],
+      "flows": [],
+      "api_or_ui_paths": [],
+      "implementation_symbols": [],
+      "tests": [],
+      "runtime_proof": [],
+      "status": "blocked",
+      "evidence": [
+        {
+          "path": "flow_map.json"
+        },
+        {
+          "path": "api_contracts.json"
+        }
+      ]
+    },
+    {
+      "requirement": "delete",
+      "acceptance_criteria": [],
+      "flows": [],
+      "api_or_ui_paths": [],
+      "implementation_symbols": [],
+      "tests": [],
+      "runtime_proof": [],
+      "status": "blocked",
+      "evidence": [
+        {
+          "path": "flow_map.json"
+        },
+        {
+          "path": "api_contracts.json"
+        }
+      ]
+    },
+    {
+      "requirement": "login",
+      "acceptance_criteria": [
+        "login behavior is implemented and validated."
+      ],
+      "flows": [
+        "login"
+      ],
+      "api_or_ui_paths": [
+        "login"
+      ],
+      "implementation_symbols": [
+        "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt",
+        "feature-auth/src/main/java/com/changecut/feature/auth/login/LoginScreen.kt:LoginScreen"
+      ],
+      "tests": [],
+      "runtime_proof": [],
+      "status": "attention",
+      "evidence": [
+        {
+          "path": "flow_map.json"
+        },
+        {
+          "path": "api_contracts.json"
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "requirement": "create",
+      "reason": "requirement_has_no_acceptance_criteria"
+    },
+    {
+      "requirement": "delete",
+      "reason": "requirement_has_no_acceptance_criteria"
+    },
+    {
+      "requirement": "login",
+      "reason": "flow_has_no_test_evidence"
+    }
+  ],
+  "release_readiness": {
+    "blocked": true,
+    "blocking_rules": [
+      "requirement_has_no_acceptance_criteria",
+      "requirement_has_no_acceptance_criteria",
+      "flow_has_no_test_evidence"
+    ]
+  },
+  "coverage": {
+    "requirement_count": 3,
+    "mapped_requirement_count": 1,
+    "test_mapped_requirement_count": 0
+  }
+}

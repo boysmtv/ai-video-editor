@@ -1,0 +1,11 @@
+{
+  "features": [
+    "create",
+    "delete",
+    "login"
+  ],
+  "commands": [
+    "login"
+  ],
+  "updated_at": "2026-06-07T11:23:03.001246+00:00"
+}
