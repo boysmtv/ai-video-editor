@@ -70,6 +70,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 
 tensorflow-lite = { group = "org.tensorflow", name = "tensorflow-lite", version = "2.16.1" }
 tensorflow-lite-gpu = { group = "org.tensorflow", name = "tensorflow-lite-gpu", version = "2.16.1" }
+ffmpeg-kit-min-gpl = { group = "com.arthenica", name = "ffmpeg-kit-min-gpl", version = "5.1.LTS" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
