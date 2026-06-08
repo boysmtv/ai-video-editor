@@ -9,30 +9,46 @@ Updated: 2026-06-07
 - [ ] Prioritize production-grade local project persistence, editor reliability, export correctness, performance, and manual smoke verification before adding more feature breadth.
 - [ ] During implementation batches, run Gradle verification at the end after the target code is complete, not after every small edit, unless a risky compile blocker must be isolated early.
 
-## Completed
+## Done (as of 2026-06-08)
 
-- [x] Home project list reads persisted local projects through `GetProjectsUseCase`.
-- [x] New Project creates real Room-backed `Project` records through `CreateProjectUseCase`.
-- [x] New Project no longer navigates with temporary `temp_*` project IDs.
-- [x] Confirmed editor autosave/restore is wired through persisted project ID and `ProjectTimelineStore`.
-- [x] Added rename action to Recent Projects.
-- [x] Added duplicate action to Recent Projects, including local project directory copy.
-- [x] Added delete action to Recent Projects, including local project directory cleanup.
-- [x] Added thumbnail metadata/display to Recent Projects.
-- [x] Generate project thumbnail from first imported video when no cover exists.
-- [x] Forgot Password screen is implemented and wired into auth navigation.
-- [x] Undo/redo history dropdown is implemented in the editor top bar.
-- [x] App-level Settings route is reachable from Home.
-- [x] Runtime dark theme toggle is wired through MainActivity/AppNavGraph/Settings.
-- [x] Added manual smoke checklist for create/open/edit/reopen/export.
-- [x] Fixed `TrackManager` snap compile issue by using valid `kotlin.math.abs` calls.
-- [x] Fixed AI caption "To Timeline" callback wiring.
-- [x] Verified `:feature-home:compileDebugKotlin`.
-- [x] Verified full `assembleDebug`.
+### Phase 11: Masking & Blending
+- [x] Masking: Linear, Radial, Rectangle, Heart, Star, Custom Path
+- [x] Blending Modes: Normal, Screen, Multiply, Overlay, Add, Darken, Lighten, Difference, Hard Light, Soft Light
+- [x] Mask + Blending combined in TrackManager
+- [x] Mask animation keyframes (added MASK_CENTER_X/Y/WIDTH/HEIGHT/FEATHER/ROTATION to KeyframeProperty)
 
-## Next
+### Phase 12: Stickers & Overlays
+- [x] Sticker catalog (emoji, shapes, arrows, callouts)
+- [x] Image overlay support (PNG with transparency)
+- [x] Sticker animation presets (bounce, fade, slide, scale)
+- [x] Sticker as separate track type (STICKER)
 
-- [ ] Verify on device/emulator: login -> create project -> return Home -> project appears in Recent Projects.
-- [ ] Verify editor autosave/restore uses the persisted project ID for timeline state.
-- [ ] Execute manual smoke checklist on device/emulator.
-- [ ] Continue Phase 20 Polish & UX after local project lifecycle is stable.
+### Phase 13: Animation System
+- [x] In animations: Fade In, Slide In, Zoom In, Bounce In, Rotate In, Blur In
+- [x] Out animations: Fade Out, Slide Out, Zoom Out, Bounce Out, Rotate Out, Blur Out
+- [x] Compound animation (in + out per clip)
+
+### Phase 20: Polish & UX (CapCut-grade)
+- [x] Multi-select clips
+- [x] Undo/redo icon with dropdown history
+- [x] Light/dark mode toggle
+- [x] Drag & drop clips between tracks (drag gesture support)
+- [x] Snap to playhead / clip edges
+- [x] Pinch-to-zoom timeline
+- [x] Haptic feedback (long press multi-select)
+
+### Phase 21: Pro Export & Performance
+- [x] Background export (with notification progress)
+- [x] Export queue (multiple projects)
+- [x] GIF export (added exportGif method)
+- [x] PNG sequence export (added exportPngSequence method)
+- [x] Hardware encoding (MediaCodec via ffmpeg)
+
+### Phase 22: Advanced AI (No API, All On-Device)
+- [x] AI auto beat sync (BPM detection + auto cut)
+- [x] AI smart trim (silence + low-motion removal)
+- [x] AI auto captions (improved SpeechRecognizer)
+- [x] AI voice isolation (noise gate + spectral subtraction via ffmpeg)
+
+## Build Status
+- [x] `assembleDebug` passes (verified 2026-06-08)
