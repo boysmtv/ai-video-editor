@@ -31,5 +31,6 @@ data class MaskDef(
     val rotation: Float = 0f,
     val featherPx: Float = 0f,
     val invert: Boolean = false,
-    val points: List<Pair<Float, Float>> = emptyList()
+    val points: List<Pair<Float, Float>> = emptyList(),
+    val keyframes: List<Keyframe> = emptyList()
 )

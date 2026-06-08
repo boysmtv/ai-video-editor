@@ -39,6 +39,7 @@ data class ColorGradeDef(
     val blueCurve: List<Float> = listOf(0f, 0.5f, 1f),
     val rgbCurve: List<Float> = listOf(0f, 0.5f, 1f),
     val lutPath: String? = null,
+    val lutIntensity: Float = 1f,
     val vignetteIntensity: Float = 0f,
     val autoColor: Boolean = false
 )
@@ -52,7 +53,9 @@ data class AudioEQDef(
     val highFreq: Float = 8000f,
     val compressorThreshold: Float = 0f,
     val compressorRatio: Float = 1f,
-    val duckingAmount: Float = 0f
+    val duckingAmount: Float = 0f,
+    val limiterThreshold: Float = 0f,
+    val limiterRelease: Float = 100f
 )
 
 object StickerCatalog {
@@ -124,5 +127,45 @@ object AnimationCatalog {
         AnimationDef("rotate_out", "Rotate Out", AnimationType.ROTATE),
         AnimationDef("blur_out", "Blur Out", AnimationType.BLUR),
         AnimationDef("flip_out", "Flip Out", AnimationType.FLIP),
+    )
+}
+
+enum class VideoEffectType {
+    VHS, GLITCH, NEON, MIRROR, KALEIDOSCOPE, PIXELATE, MOSAIC, RIPPLE, SWIRL, LENS_BLUR
+}
+
+data class VideoEffectDef(
+    val id: String,
+    val type: VideoEffectType,
+    val intensity: Float = 1f,
+    val parameters: Map<String, Float> = emptyMap()
+)
+
+object VideoEffectCatalog {
+    val allEffects: List<VideoEffectDef> = listOf(
+        VideoEffectDef("vhs", VideoEffectType.VHS, 1f),
+        VideoEffectDef("glitch", VideoEffectType.GLITCH, 1f),
+        VideoEffectDef("neon", VideoEffectType.NEON, 1f),
+        VideoEffectDef("mirror", VideoEffectType.MIRROR, 1f),
+        VideoEffectDef("kaleidoscope", VideoEffectType.KALEIDOSCOPE, 1f),
+        VideoEffectDef("pixelate", VideoEffectType.PIXELATE, 1f),
+        VideoEffectDef("mosaic", VideoEffectType.MOSAIC, 1f)
+    )
+
+    val speedPresets: List<Pair<String, Float>> = listOf(
+        "0.1x" to 0.1f,
+        "0.25x" to 0.25f,
+        "0.5x" to 0.5f,
+        "0.75x" to 0.75f,
+        "Normal" to 1f,
+        "1.25x" to 1.25f,
+        "1.5x" to 1.5f,
+        "2x" to 2f,
+        "3x" to 3f,
+        "5x" to 5f,
+        "10x" to 10f,
+        "25x" to 25f,
+        "50x" to 50f,
+        "100x" to 100f
     )
 }

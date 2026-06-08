@@ -9,7 +9,13 @@ enum class KeyframeProperty {
     SCALE_Y,
     ROTATION,
     OPACITY,
-    VOLUME
+    VOLUME,
+    MASK_CENTER_X,
+    MASK_CENTER_Y,
+    MASK_WIDTH,
+    MASK_HEIGHT,
+    MASK_FEATHER,
+    MASK_ROTATION
 }
 
 @Immutable
