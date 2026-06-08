@@ -117,6 +117,70 @@ class VideoEngine @Inject constructor(
         "-y", outputPath
     ).map { outputPath }
 
+    suspend fun exportGif(
+        inputPath: String,
+        outputPath: String,
+        width: Int = 720,
+        height: Int = 1280,
+        fps: Int = 15,
+        startTimeMs: Long = 0L,
+        durationMs: Long? = null
+    ): Result<String> {
+        val timeArgs = mutableListOf<String>()
+        if (startTimeMs > 0) {
+            timeArgs.addAll(listOf("-ss", formatTime(startTimeMs)))
+        }
+        if (durationMs != null && durationMs > 0) {
+            timeArgs.addAll(listOf("-t", formatTime(durationMs)))
+        }
+        return execute(
+            *timeArgs.toTypedArray(),
+            "-i", inputPath,
+            "-vf", "fps=$fps,scale=$width:$height:force_original_aspect_ratio=decrease,pad=$width:$height:(ow-iw)/2:(oh-ih)/2: color=black",
+            "-gifflags", "-transdiff",
+            "-y", outputPath
+        ).map { outputPath }
+    }
+
+    suspend fun exportPngSequence(
+        inputPath: String,
+        outputDir: String,
+        width: Int = 1080,
+        height: Int = 1920,
+        fps: Int = 30
+    ): Result<List<String>> {
+        val outputPattern = "$outputDir/frame_%05d.png"
+        val args = mutableListOf<String>()
+        if (width > 0 && height > 0) {
+            args.addAll(listOf("-vf", "scale=$width:$height:force_original_aspect_ratio=decrease,pad=$width:$height:(ow-iw)/2:(oh-ih)/2:color=black"))
+        }
+        val result = execute(
+            *args.toTypedArray(),
+            "-i", inputPath,
+            "-vsync", "0",
+            "-frame_pts", "1",
+            "-y", outputPattern
+        )
+        return result.map {
+            File(outputDir).listFiles { f -> f.name.matches(Regex("frame_\\d+\\.png")) }
+                ?.sortedBy { it.name }
+                ?.map { it.absolutePath }
+                ?: emptyList()
+        }
+    }
+
+    suspend fun reverseVideo(
+        inputPath: String,
+        outputPath: String,
+        width: Int = 1080,
+        height: Int = 1920
+    ): Result<String> = execute(
+        "-i", inputPath,
+        "-vf", "reverse,scale=$width:$height:force_original_aspect_ratio=decrease,pad=$width:$height:(ow-iw)/2:(oh-ih)/2",
+        "-af", "areverse",
+        "-y", outputPath
+    ).map { outputPath }
+
     suspend fun exportTimeline(
         trackManager: TrackManager,
         outputPath: String,
