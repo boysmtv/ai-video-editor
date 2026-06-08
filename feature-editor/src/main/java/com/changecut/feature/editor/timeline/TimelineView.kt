@@ -34,6 +34,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalContext
+import android.os.Vibrator
+import android.os.VibrationEffect
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
@@ -238,12 +241,12 @@ private fun TimelineTrackRow(
                                 onTimeChange(timeMs.coerceAtLeast(0))
                             }
                         },
-                        onLongPress = { offset ->
-                            val contentX = offset.x + horizontalScrollState.value
-                            val clip = findClipAtPosition(track.clips, contentX, pixelsPerSecond)
-                            if (clip != null) {
-                                onClipMultiToggle(clip.id)
-                            }
+onLongPress = { offset ->
+                             val contentX = offset.x + horizontalScrollState.value
+                             val clip = findClipAtPosition(track.clips, contentX, pixelsPerSecond)
+                             if (clip != null) {
+                                 onClipMultiToggle(clip.id)
+                             }
                         }
                     )
                 }

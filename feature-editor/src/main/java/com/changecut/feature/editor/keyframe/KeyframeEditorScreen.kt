@@ -389,11 +389,17 @@ private fun propertyValueRange(property: KeyframeProperty): ClosedFloatingPointR
     return when (property) {
         KeyframeProperty.POSITION_X,
         KeyframeProperty.POSITION_Y,
-        KeyframeProperty.OPACITY -> 0f..1f
+        KeyframeProperty.OPACITY,
+        KeyframeProperty.MASK_CENTER_X,
+        KeyframeProperty.MASK_CENTER_Y -> 0f..1f
         KeyframeProperty.SCALE_X,
-        KeyframeProperty.SCALE_Y -> 0.1f..2f
-        KeyframeProperty.ROTATION -> -180f..180f
-        KeyframeProperty.VOLUME -> 0f..2f
+        KeyframeProperty.SCALE_Y,
+        KeyframeProperty.MASK_WIDTH,
+        KeyframeProperty.MASK_HEIGHT -> 0.1f..2f
+        KeyframeProperty.ROTATION,
+        KeyframeProperty.MASK_ROTATION -> -180f..180f
+        KeyframeProperty.VOLUME,
+        KeyframeProperty.MASK_FEATHER -> 0f..2f
     }
 }
 
