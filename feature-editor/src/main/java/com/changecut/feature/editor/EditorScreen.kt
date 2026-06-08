@@ -200,7 +200,6 @@ fun EditorScreen(
                                         text = { Text("Undo ${index + 1}: $item") },
                                         onClick = {
                                             showUndoMenu = false
-                                            viewModel.undo(index + 1)
                                         }
                                     )
                                 }
@@ -229,7 +228,6 @@ fun EditorScreen(
                                         text = { Text("Redo ${index + 1}: $item") },
                                         onClick = {
                                             showRedoMenu = false
-                                            viewModel.redo(index + 1)
                                         }
                                     )
                                 }

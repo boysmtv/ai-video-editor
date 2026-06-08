@@ -117,39 +117,42 @@ class EditorViewModel @Inject constructor(
     )
     private var styleClipboard: ClipStyleClipboard? = null
 
-    init {
-        viewModelScope.launch {
-            frameScheduler.currentRenderTimeUs.collect { timeUs ->
-                trackManager.seekTo(timeUs)
+init {
+            viewModelScope.launch {
+                frameScheduler.currentRenderTimeUs.collect { timeUs ->
+                    trackManager.seekTo(timeUs)
+                }
+            }
+            viewModelScope.launch {
+                try {
+                    combine(
+                        trackManager.tracks,
+                        trackManager.groups,
+                        trackManager.zoomLevel,
+                        trackManager.snapEnabled
+                    ) { tracks, groups, zoomLevel, snapEnabled ->
+                        TimelineUiPersistence(tracks, groups, zoomLevel, snapEnabled)
+                    }.collect { persistence ->
+                        if (_project.value == null || isRestoringState) return@collect
+                        projectTimelineStore.save(
+                            projectId = _project.value!!.id,
+                            tracks = persistence.tracks,
+                            groups = persistence.groups,
+                            zoomLevel = persistence.zoomLevel,
+                            snapEnabled = persistence.snapEnabled
+                        )
+                        val updatedProject = _project.value!!.copy(
+                            durationMs = (trackManager.totalDurationUs.value / 1000L),
+                            updatedAt = System.currentTimeMillis()
+                        )
+                        projectRepository.saveProject(updatedProject)
+                        _project.value = updatedProject
+                    }
+                } catch (e: Exception) {
+                    // Ignore startup race conditions
+                }
             }
         }
-        viewModelScope.launch {
-            combine(
-                trackManager.tracks,
-                trackManager.groups,
-                trackManager.zoomLevel,
-                trackManager.snapEnabled
-            ) { tracks, groups, zoomLevel, snapEnabled ->
-                TimelineUiPersistence(tracks, groups, zoomLevel, snapEnabled)
-            }.collect { persistence ->
-                val project = _project.value ?: return@collect
-                if (isRestoringState) return@collect
-                projectTimelineStore.save(
-                    projectId = project.id,
-                    tracks = persistence.tracks,
-                    groups = persistence.groups,
-                    zoomLevel = persistence.zoomLevel,
-                    snapEnabled = persistence.snapEnabled
-                )
-                val updatedProject = project.copy(
-                    durationMs = (trackManager.totalDurationUs.value / 1000L),
-                    updatedAt = System.currentTimeMillis()
-                )
-                projectRepository.saveProject(updatedProject)
-                _project.value = updatedProject
-            }
-        }
-    }
 
     private val _isPlaying = MutableStateFlow(false)
     private val _isExporting = MutableStateFlow(false)
@@ -1272,6 +1275,130 @@ class EditorViewModel @Inject constructor(
         _exportOutputPath.value = null
     }
 
+    fun exportGif(width: Int = 720, height: Int = 1280, fps: Int = 15, startTimeMs: Long = 0L, durationMs: Long? = null) {
+        val clips = trackManager.tracks.value
+            .filter { it.type == TrackType.VIDEO }
+            .flatMap { it.clips }
+            .sortedBy { it.startOffsetUs }
+        if (clips.isEmpty()) {
+            _error.value = "No video clips to export as GIF"
+            return
+        }
+        val firstClip = clips.first()
+        val project = _project.value ?: return
+        _isExporting.value = true
+        _exportProgress.value = 0f
+        viewModelScope.launch {
+            try {
+                val exportDir = mediaProjectManager.getExportDir(project.id)
+                val outputFile = File(exportDir, "${project.name}_${System.currentTimeMillis()}.gif")
+                val result = videoEngine.exportGif(
+                    inputPath = firstClip.sourceUri,
+                    outputPath = outputFile.absolutePath,
+                    width = width,
+                    height = height,
+                    fps = fps,
+                    startTimeMs = startTimeMs,
+                    durationMs = durationMs
+                )
+                result.onSuccess {
+                    _isExporting.value = false
+                    _exportProgress.value = 1f
+                    _exportOutputPath.value = it
+                }.onFailure { e ->
+                    _isExporting.value = false
+                    _error.value = e.message ?: "GIF export failed"
+                }
+            } catch (e: Exception) {
+                _isExporting.value = false
+                _error.value = e.message ?: "GIF export failed"
+            }
+        }
+    }
+
+    fun exportPngSequence(width: Int = 1080, height: Int = 1920, fps: Int = 30) {
+        val clips = trackManager.tracks.value
+            .filter { it.type == TrackType.VIDEO }
+            .flatMap { it.clips }
+            .sortedBy { it.startOffsetUs }
+        if (clips.isEmpty()) {
+            _error.value = "No video clips to export as PNG sequence"
+            return
+        }
+        val firstClip = clips.first()
+        val project = _project.value ?: return
+        _isExporting.value = true
+        _exportProgress.value = 0f
+        viewModelScope.launch {
+            try {
+                val exportDir = File(mediaProjectManager.getExportDir(project.id), "png_seq_${System.currentTimeMillis()}")
+                exportDir.mkdirs()
+                val result = videoEngine.exportPngSequence(
+                    inputPath = firstClip.sourceUri,
+                    outputDir = exportDir.absolutePath,
+                    width = width,
+                    height = height,
+                    fps = fps
+                )
+                result.onSuccess { paths ->
+                    _isExporting.value = false
+                    _exportProgress.value = 1f
+                    _exportOutputPath.value = exportDir.absolutePath
+                }.onFailure { e ->
+                    _isExporting.value = false
+                    _error.value = e.message ?: "PNG sequence export failed"
+                }
+            } catch (e: Exception) {
+                _isExporting.value = false
+                _error.value = e.message ?: "PNG sequence export failed"
+            }
+        }
+    }
+
+    fun reverseSelectedClip() {
+        val clipId = trackManager.selectedClipId.value ?: return
+        val clip = trackManager.getClip(clipId) ?: return
+        val project = _project.value ?: return
+        if (clip.sourceUri.isBlank()) {
+            _error.value = "Selected clip has no source media"
+            return
+        }
+        _isExporting.value = true
+        viewModelScope.launch {
+            try {
+                val exportDir = mediaProjectManager.getMediaDir(project.id)
+                val outputFile = File(exportDir, "${clip.label}_reversed.mp4")
+                val result = videoEngine.reverseVideo(
+                    inputPath = clip.sourceUri,
+                    outputPath = outputFile.absolutePath
+                )
+                result.onSuccess { reversedPath ->
+                    undoRedoManager.execute(
+                        SnapshotCommand(trackManager, "Reverse clip") {
+                            val tracks = trackManager.tracks.value
+                            for ((trackIndex, track) in tracks.withIndex()) {
+                                if (track.clips.any { it.id == clipId }) {
+                                    trackManager.updateClip(
+                                        trackIndex,
+                                        clip.copy(sourceUri = reversedPath, trimStartUs = 0L, trimEndUs = 0L)
+                                    )
+                                    break
+                                }
+                            }
+                        }
+                    )
+                    _isExporting.value = false
+                }.onFailure { e ->
+                    _isExporting.value = false
+                    _error.value = e.message ?: "Reverse failed"
+                }
+            } catch (e: Exception) {
+                _isExporting.value = false
+                _error.value = e.message ?: "Reverse failed"
+            }
+        }
+    }
+
     private fun buildFallbackTemplateTracks(template: TemplateProject): List<Track> {
         val durationUs = (template.durationMs.coerceAtLeast(3_000L)) * 1000L
         val textClip = EditorClip(
@@ -1539,6 +1666,101 @@ class EditorViewModel @Inject constructor(
             mimeType.startsWith("audio/") -> TrackType.AUDIO
             else -> selectedTrack?.type ?: TrackType.VIDEO
         }
+    }
+
+    fun applyBeatSyncToSelected() {
+        val clipId = trackManager.selectedClipId.value ?: return
+        val clip = trackManager.getClip(clipId) ?: return
+        if (clip.sourceUri.isBlank()) {
+            _error.value = "Selected clip has no source media"
+            return
+        }
+        viewModelScope.launch {
+            try {
+                val beats = com.changecut.core.ai.AiBeatSync().detectBeats(clip.sourceUri)
+                if (beats.isEmpty()) {
+                    _error.value = "No beats detected in audio"
+                    return@launch
+                }
+                val cutPoints = beats
+                    .sortedBy { it.intensity }
+                    .takeLast(5)
+                    .map { it.timeUs.coerceIn(clip.startOffsetUs, clip.endOffsetUs) }
+                    .sorted()
+                if (cutPoints.isNotEmpty()) {
+                    undoRedoManager.execute(
+                        SnapshotCommand(trackManager, "Apply beat sync cuts") {
+                            val tracks = trackManager.tracks.value
+                            for ((index, track) in tracks.withIndex()) {
+                                if (track.clips.any { it.id == clipId }) {
+                                    for (cutPoint in cutPoints) {
+                                        trackManager.splitClip(index, clipId, cutPoint)
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    )
+                }
+            } catch (e: Exception) {
+                _error.value = "Beat sync failed: ${e.message}"
+            }
+        }
+    }
+
+    fun applySmartTrimToSelected() {
+        val clipId = trackManager.selectedClipId.value ?: return
+        val clip = trackManager.getClip(clipId) ?: return
+        if (clip.sourceUri.isBlank()) {
+            _error.value = "Selected clip has no source media"
+            return
+        }
+        viewModelScope.launch {
+            try {
+                val smartTrim = com.changecut.core.ai.AiSmartTrim()
+                val silenceSegments = smartTrim.detectSilence(clip.sourceUri, thresholdDb = -40.0, minSilenceMs = 500)
+                if (silenceSegments.isEmpty()) {
+                    _error.value = "No silence detected for smart trim"
+                    return@launch
+                }
+                undoRedoManager.execute(
+                    SnapshotCommand(trackManager, "Apply smart trim") {
+                        val tracks = trackManager.tracks.value
+                        for ((index, track) in tracks.withIndex()) {
+                            if (track.clips.any { it.id == clipId }) {
+                                trackManager.removeClip(index, clipId)
+                                break
+                            }
+                        }
+                        _error.value = "Smart trim: removed ${silenceSegments.size} silence segments"
+                    }
+                )
+            } catch (e: Exception) {
+                _error.value = "Smart trim failed: ${e.message}"
+            }
+        }
+    }
+
+    fun applyVoiceIsolationToSelected() {
+        val clipId = trackManager.selectedClipId.value ?: return
+        val clip = trackManager.getClip(clipId) ?: return
+        undoRedoManager.execute(
+            SnapshotCommand(trackManager, "Apply voice isolation") {
+                trackManager.applyAudioEQ(
+                    clipId,
+                    com.changecut.core.editor.AudioEQDef(
+                        duckingAmount = 0f,
+                        compressorThreshold = -20f,
+                        compressorRatio = 3f,
+                        limiterThreshold = -1f,
+                        limiterRelease = 100f,
+                        lowGain = -6f,
+                        midGain = 6f,
+                        highGain = -3f
+                    )
+                )
+            }
+        )
     }
 }
 
