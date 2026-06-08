@@ -365,6 +365,7 @@ class TemplateEngine @Inject constructor(
         blueCurve = optJSONArray("blueCurve")?.toFloatList() ?: listOf(0f, 0.5f, 1f),
         rgbCurve = optJSONArray("rgbCurve")?.toFloatList() ?: listOf(0f, 0.5f, 1f),
         lutPath = optString("lutPath").takeIf { it.isNotBlank() },
+        lutIntensity = optDouble("lutIntensity", 1.0).toFloat(),
         vignetteIntensity = optDouble("vignetteIntensity", 0.0).toFloat(),
         autoColor = optBoolean("autoColor", false)
     )

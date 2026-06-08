@@ -189,6 +189,7 @@ class ProjectTimelineStore @Inject constructor(
         put("blueCurve", JSONArray(blueCurve.map { it.toDouble() }))
         put("rgbCurve", JSONArray(rgbCurve.map { it.toDouble() }))
         put("lutPath", lutPath)
+        put("lutIntensity", lutIntensity.toDouble())
         put("vignetteIntensity", vignetteIntensity.toDouble())
         put("autoColor", autoColor)
     }
